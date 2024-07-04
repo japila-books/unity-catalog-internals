@@ -92,6 +92,9 @@ extra:
     title: Unity Catalog
   uc:
     version: 0.1.0
+  armeria:
+    version: 1.28.4
+    javadoc: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/jaceklaskowski
@@ -111,3 +114,4 @@ nav:
   - index.md
   - Internals:
     - overview.md
+  - ... | server/**.md
