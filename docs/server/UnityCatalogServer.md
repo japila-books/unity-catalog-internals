@@ -2,9 +2,9 @@
 title: UnityCatalogServer
 ---
 
-# UnityCatalogServer Utility
+# UnityCatalogServer Reference Server
 
-`UnityCatalogServer` is a command-line utility to start a Unity Catalog server at the given [port](#port) (default: `8080`) or the closest one open.
+`UnityCatalogServer` can be used as a command-line utility to start a Unity Catalog Reference Server at the given [port](#port) (default: `8080`) or the closest one open.
 
 ```console
 ./bin/start-uc-server [port]

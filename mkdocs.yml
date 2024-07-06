@@ -95,6 +95,9 @@ extra:
   armeria:
     version: 1.28.4
     javadoc: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
+  log4j:
+    version: 2.23.1
+    manual: https://logging.apache.org/log4j/2.x/manual
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/jaceklaskowski
@@ -115,3 +118,5 @@ nav:
   - Internals:
     - overview.md
   - ... | server/**.md
+  - ... | client/**.md
+  - ... | cli/**.md
