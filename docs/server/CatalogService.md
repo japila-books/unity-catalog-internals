@@ -1,6 +1,6 @@
 # CatalogService
 
-`CatalogService` is a Unity Catalog API service that [UnityCatalogServer](UnityCatalogServer.md) uses to handle HTTP requests at `/api/2.1/unity-catalog/catalogs` URL.
+`CatalogService` is a [Unity Catalog API service](UnityCatalogServer.md) to handle HTTP requests at [/api/2.1/unity-catalog/catalogs](UnityCatalogServer.md#addServices) URL.
 
 Method | URL | Handler | Params
 -|-|-|-
@@ -9,6 +9,25 @@ Method | URL | Handler | Params
  GET | `/{name}` | [getCatalog](#getCatalog) | <ul><li>name</li></ul>
  PATCH | `/{name}` | [updateCatalog](#updateCatalog) | <ul><li>name</li></ul>
  DELETE | `/{name}` | [deleteCatalog](#deleteCatalog) | <ul><li>name</li></ul>
+
+`CatalogService` is also used to create [IcebergRestCatalogService](IcebergRestCatalogService.md#catalogService).
+
+## listCatalogs { #listCatalogs }
+
+```scala
+HttpResponse listCatalogs()
+```
+
+`listCatalogs`...FIXME
+
+---
+
+`listCatalogs` is used when:
+
+* `CatalogService` is requested to handle HTTP `GET` requests on [catalogs](UnityCatalogServer.md#addServices) URL
+* FIXME
+
+## Demo
 
 ```console
 $ http http://localhost:8081/api/2.1/unity-catalog/catalogs

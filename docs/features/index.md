@@ -1,22 +1,33 @@
 # {{ book.title }}
 
+**Unity Catalog** is an [open-source universal catalog](https://www.unitycatalog.io/) of the following assets:
+
+* [Catalogs](../server/CatalogService.md)
+* Credentials (for [Tables](../server/TemporaryTableCredentialsService.md) and [Volumes](../server/TemporaryVolumeCredentialsService.md))
+* [Functions](../server/FunctionService.md)
+* [Schemas](../server/SchemaService.md)
+* [Tables](../server/TableService.md)
+* [Volumes](../server/VolumeService.md)
+
 Unity Catalog is made up of the following runtimes:
 
-* [Reference Server](server/index.md)
-* [Example CLI](cli/index.md) (based on the [Client API](client/index.md))
+* [Reference Server](../server/index.md)
+* [Example CLI](../cli/index.md) (based on the [Client API](../client/index.md))
 
 The server and CLI can be started on command line using `bin/start-uc-server` and `bin/uc` shell scripts, respectively.
 
 ## Running Unity Catalog
 
-```console
+Java 11 or above is required to run Unity Catalog.
+
+```text
 $ java --version
 openjdk 17.0.10 2024-01-16 LTS
 OpenJDK Runtime Environment Zulu17.48+15-CA (build 17.0.10+7-LTS)
 OpenJDK 64-Bit Server VM Zulu17.48+15-CA (build 17.0.10+7-LTS, mixed mode, sharing)
 ```
 
-```console
+```text
 $ ./bin/start-uc-server
 ###################################################################
 #  _    _       _ _            _____      _        _              #
@@ -31,7 +42,7 @@ $ ./bin/start-uc-server
 
 ```
 
-```console
+```text
 $ ./bin/uc
 Please provide a entity.
 
@@ -46,3 +57,9 @@ Currently, auth using bearer token is supported. Please specify the token via --
 
 For detailed help on entity specific operations, use bin/uc <entity> --help
 ```
+
+## Learning Resources
+
+1. [Open Sourcing Unity Catalog](https://www.databricks.com/blog/open-sourcing-unity-catalog)
+1. [Getting Started with X-Table and Unity Catalog | Universal Datalakes | Hands on Labs](https://www.linkedin.com/pulse/getting-started-x-table-unity-catalog-universal-datalakes-soumil-shah-l3rpe/) with an accompanying [video on YouTube](https://youtu.be/1SKQRrenBj4)
+1. [Unitycatalog: the first look](https://semyonsinchenko.github.io/ssinchenko/post/uniticatalog-first-look/)
