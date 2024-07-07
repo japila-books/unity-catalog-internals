@@ -16,7 +16,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/cli/CliUtils/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/FunctionCli/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/cli/PythonInvoker/</loc>
          <lastmod>2024-07-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
