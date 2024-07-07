@@ -96,6 +96,9 @@ extra:
   armeria:
     version: 1.28.4
     javadoc: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
+  java:
+    version: 17
+    spec: https://docs.oracle.com/javase/specs/jls/se17/html
   log4j:
     version: 2.23.1
     manual: https://logging.apache.org/log4j/2.x/manual

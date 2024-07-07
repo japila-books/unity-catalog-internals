@@ -1,1 +1,1 @@
-# Unity Catalog Client API
+# Unity Catalog's Client API
