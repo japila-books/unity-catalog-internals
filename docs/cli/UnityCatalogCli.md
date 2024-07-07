@@ -8,7 +8,11 @@
 
 Personal access token (PAT) to authorize requests
 
-When specified, `UnityCatalogCli` [creates an ApiClient](#getApiClient) that adds `Authorization` header with `Bearer [pat]` to every request.
+When specified, `UnityCatalogCli` [creates an ApiClient](#getApiClient) that adds `authorization` header with `Bearer [pat]` to every request.
+
+```text
+authorization: Bearer [pat]
+```
 
 ### server
 
@@ -20,11 +24,11 @@ Default: `http://localhost:8080`
 
 Command | Handler
 -|-
- `catalog` | [CatalogCli](CatalogCli.md#handle)
- `function` | [FunctionCli](FunctionCli.md#handle)
- `schema` | [SchemaCli](SchemaCli.md#handle)
- `table` | [TableCli](TableCli.md#handle)
- `volume` | [VolumeCli](VolumeCli.md#handle)
+ `catalog` | [CatalogCli](CatalogCli.md)
+ `function` | [FunctionCli](FunctionCli.md)
+ `schema` | [SchemaCli](SchemaCli.md)
+ `table` | [TableCli](TableCli.md)
+ `volume` | [VolumeCli](VolumeCli.md)
 
 ## Creating ApiClient { #getApiClient }
 
