@@ -41,7 +41,7 @@ This `CatalogService` is used for the following:
 
 ### SessionFactory { #sessionFactory }
 
-`IcebergRestCatalogService` [creates a SessionFactory](HibernateUtil.md#getSessionFactory) when [created](#creating-instance).
+`IcebergRestCatalogService` [creates a SessionFactory](../persistent-storage/HibernateUtil.md#getSessionFactory) when [created](#creating-instance).
 
 This `SessionFactory` is used for the following:
 

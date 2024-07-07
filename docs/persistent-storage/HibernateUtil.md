@@ -1,6 +1,6 @@
 # HibernateUtil
 
-`HibernateUtil` is used to access the system-wide [SessionFactory](#sessionFactory).
+`HibernateUtil` is used to access the system-wide [SessionFactory](#sessionFactory) ([Hibernate]({{ hibernate.javadoc }}/org/hibernate/SessionFactory.html)).
 
 ## PropertiesUtil { #properties }
 
@@ -27,7 +27,7 @@ This `SessionFactory` is used by the following:
 * [SchemaRepository](SchemaRepository.md#sessionFactory)
 * [TableRepository](TableRepository.md#sessionFactory)
 * [VolumeRepository](VolumeRepository.md#sessionFactory)
-* [IcebergRestCatalogService](IcebergRestCatalogService.md#sessionFactory)
+* [IcebergRestCatalogService](../server/IcebergRestCatalogService.md#sessionFactory)
 
 ## createSessionFactory { #createSessionFactory }
 
@@ -39,3 +39,5 @@ SessionFactory createSessionFactory()
     `createSessionFactory` is a Java **class method** that is always invoked without reference to a particular object.
 
     Learn more in the [Java Language Specification]({{ java.spec }}/jls-8.html#jls-8.4.3.2).
+
+`createSessionFactory`...FIXME
