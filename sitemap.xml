@@ -56,17 +56,47 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/features/persistent-storage/</loc>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/CatalogRepository/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/FunctionRepository/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/HibernateUtil/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/PropertiesUtil/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/SchemaRepository/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/TableRepository/</loc>
+         <lastmod>2024-07-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/VolumeRepository/</loc>
          <lastmod>2024-07-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/</loc>
-         <lastmod>2024-07-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/CatalogRepository/</loc>
          <lastmod>2024-07-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -86,17 +116,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/FunctionRepository/</loc>
-         <lastmod>2024-07-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/FunctionService/</loc>
-         <lastmod>2024-07-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/HibernateUtil/</loc>
          <lastmod>2024-07-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -106,22 +126,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/PropertiesUtil/</loc>
-         <lastmod>2024-07-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/SchemaRepository/</loc>
-         <lastmod>2024-07-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/SchemaService/</loc>
-         <lastmod>2024-07-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/TableRepository/</loc>
          <lastmod>2024-07-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -142,11 +147,6 @@
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/UnityCatalogServer/</loc>
-         <lastmod>2024-07-07</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/VolumeRepository/</loc>
          <lastmod>2024-07-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
