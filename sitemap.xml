@@ -141,6 +141,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/GenerateTemporaryTableCredential/</loc>
+         <lastmod>2024-07-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/IcebergRestCatalogService/</loc>
          <lastmod>2024-07-09</lastmod>
          <changefreq>daily</changefreq>
