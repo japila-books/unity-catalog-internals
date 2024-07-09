@@ -8,7 +8,7 @@
 
 Personal access token (PAT) to authorize requests
 
-When specified, `UnityCatalogCli` [creates an ApiClient](#getApiClient) that adds `authorization` header with `Bearer [pat]` to every request.
+When specified, `UnityCatalogCli` [creates an ApiClient](#getApiClient) that adds the bearer token in the HTTP `Authorization` header to every request.
 
 ```text
 authorization: Bearer [pat]
