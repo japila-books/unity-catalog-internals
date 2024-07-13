@@ -2,187 +2,187 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/CatalogCli/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/CliUtils/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/FunctionCli/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/PythonInvoker/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/SchemaCli/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/TableCli/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/UnityCatalogCli/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/VolumeCli/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/client/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/client/ApiClient/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/features/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/CatalogRepository/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/FunctionRepository/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/HibernateUtil/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/PropertiesUtil/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/S3BucketConfig/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/SchemaRepository/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/TableRepository/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/VolumeRepository/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/AwsCredentials/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/CatalogService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/CreateCatalog/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/CreateTable/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/FunctionService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/GenerateTemporaryTableCredential/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/IcebergRestCatalogService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/SchemaService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TableService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryCredentialUtils/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryTableCredentialsService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryVolumeCredentialsService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/UnityCatalogServer/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/VolumeService/</loc>
-         <lastmod>2024-07-10</lastmod>
+         <lastmod>2024-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
