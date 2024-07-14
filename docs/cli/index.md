@@ -17,6 +17,27 @@ Currently, auth using bearer token is supported. Please specify the token via --
 For detailed help on entity specific operations, use bin/uc <entity> --help
 ```
 
+## Fixed-Width Output Fields
+
+As of [this commit]({{ uc.commit }}/06ea446a3a00e78f82a77039dae22339152e2e1d), the tabular output of Unity Catalog CLI always displays the entire values of the following columns (case-insensitive):
+
+* `NAME`
+* Any column with `ID` suffix (e.g., `TABLE_ID`)
+
+``` { .console .no-copy }
+$ ./bin/uc table list --catalog unity --schema default
+┌─────────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────┬────────────────────────────────────┐
+│      NAME       │CATALOG_NAME│SCHEMA_NAME │ TABLE_TYPE │DATA_SOURCE_│  COLUMNS   │STORAGE_LOCA│  COMMENT   │ PROPERTIES │ CREATED_AT │ UPDATED_AT │              TABLE_ID              │
+│                 │            │            │            │   FORMAT   │            │    TION    │            │            │            │            │                                    │
+├─────────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────────────────────────────┤
+│numbers          │unity       │default     │EXTERNAL    │DELTA       │[{"name":...│file:///U...│External ...│{"key1":"...│172042953...│172042953...│b5d6db68-5eca-485c-be5f-5f53d4f27f60│
+├─────────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────────────────────────────┤
+│marksheet_uniform│unity       │default     │EXTERNAL    │DELTA       │[{"name":...│file:///t...│Uniform t...│{"key1":"...│172042953...│172042953...│76874c28-0ebf-46e7-9971-eb164bd62c46│
+├─────────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────┼────────────────────────────────────┤
+│marksheet        │unity       │default     │MANAGED     │DELTA       │[{"name":...│file:///U...│Managed t...│{"key1":"...│172042953...│172042953...│25ca07aa-1350-4104-b485-13b9ad1f5d72│
+└─────────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────────────────────────────┘
+```
+
 ## Entities
 
 Unity Catalog CLI supports the following entities:

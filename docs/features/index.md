@@ -18,13 +18,13 @@ The server and CLI can be started on command line using `bin/start-uc-server` an
 
 ## Running Unity Catalog
 
-Java 11 or above is required to run Unity Catalog.
+Java 17 or above is required to build and run Unity Catalog.
 
 ```text
 $ java --version
-openjdk 17.0.10 2024-01-16 LTS
-OpenJDK Runtime Environment Zulu17.48+15-CA (build 17.0.10+7-LTS)
-OpenJDK 64-Bit Server VM Zulu17.48+15-CA (build 17.0.10+7-LTS, mixed mode, sharing)
+openjdk 17.0.11 2024-04-16 LTS
+OpenJDK Runtime Environment Zulu17.50+19-CA (build 17.0.11+9-LTS)
+OpenJDK 64-Bit Server VM Zulu17.50+19-CA (build 17.0.11+9-LTS, mixed mode, sharing)
 ```
 
 ```text
