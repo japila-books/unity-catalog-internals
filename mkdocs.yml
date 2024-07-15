@@ -99,6 +99,8 @@ extra:
     property: !ENV GOOGLE_ANALYTICS_KEY
   book:
     title: Unity Catalog
+    delta: https://books.japila.pl/delta-lake-internals
+    spark_sql: https://books.japila.pl/spark-sql-internals
   uc:
     version: 0.1.0
     commit: https://github.com/unitycatalog/unitycatalog/commit
@@ -106,6 +108,8 @@ extra:
   armeria:
     version: 1.28.4
     javadoc: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
+  delta:
+    version: 4.0.0rc1
   hibernate:
     javadoc: https://docs.jboss.org/hibernate/orm/6.5/javadocs
   java:
@@ -128,6 +132,8 @@ extra:
       link: https://jaceklaskowski.medium.com
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@jaceklaskowski
+  spark:
+    version: 4.0.0-preview1
 
 # The sections with ... use awesome-pages plugin
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
@@ -137,6 +143,7 @@ nav:
   - Features:
     - features/index.md
     - ... | persistent-storage/**.md
+    - ... | spark-integration/**.md
   - ... | server/**.md
   - ... | client/**.md
   - ... | cli/**.md
