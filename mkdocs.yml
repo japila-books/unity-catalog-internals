@@ -102,7 +102,7 @@ extra:
     delta: https://books.japila.pl/delta-lake-internals
     spark_sql: https://books.japila.pl/spark-sql-internals
   uc:
-    version: 0.1.0
+    version: 0.2.0-SNAPSHOT
     commit: https://github.com/unitycatalog/unitycatalog/commit
     github: https://github.com/unitycatalog/unitycatalog/blob/main
   armeria:
