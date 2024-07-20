@@ -27,7 +27,7 @@ This `SessionFactory` is used by the following:
 * [SchemaRepository](SchemaRepository.md#sessionFactory)
 * [TableRepository](TableRepository.md#sessionFactory)
 * [VolumeRepository](VolumeRepository.md#sessionFactory)
-* [IcebergRestCatalogService](../server/IcebergRestCatalogService.md#sessionFactory)
+* [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md#sessionFactory)
 
 ## createSessionFactory { #createSessionFactory }
 

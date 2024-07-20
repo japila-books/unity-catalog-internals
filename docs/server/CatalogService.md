@@ -10,7 +10,7 @@ Method | URL | Handler | Params
  PATCH | `/{name}` | [updateCatalog](#updateCatalog) | <ul><li>name</li></ul>
  DELETE | `/{name}` | [deleteCatalog](#deleteCatalog) | <ul><li>name</li></ul>
 
-`CatalogService` is also used to create [IcebergRestCatalogService](IcebergRestCatalogService.md#catalogService).
+`CatalogService` is also used to create [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md#catalogService).
 
 ## listCatalogs { #listCatalogs }
 

@@ -112,6 +112,8 @@ extra:
     version: 4.0.0rc1
   hibernate:
     javadoc: https://docs.jboss.org/hibernate/orm/6.5/javadocs
+  iceberg:
+    home: https://iceberg.apache.org
   java:
     version: 17
     spec: https://docs.oracle.com/javase/specs/jls/se17/html
@@ -142,6 +144,7 @@ nav:
   - index.md
   - Features:
     - features/index.md
+    - ... | iceberg/**.md
     - ... | persistent-storage/**.md
     - ... | spark-integration/**.md
   - ... | server/**.md
