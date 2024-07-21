@@ -7,6 +7,7 @@ The following features are supported:
 * Read/write (partitioned) external parquet tables
 * Read/write (partitioned) external delta tables
 * Support the path table syntax of delta tables
+* [Temporary credentials for secured access](./UCProxy.md#loadTable) to local and S3 tables ([parquet tables only, no delta tables yet]({{ uc.commit }}/681acbdb46f375d00e402739bc3ea31fc407e732))
 
 ## Demo
 
