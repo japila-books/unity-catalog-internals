@@ -20,7 +20,7 @@ Subcommand | Params | Handler
 
 `handle` is used when:
 
-* `UnityCatalogCli` is [launched on command line with function command](UnityCatalogCli.md#main)
+* `UnityCatalogCli` is [launched on command line](UnityCatalogCli.md#main) with `function` command
 
 ## Executing Function { #executeFunction }
 

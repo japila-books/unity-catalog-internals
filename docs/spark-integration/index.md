@@ -28,7 +28,7 @@ build/sbt clean package publishLocal spark/publishLocal
     ./bin/spark-shell \
       --conf spark.jars.ivy=$HOME/.ivy2 \
       --packages \
-        io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark:0.1.0-SNAPSHOT \
+        io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.connectors.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
@@ -56,9 +56,8 @@ build/sbt clean package publishLocal spark/publishLocal
 
     ``` shell
     ./bin/spark-shell \
-      --conf spark.jars.ivy=$HOME/.ivy2 \
       --packages \
-        io.delta:delta-spark_2.13:3.2.0,io.unitycatalog:unitycatalog-spark:0.1.0-SNAPSHOT \
+        io.delta:delta-spark_2.13:3.2.0,io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.connectors.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
@@ -74,7 +73,7 @@ build/sbt clean package publishLocal spark/publishLocal
       /___/ .__/\_,_/_/ /_/\_\   version 3.5.1
           /_/
 
-    Using Scala version 2.13.8 (OpenJDK 64-Bit Server VM, Java 17.0.11)
+    Using Scala version 2.13.8 (OpenJDK 64-Bit Server VM, Java 17.0.12)
     ```
 
 ### spark_catalog

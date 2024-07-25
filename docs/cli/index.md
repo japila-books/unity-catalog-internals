@@ -17,6 +17,27 @@ Currently, auth using bearer token is supported. Please specify the token via --
 For detailed help on entity specific operations, use bin/uc <entity> --help
 ```
 
+## Entities
+
+Unity Catalog CLI supports the following entities:
+
+* [catalog](CatalogCli.md)
+* [function](FunctionCli.md)
+* [schema](SchemaCli.md)
+* [table](TableCli.md)
+* [volume](VolumeCli.md)
+
+## Options
+
+### <span id="OUTPUT"> output { #output }
+
+The output format
+
+Format | Description
+-|-
+ `json` | Prints out the output directly (with no changes) for `read` and `call` subcommands when [postProcessAndPrintOutput](CliUtils.md#postProcessAndPrintOutput)
+ `jsonPretty` | Uses the default `PrettyPrinter` for the [ObjectWriter](CliUtils.md#getObjectWriter) to pretty-print JSONs
+
 ## Fixed-Width Output Fields
 
 As of [this commit]({{ uc.commit }}/06ea446a3a00e78f82a77039dae22339152e2e1d), the tabular output of Unity Catalog CLI always displays the entire values of the following columns (case-insensitive):
@@ -37,24 +58,3 @@ $ ./bin/uc table list --catalog unity --schema default
 │marksheet        │unity       │default     │MANAGED     │DELTA       │[{"name":...│file:///U...│Managed t...│{"key1":"...│172042953...│172042953...│25ca07aa-1350-4104-b485-13b9ad1f5d72│
 └─────────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────────────────────────────┘
 ```
-
-## Entities
-
-Unity Catalog CLI supports the following entities:
-
-* [schema](SchemaCli.md)
-* [volume](VolumeCli.md)
-* [catalog](CatalogCli.md)
-* [function](FunctionCli.md)
-* [table](TableCli.md)
-
-## Options
-
-### <span id="OUTPUT"> output { #output }
-
-The output format
-
-Format | Description
--|-
- `json` | Prints out the output directly (with no changes) for `read` and `call` subcommands when [postProcessAndPrintOutput](CliUtils.md#postProcessAndPrintOutput)
- `jsonPretty` | Uses the default `PrettyPrinter` for the [ObjectWriter](CliUtils.md#getObjectWriter) to pretty-print JSONs
