@@ -6,19 +6,25 @@ title: UnityCatalogServer
 
 `UnityCatalogServer` is Unity Catalog's **Localhost Reference Server**.
 
-`UnityCatalogServer` can be started on command line to handle REST API requests at the [port](#port) (default: `8080` or the closest one open).
+`UnityCatalogServer` can be started on command line to [handle REST API requests](#addServices) at the [port](#port).
 
 ```console
-./bin/start-uc-server [port]
+./bin/start-uc-server [-p|--port port]
 ```
 
-`UnityCatalogServer` starts Armeria documentation service at <http://localhost:8081/docs/> and the [Unity Catalog API services](#addServices).
+`UnityCatalogServer` starts Armeria documentation service at http://localhost:8081/docs and the other [Unity Catalog API services](#addServices).
+
+## Port
+
+`UnityCatalogServer` takes a port number when [created](#creating-instance).
+
+Unless specified on command-line using `-p,--port <arg>` option, `UnityCatalogServer` defaults to `8080` or the closest one available.
 
 ## Creating Instance
 
 `UnityCatalogServer` takes the following to be created:
 
-* <span id="port"> Port (default: `8080`)
+* [Port](#port)
 
 While being created, `UnityCatalogServer` builds the [Server](#server):
 
