@@ -21,6 +21,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/cli/DeltaKernelUtils/</loc>
+         <lastmod>2024-07-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/DeltaKernelWriteUtils/</loc>
          <lastmod>2024-07-28</lastmod>
          <changefreq>daily</changefreq>
