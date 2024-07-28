@@ -46,7 +46,7 @@ String createTable(
 
 `createTable` handles `create` sub-command.
 
-=== "CLI"
+=== "Help"
 
     ```bash
     ./bin/uc table create --help
@@ -75,19 +75,22 @@ Optional Params:
 
 Unless specified, `createTable` sets `table_type` to be `EXTERNAL`.
 
-Unless specified, `createTable` sets `data_source_format` to be `DELTA`.
+!!! note "No Support for Managed Tables using CLI"
+    Only `EXTERNAL` tables are created using `./bin/uc` command-line utility.
+
+Unless specified (using `format` CLI option), `createTable` sets `data_source_format` to be `DELTA`.
 
 `createTable` creates a [CreateTable](../server/CreateTable.md):
 
-CreateTable | Value
--|-
- `name` | `name`
- `catalogName` | `catalog_name`
- `schemaName` | `schema_name`
- `columns` | `columns`
- `properties` | `properties`
- `tableType` | `table_type`
- `dataSourceFormat` | `data_source_format`
+CreateTable | Server Param | CLI Option
+-|-|-
+ `name` | `name` | `name`
+ `catalogName` | `catalog_name` | `catalog`
+ `schemaName` | `schema_name` | `schema`
+ `columns` | `columns` | `columns`
+ `properties` | `properties` | `properties`
+ `tableType` | `table_type` | `table_type`
+ `dataSourceFormat` | `data_source_format` | `format`
 
 For `EXTERNAL` table type, `createTable` sets `storage_location` of the `CreateTable` as the value of `storage_location` command-line option and [handleTableStorageLocation](#handleTableStorageLocation).
 
@@ -114,7 +117,16 @@ void handleTableStorageLocation(
   List<ColumnInfo> columnInfos)
 ```
 
-`handleTableStorageLocation`...FIXME
+`handleTableStorageLocation` supports `storageLocation`s with one of the following prefixes (or throws a `CliException`):
+
+* `s3://`
+* `file:/`
+* `/` for absolute local filesystem paths
+
+For a local filesystem path (a non-`s3://` storage location), `handleTableStorageLocation` [creates an empty delta table](DeltaKernelUtils.md#createDeltaTable) (the directory with a delta log at the storage location).
+
+!!! note "No AwsCredentials Used"
+    `handleTableStorageLocation` [creates an empty delta table](DeltaKernelUtils.md#createDeltaTable) with no [AwsCredentials](../server/AwsCredentials.md) (`null`).
 
 ## Write to Delta Table { #writeTable }
 
