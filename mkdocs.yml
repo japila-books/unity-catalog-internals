@@ -144,6 +144,7 @@ nav:
   - index.md
   - Features:
     - features/index.md
+    - ... | docker/**.md
     - ... | iceberg/**.md
     - ... | persistent-storage/**.md
     - ... | spark-integration/**.md

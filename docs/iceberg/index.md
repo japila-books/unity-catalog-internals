@@ -1,4 +1,4 @@
-# Apache Iceberg Support
+# Iceberg Support
 
 Unity Catalog supports loading [Apache Iceberg]({{ iceberg.home }}) tables located in local path and S3 in [IcebergRestCatalogService](IcebergRestCatalogService.md).
 
