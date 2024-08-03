@@ -17,6 +17,7 @@ As of [this commit]({{ uc.commit }}/10c57d14d2af5e208f6e15f06df4950b6d587ba1), U
 === "Spark 3.5.1 + Delta Lake 3.2.0"
 
     ``` shell
+    SPARK_SUBMIT_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5555 \
     ./bin/spark-shell \
       --packages \
         io.delta:delta-spark_2.13:3.2.0,io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
@@ -66,18 +67,56 @@ assert(spark.sessionState.catalogManager.currentCatalog.isInstanceOf[io.unitycat
 assert(spark.sessionState.catalogManager.currentCatalog.name == "spark_catalog")
 ```
 
+`SHOW NAMESPACES` requests the [UCProxy](UCProxy.md) to [listNamespaces](UCProxy.md#listNamespaces) with the name of the catalog.
+No `IN` clause means the current default catalog.
+
+!!! note
+    There is `unity` catalog registered in Unity Catalog by default. No other catalogs (incl. the default `spark_catalog` in Apache Spark) are available.
+
+```console
+$ ./bin/uc catalog list
+┌─────┬────────────┬──────────┬─────────────┬──────────┬────────────────────────────────────┐
+│NAME │  COMMENT   │PROPERTIES│ CREATED_AT  │UPDATED_AT│                 ID                 │
+├─────┼────────────┼──────────┼─────────────┼──────────┼────────────────────────────────────┤
+│unity│Main catalog│{}        │1721234405334│null      │f029b870-9468-4f10-badc-630b41e5690d│
+└─────┴────────────┴──────────┴─────────────┴──────────┴────────────────────────────────────┘
+```
+
+```text
+scala> sql("SHOW NAMESPACES").show()
+io.unitycatalog.client.ApiException: listSchemas call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Catalog not found: spark_catalog"}
+  at io.unitycatalog.client.api.SchemasApi.getApiException(SchemasApi.java:77)
+  at io.unitycatalog.client.api.SchemasApi.listSchemasWithHttpInfo(SchemasApi.java:358)
+  at io.unitycatalog.client.api.SchemasApi.listSchemas(SchemasApi.java:334)
+  at io.unitycatalog.connectors.spark.UCProxy.listNamespaces(UCSingleCatalog.scala:218)
+  at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listNamespaces(DelegatingCatalogExtension.java:140)
+  at io.unitycatalog.connectors.spark.UCSingleCatalog.listNamespaces(UCSingleCatalog.scala:63)
+  at org.apache.spark.sql.execution.datasources.v2.ShowNamespacesExec.run(ShowNamespacesExec.scala:42)
+  ...
+```
+
+Querying `unity` catalog works just fine.
+
+```console
+scala> sql("SHOW NAMESPACES IN unity").show()
++---------+
+|namespace|
++---------+
+|  default|
++---------+
+```
+
 When requested for the [tables](UCProxy.md#listTables), `UCProxy` uses the name of the catalog (i.e., `spark_catalog`) as the catalog name to talk to the [TableService](../server/TableService.md) for the [table list](#listTables).
 
 ```text
-scala> sql("show tables").show(truncate = false)
-io.unitycatalog.client.ApiException: listTables call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Schema not found: default"}
+scala> sql("SHOW TABLES").show(truncate = false)
+io.unitycatalog.client.ApiException: listTables call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Catalog not found: spark_catalog"}
   at io.unitycatalog.client.api.TablesApi.getApiException(TablesApi.java:76)
   at io.unitycatalog.client.api.TablesApi.listTablesWithHttpInfo(TablesApi.java:342)
   at io.unitycatalog.client.api.TablesApi.listTables(TablesApi.java:317)
   at io.unitycatalog.connectors.spark.UCProxy.listTables(UCSingleCatalog.scala:129)
   at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listTables(DelegatingCatalogExtension.java:68)
   at io.unitycatalog.connectors.spark.UCSingleCatalog.listTables(UCSingleCatalog.scala:38)
-  at org.apache.spark.sql.execution.datasources.v2.ShowTablesExec.run(ShowTablesExec.scala:40)
   ...
 ```
 
@@ -98,59 +137,25 @@ io.unitycatalog.client.ApiException: listTables call failed with: 404 - {"error_
 +---------+-----------------+-----------+
 ```
 
-`SHOW NAMESPACES` requests the [UCProxy](UCProxy.md) to [listNamespaces](UCProxy.md#listNamespaces) with the name of the catalog.
-No `IN` clause assumes the current default catalog.
-
-```text
-scala> sql("SELECT current_catalog()").show(truncate = false)
-+-----------------+
-|current_catalog()|
-+-----------------+
-|spark_catalog    |
-+-----------------+
-```
-
-```text
-scala> sql("SHOW NAMESPACES").show(truncate = false)
-+---------+
-|namespace|
-+---------+
-|unity    |
-+---------+
-```
-
-```text
-scala> sql("SHOW NAMESPACES IN unity").show(truncate = false)
-+---------+
-|namespace|
-+---------+
-|default  |
-+---------+
-```
-
-Unless created in Unity Catalog, the default `spark_catalog` catalog in Apache Spark is not available and leads to `Catalog not found` exception.
-
-```text
-scala> sql("SHOW NAMESPACES").show()
-io.unitycatalog.client.ApiException: listSchemas call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Catalog not found: spark_catalog"}
-  at io.unitycatalog.client.api.SchemasApi.getApiException(SchemasApi.java:77)
-  at io.unitycatalog.client.api.SchemasApi.listSchemasWithHttpInfo(SchemasApi.java:358)
-  at io.unitycatalog.client.api.SchemasApi.listSchemas(SchemasApi.java:334)
-  at io.unitycatalog.connectors.spark.UCProxy.listNamespaces(UCSingleCatalog.scala:218)
-  at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listNamespaces(DelegatingCatalogExtension.java:140)
-  at io.unitycatalog.connectors.spark.UCSingleCatalog.listNamespaces(UCSingleCatalog.scala:63)
-  at org.apache.spark.sql.execution.datasources.v2.ShowNamespacesExec.run(ShowNamespacesExec.scala:42)
-  ...
-```
-
-Let's define `spark_catalog` in Unity Catalog.
+Let's define `spark_catalog` in Unity Catalog (to match Spark SQL's session catalog).
 
 ```shell
 ./bin/uc catalog create --name spark_catalog
 ```
 
+```console
+$ ./bin/uc catalog list
+┌─────────────┬────────────┬──────────┬─────────────┬──────────┬────────────────────────────────────┐
+│    NAME     │  COMMENT   │PROPERTIES│ CREATED_AT  │UPDATED_AT│                 ID                 │
+├─────────────┼────────────┼──────────┼─────────────┼──────────┼────────────────────────────────────┤
+│spark_catalog│null        │{}        │1722721567116│null      │c3cf6d26-3cba-4071-bdcf-417ecdb45445│
+├─────────────┼────────────┼──────────┼─────────────┼──────────┼────────────────────────────────────┤
+│unity        │Main catalog│{}        │1721234405334│null      │f029b870-9468-4f10-badc-630b41e5690d│
+└─────────────┴────────────┴──────────┴─────────────┴──────────┴────────────────────────────────────┘
+```
+
 ```text
-scala> sql("show namespaces").show()
+scala> sql("SHOW NAMESPACES").show()
 +---------+
 |namespace|
 +---------+
@@ -159,32 +164,25 @@ scala> sql("show namespaces").show()
 
 ```text
 scala> sql("DESC NAMESPACE unity").show()
-org.apache.spark.sql.catalyst.analysis.NoSuchNamespaceException: [SCHEMA_NOT_FOUND] The schema `unity` cannot be found. Verify the spelling and correctness of the schema and catalog.
-If you did not qualify the name with a catalog, verify the current_schema() output, or qualify the name with the correct catalog.
-To tolerate the error on drop use DROP SCHEMA IF EXISTS.
-  at io.unitycatalog.connectors.spark.UCProxy.loadNamespaceMetadata(UCSingleCatalog.scala:233)
+java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+  at io.unitycatalog.connectors.spark.UCProxy.loadNamespaceMetadata(UCSingleCatalog.scala:249)
   at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.loadNamespaceMetadata(DelegatingCatalogExtension.java:156)
-  at io.unitycatalog.connectors.spark.UCSingleCatalog.loadNamespaceMetadata(UCSingleCatalog.scala:71)
-  at org.apache.spark.sql.execution.datasources.v2.DescribeNamespaceExec.run(DescribeNamespaceExec.scala:39)
+  at io.unitycatalog.connectors.spark.UCSingleCatalog.loadNamespaceMetadata(UCSingleCatalog.scala:72)
   ...
 ```
 
 ```text
-scala> sql("CREATE NAMESPACE unity").show()
-++
-||
-++
-++
+sql("CREATE NAMESPACE unity.sub_catalog").show()
 ```
 
 ```text
-scala> sql("DESC NAMESPACE unity").show()
-+--------------+-------------+
-|     info_name|   info_value|
-+--------------+-------------+
-|  Catalog Name|spark_catalog|
-|Namespace Name|        unity|
-+--------------+-------------+
+scala> sql("DESC NAMESPACE unity.sub_catalog").show()
++--------------+-----------+
+|     info_name| info_value|
++--------------+-----------+
+|  Catalog Name|      unity|
+|Namespace Name|sub_catalog|
++--------------+-----------+
 ```
 
 === "Scala"
@@ -200,19 +198,6 @@ scala> sql("DESC NAMESPACE unity").show()
 |spark_catalog|
 |        unity|
 +-------------+
-```
-
-```text
-scala> sql("show tables").show()
-io.unitycatalog.client.ApiException: listTables call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Schema not found: default"}
-  at io.unitycatalog.client.api.TablesApi.getApiException(TablesApi.java:76)
-  at io.unitycatalog.client.api.TablesApi.listTablesWithHttpInfo(TablesApi.java:342)
-  at io.unitycatalog.client.api.TablesApi.listTables(TablesApi.java:317)
-  at io.unitycatalog.connectors.spark.UCProxy.listTables(UCSingleCatalog.scala:128)
-  at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listTables(DelegatingCatalogExtension.java:68)
-  at io.unitycatalog.connectors.spark.UCSingleCatalog.listTables(UCSingleCatalog.scala:37)
-  at org.apache.spark.sql.execution.datasources.v2.ShowTablesExec.run(ShowTablesExec.scala:40)
-  ...
 ```
 
 ## Demo
