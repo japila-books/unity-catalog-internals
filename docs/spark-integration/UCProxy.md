@@ -68,3 +68,28 @@ Hadoop Property | Value
 * `locationUri` based on Unity Catalog's `storageLocation`
 
 In the end, `loadTable` creates a `V1Table` ([Spark SQL]({{ book.spark_sql }}/connector/V1Table)) for the `CatalogTable`.
+
+## List Namespaces { #listNamespaces }
+
+??? note "SupportsNamespaces"
+
+    ```scala
+    listNamespaces(): Array[Array[String]]
+    ```
+
+    `listNamespaces` is part of the `SupportsNamespaces` ([Spark SQL]({{ book.spark_sql }}/connector/catalog/SupportsNamespaces/#listNamespaces)) abstraction.
+
+`listNamespaces`...FIXME
+
+## List Tables { #listTables }
+
+??? note "TableCatalog"
+
+    ```scala
+    listTables(
+      namespace: Array[String]): Array[Identifier]
+    ```
+
+    `listTables` is part of the `TableCatalog` ([Spark SQL]({{ book.spark_sql }}/connector/catalog/TableCatalog/#listTables)) abstraction.
+
+`listTables`...FIXME
