@@ -9,6 +9,9 @@ Valid sub-commands for table are: read, get, create, list, write, delete
 For detailed help on table sub-commands, use bin/uc table <sub-command> --help
 ```
 
+!!! note "Read-write support for delta tables only"
+    Only delta tables are supported for [read](#readTable) and [write](#writeTable) operations.
+
 ## Handle Command Line { #handle }
 
 ```java
@@ -55,10 +58,13 @@ String createTable(
 ```text
 Usage: bin/uc table create [options]
 Required Params:
-  --full_name The full name of the table. The full name is the concatenation of the catalog name, schema name, and table/volume name separated by a dot. For example, catalog_name.schema_name.table_name.
+  --full_name The full name in the format catalog_name.schema_name for schema, or catalog_name.schema_name.table_name for table/function/volume
   --columns The columns of the table. Each column spec should be in the sql-like format  "column_name column_data_type".Supported data types are BOOLEAN, BYTE, SHORT, INT, LONG, FLOAT, DOUBLE, DATE, TIMESTAMP, TIMESTAMP_NTZ, STRING, BINARY, DECIMAL. Multiple columns should be separated by a comma. For example: "id INT, name STRING".
   --storage_location The storage location associated with the table. Need to be specified for external tables.
 Optional Params:
+  --server UC Server to connect to. Default is reference server.
+  --auth_token PAT token to authorize uc requests.
+  --output To indicate CLI output format preference. Supported values are json and jsonPretty.
   --format The format of the data source. Supported values are DELTA, PARQUET, ORC, JSON, CSV, AVRO and TEXT.
   --properties The properties of the entity. Need to be in json format. For example: "{"key1": "value1", "key2": "value2"}".
 ```

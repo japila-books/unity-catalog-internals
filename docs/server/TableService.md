@@ -16,7 +16,7 @@ $ http http://localhost:8081/api/2.1/unity-catalog/tables catalog_name==unity sc
 "marksheet"
 ```
 
-## Creating Table Metadata { #createTable }
+## Create Table Metadata { #createTable }
 
 ```java
 HttpResponse createTable(
@@ -24,3 +24,17 @@ HttpResponse createTable(
 ```
 
 `createTable` requests the system-wide [TableRepository](#TABLE_REPOSITORY) instance to [persist](../persistent-storage/TableRepository.md#createTable) the given [table metadata](CreateTable.md).
+
+## List Tables { #listTables }
+
+```java
+HttpResponse listTables(
+  String catalogName,
+  String schemaName,
+  Optional<Integer> maxResults,
+  Optional<String> pageToken,
+  Optional<Boolean> omitProperties,
+  Optional<Boolean> omitColumns)
+```
+
+`listTables` requests the system-wide [TableRepository](#TABLE_REPOSITORY) instance to [list the tables](../persistent-storage/TableRepository.md#listTables).

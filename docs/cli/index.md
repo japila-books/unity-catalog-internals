@@ -58,3 +58,7 @@ $ ./bin/uc table list --catalog unity --schema default
 │marksheet        │unity       │default     │MANAGED     │DELTA       │[{"name":...│file:///U...│Managed t...│{"key1":"...│172042953...│172042953...│25ca07aa-1350-4104-b485-13b9ad1f5d72│
 └─────────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────┴────────────────────────────────────┘
 ```
+
+## Read-Write Support for Delta Tables Only
+
+Only delta tables are supported for [read](TableCli.md#readTable) and [write](TableCli.md#writeTable) operations.
