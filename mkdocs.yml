@@ -108,7 +108,9 @@ extra:
   armeria:
     version: 1.28.4
     javadoc: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
-  delta:
+  delta3:
+    version: 3.2.0
+  delta4:
     version: 4.0.0rc1
   hibernate:
     javadoc: https://docs.jboss.org/hibernate/orm/6.5/javadocs
@@ -134,7 +136,9 @@ extra:
       link: https://jaceklaskowski.medium.com
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@jaceklaskowski
-  spark:
+  spark3:
+    version: 3.5.1
+  spark4:
     version: 4.0.0-preview1
 
 # The sections with ... use awesome-pages plugin

@@ -10,6 +10,10 @@ The following features are supported:
 * [Temporary credentials for secured access](./UCProxy.md#loadTable) to local and S3 tables ([parquet tables only, no delta tables yet]({{ uc.commit }}/681acbdb46f375d00e402739bc3ea31fc407e732))
 * [Namespace](#namespace-support)
 
+## Spark and Java Compatibility
+
+Apache Spark {{ spark3.version }} and Java 11 are used to build Spark Integration module for better Apache Spark interoperability (see [this commit]({{ uc.commit }}/d2fbca32cd0068fabe0d2e7f0fb277ba892a6be3)).
+
 ## Namespace Support
 
 As of [this commit]({{ uc.commit }}/10c57d14d2af5e208f6e15f06df4950b6d587ba1), Unity Catalog supports various namespace-related commands (e.g., `SHOW NAMESPACES`, `DESC NAMESPACE`).
@@ -24,15 +28,15 @@ Build the Spark Integration module.
 build/sbt clean package publishLocal spark/publishLocal
 ```
 
-=== "Spark {{ spark.version }} + Delta Lake {{ delta.version }}"
+=== "Spark {{ spark4.version }} + Delta Lake {{ delta4.version }}"
 
-    Download Apache Spark {{ spark.version }} from [Preview release of Spark 4.0](https://spark.apache.org/news/spark-4.0.0-preview1.html).
+    Download Apache Spark {{ spark4.version }} from [Preview release of Spark 4.0](https://spark.apache.org/news/spark-4.0.0-preview1.html).
 
     ``` shell
     ./bin/spark-shell \
       --conf spark.jars.ivy=$HOME/.ivy2 \
       --packages \
-        io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
+        io.delta:delta-spark_2.13:{{ delta4.version }},io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.connectors.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
@@ -52,16 +56,16 @@ build/sbt clean package publishLocal spark/publishLocal
     ```
 
     ```scala
-    assert(spark.version == "{{ spark.version }}", "Unity Catalog {{ uc.version }} supports Apache Spark {{ spark.version }} only")
-    assert(io.delta.VERSION == "{{ delta.version }}", "Unity Catalog {{ uc.version }} supports Delta Lake {{ delta.version }} only")
+    assert(spark4.version == "{{ spark4.version }}", "Unity Catalog {{ uc.version }} supports Apache Spark {{ spark4.version }} only")
+    assert(io.delta4.version == "{{ delta4.version }}", "Unity Catalog {{ uc.version }} supports Delta Lake {{ delta4.version }} only")
     ```
 
-=== "Spark 3.5.1 + Delta Lake 3.2.0"
+=== "Spark {{ spark3.version }} + Delta Lake {{ delta3.version }}"
 
     ``` shell
     ./bin/spark-shell \
       --packages \
-        io.delta:delta-spark_2.13:3.2.0,io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
+        io.delta:delta-spark_2.13:{{ delta3.version }},io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.connectors.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
