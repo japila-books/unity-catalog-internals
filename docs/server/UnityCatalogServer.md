@@ -40,6 +40,19 @@ While being created, `UnityCatalogServer` builds the [Server](#server):
 
 `UnityCatalogServer` creates a `Server` ([Armeria]({{ armeria.javadoc }}/com/linecorp/armeria/server/Server.html)) when [created](#creating-instance).
 
+### SecurityContext { #securityContext }
+
+`UnityCatalogServer` creates a [SecurityContext](../server-authorization/SecurityContext.md) when [created](#creating-instance) as follows:
+
+Property | Value
+-|-
+ [Configuration Directory](../server-authorization/SecurityContext.md#configurationFolder) | `etc/conf`
+ [securityConfiguration](../server-authorization/SecurityContext.md#securityConfiguration) | [SecurityConfiguration](#securityConfiguration)
+ [Service Name](../server-authorization/SecurityContext.md#serviceName) | `server`
+ [Local Issuer](../server-authorization/SecurityContext.md#localIssuer) | `internal`
+
+This `SecurityContext` is used to create an [AuthService](AuthService.md).
+
 ## Register API Services { #addServices }
 
 ```java

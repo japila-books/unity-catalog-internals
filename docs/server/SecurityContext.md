@@ -1,3 +1,0 @@
-# SecurityContext
-
-`SecurityContext`...FIXME
