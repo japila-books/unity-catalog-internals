@@ -152,6 +152,7 @@ nav:
     - ... | iceberg/**.md
     - ... | oauth2-authentication/**.md
     - ... | persistent-storage/**.md
+    - ... | server-authorization/**.md
     - ... | spark-integration/**.md
   - ... | server/**.md
   - ... | cli/**.md
