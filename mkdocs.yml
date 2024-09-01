@@ -150,10 +150,11 @@ nav:
     - features/index.md
     - ... | docker/**.md
     - ... | iceberg/**.md
+    - ... | oauth2-authentication/**.md
     - ... | persistent-storage/**.md
     - ... | spark-integration/**.md
   - ... | server/**.md
-  - ... | client/**.md
   - ... | cli/**.md
+  - ... | client/**.md
   - ... | demo/**.md
   - ... | contenders/**.md

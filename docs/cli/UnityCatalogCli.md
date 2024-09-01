@@ -24,8 +24,11 @@ Default: `http://localhost:8080`
 
 Command | Handler
 -|-
+ `auth` | [AuthCli](AuthCli.md)
  `catalog` | [CatalogCli](CatalogCli.md)
  `function` | [FunctionCli](FunctionCli.md)
+ `model_version` | [ModelVersionCli](ModelVersionCli.md)
+ `registered_model` | [ModelCli](ModelCli.md)
  `schema` | [SchemaCli](SchemaCli.md)
  `table` | [TableCli](TableCli.md)
  `volume` | [VolumeCli](VolumeCli.md)

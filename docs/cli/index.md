@@ -6,11 +6,11 @@
 $ ./bin/uc --help
 
 Usage: bin/uc <entity> <operation> [options]
-Entities: schema, volume, catalog, function, table
+Entities: schema, volume, model_version, auth, catalog, function, registered_model, table
 
 By default, the client will connect to UC running locally at http://localhost:8080
 
-To connect to specific UC server, use --server https://<host>
+To connect to specific UC server, use --server https://<host>:<port>
 
 Currently, auth using bearer token is supported. Please specify the token via --auth_token <PAT Token>
 
@@ -21,8 +21,11 @@ For detailed help on entity specific operations, use bin/uc <entity> --help
 
 Unity Catalog CLI supports the following entities:
 
+* [auth](AuthCli.md)
 * [catalog](CatalogCli.md)
 * [function](FunctionCli.md)
+* [model_version](ModelVersionCli.md)
+* [registered_model](ModelCli.md)
 * [schema](SchemaCli.md)
 * [table](TableCli.md)
 * [volume](VolumeCli.md)
