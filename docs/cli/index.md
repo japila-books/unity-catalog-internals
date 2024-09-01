@@ -19,7 +19,7 @@ For detailed help on entity specific operations, use bin/uc <entity> --help
 
 ## Entities
 
-Unity Catalog CLI supports the following entities:
+Unity Catalog CLI supports the following entities (commands):
 
 * [auth](AuthCli.md)
 * [catalog](CatalogCli.md)

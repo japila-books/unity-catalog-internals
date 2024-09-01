@@ -9,6 +9,13 @@ Valid sub-commands for auth are: login
 For detailed help on auth sub-commands, use bin/uc auth <sub-command> --help
 ```
 
+## Exchange and Login
+
+[login](#login) and [exchange](#exchange) use [doExchange](#doExchange) for authentication with the following difference:
+
+* [login](#login) uses [Oauth2CliExchange](../oauth2-authentication/Oauth2CliExchange.md) to [authenticate](../oauth2-authentication/Oauth2CliExchange.md#authenticate) and generate an identity token.
+* [exchange](#exchange) expects an identity token to be given (using `identity_token` parameter on command line).
+
 ## Handle Command Line { #handle }
 
 ```java
@@ -29,7 +36,19 @@ Subcommand | Handler
 
 * `UnityCatalogCli` is [launched on command line](UnityCatalogCli.md#main) with `auth` command
 
-## Login { #login }
+## Exchange
+
+```java
+String exchange(
+  ApiClient apiClient,
+  JSONObject json)
+```
+
+`exchange` de-serializes the given `json` object into a collection (that is supposed to include `identityToken` key based on `identity_token` CLI parameter).
+
+`exchange` [doExchange](#doExchange) with the `identityToken` identity token.
+
+## Login
 
 ```java
 String login(
@@ -37,9 +56,25 @@ String login(
   JSONObject json)
 ```
 
-??? note "Static Method"
-    `login` is a Java **class method** to be invoked without a reference to a particular object.
-
-    Learn more in the [Java Language Specification]({{ java.spec }}/jls-8.html#jls-8.4.3.2).
-
 `login`...FIXME
+
+## doExchange { #doExchange }
+
+```java
+String doExchange(
+  ApiClient apiClient,
+  Map<String, String> login)
+```
+
+`doExchange` requests the given [ApiClient](../client/ApiClient.md) for the [base URI](../client/ApiClient.md#getBaseUri) to access `/auth/tokens` API endpoint with the following query parameters:
+
+Query Parameter | Value
+-|-
+ `grant_type` | `urn:ietf:params:oauth:grant-type:token-exchange`
+ `requested_token_type` | `urn:ietf:params:oauth:token-type:access_token`
+ `subject_token_type` | `urn:ietf:params:oauth:token-type:id_token`
+ `subject_token` | The value of `identityToken` in the given `login` collection
+
+`doExchange` sends a POST request to `/auth/tokens` API endpoint with `application/x-www-form-urlencoded` content type.
+
+In the end, `doExchange` creates a `LoginInfo` with `access_token` (from the response).
