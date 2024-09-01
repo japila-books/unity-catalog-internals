@@ -161,6 +161,10 @@
          <lastmod>2024-09-01</lastmod>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/AuthService/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/AwsCredentials/</loc>
          <lastmod>2024-09-01</lastmod>
     </url>
@@ -185,7 +189,15 @@
          <lastmod>2024-09-01</lastmod>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/ModelService/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/SchemaService/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/SecurityContext/</loc>
          <lastmod>2024-09-01</lastmod>
     </url>
     <url>
@@ -210,6 +222,14 @@
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/VolumeService/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/AuthDecorator/</loc>
          <lastmod>2024-09-01</lastmod>
     </url>
     <url>
