@@ -197,10 +197,6 @@
          <lastmod>2024-09-01</lastmod>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/SecurityContext/</loc>
-         <lastmod>2024-09-01</lastmod>
-    </url>
-    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TableService/</loc>
          <lastmod>2024-09-01</lastmod>
     </url>
@@ -230,6 +226,18 @@
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/AuthDecorator/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/JwksOperations/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/SecurityConfiguration/</loc>
+         <lastmod>2024-09-01</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/SecurityContext/</loc>
          <lastmod>2024-09-01</lastmod>
     </url>
     <url>
