@@ -64,4 +64,17 @@ Access allowed for subject: [sub]
 
 In the end, `serve` sets `DECODED_JWT_ATTR` attribute in the `ServiceRequestContext`.
 
-!!! note "Why is `DECODED_JWT_ATTR` attribute required and where is it used?"
+!!! note "FIXME Why is `DECODED_JWT_ATTR` attribute required and where is it used?"
+
+## Logging
+
+Enable `ALL` logging level for `io.unitycatalog.server.service.AuthDecorator` logger to see what happens inside.
+
+Add the following line to `etc/conf/server.log4j2.properties`:
+
+```text
+logger.AuthDecorator.name = io.unitycatalog.server.service.AuthDecorator
+logger.AuthDecorator.level = all
+```
+
+Refer to [Logging](../logging.md).
