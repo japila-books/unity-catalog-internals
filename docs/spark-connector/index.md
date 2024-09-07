@@ -1,6 +1,6 @@
-# Spark Integration
+# Spark Connector
 
-Unity Catalog supports Apache Spark and Delta Lake using [UCSingleCatalog](UCSingleCatalog.md) and [UCProxy](UCProxy.md).
+Unity Catalog supports Apache Spark and Delta Lake using **Spark Connector** ([UCSingleCatalog](UCSingleCatalog.md) and [UCProxy](UCProxy.md)).
 
 The following features are supported:
 
@@ -12,17 +12,17 @@ The following features are supported:
 
 ## Spark and Java Compatibility
 
-Apache Spark {{ spark3.version }} and Java 11 are used to build Spark Integration module for better Apache Spark interoperability (see [this commit]({{ uc.commit }}/d2fbca32cd0068fabe0d2e7f0fb277ba892a6be3)).
+Apache Spark {{ spark3.version }} and Java 11 are used to build Spark Connector module for better Apache Spark interoperability (see [this commit]({{ uc.commit }}/d2fbca32cd0068fabe0d2e7f0fb277ba892a6be3)).
 
 ## Namespace Support
 
 As of [this commit]({{ uc.commit }}/10c57d14d2af5e208f6e15f06df4950b6d587ba1), Unity Catalog supports various namespace-related commands (e.g., `SHOW NAMESPACES`, `DESC NAMESPACE`).
 
-See [this demo](../demo/namespace-support-in-spark-integration.md) to learn more.
+See [this demo](../demo/namespace-support-in-spark-connector.md) to learn more.
 
 ## Demo
 
-Build the Spark Integration module.
+Build the Spark Connector module.
 
 ``` shell
 build/sbt clean package publishLocal spark/publishLocal

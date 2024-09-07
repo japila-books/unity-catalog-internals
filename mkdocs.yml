@@ -154,7 +154,7 @@ nav:
     - ... | oauth2-authentication/**.md
     - ... | persistent-storage/**.md
     - ... | server-authorization/**.md
-    - ... | spark-integration/**.md
+    - ... | spark-connector/**.md
   - ... | server/**.md
   - ... | cli/**.md
   - ... | client/**.md

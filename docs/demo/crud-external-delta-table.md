@@ -10,7 +10,7 @@ The demo is prepared in such a way to showcase two features of Unity Catalog at 
 1. Create an external delta table (`uc table create`)
 1. Write sample data to an external delta table (`uc table write`)
 1. Read the delta table using [Unity Catalog CLI](index.md) (`uc table read`)
-1. Read the delta table using [Spark Integration](../spark-integration/index.md)
+1. Read the delta table using [Spark Connector](../spark-connector/index.md)
 
 That's why the catalog name is the default Spark SQL catalog `spark_catalog` (not Unity Catalog's `unity`).
 
@@ -197,7 +197,7 @@ Table written to successfully at: file:///tmp/delta_table/
 └───────────────────────────────────────┴──────────────────────────────────────┘
 ```
 
-## Spark Integration
+## Spark Connector
 
 === "Spark 3.5.1 + Delta Lake 3.2.0"
 

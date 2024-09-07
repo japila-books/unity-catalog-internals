@@ -3,9 +3,9 @@ hide:
 - navigation
 ---
 
-# Demo: Namespace Support in Spark Integration
+# Demo: Namespace Support in Spark Connector
 
-The demo shows support in Unity Catalog's [Spark Integration](../spark-integration/index.md) for various namespace-related commands (e.g., SHOW NAMESPACES, DESC NAMESPACE).
+The demo shows support in Unity Catalog's [Spark Connector](../spark-connector/index.md) for various namespace-related commands (e.g., SHOW NAMESPACES, DESC NAMESPACE).
 
 === "Spark 3.5.1 + Delta Lake {{ uc.version }}"
 
@@ -60,7 +60,7 @@ Using Scala version 2.13.8 (OpenJDK 64-Bit Server VM, Java 17.0.12)
 +-----------------+
 ```
 
-The following executes [UCSingleCatalog.initialize](../spark-integration/UCSingleCatalog.md#initialize) that in turn creates a [UCProxy](../spark-integration/UCProxy.md).
+The following executes [UCSingleCatalog.initialize](../spark-connector/UCSingleCatalog.md#initialize) that in turn creates a [UCProxy](../spark-connector/UCProxy.md).
 
 ```scala
 assert(spark.sessionState.catalogManager.currentCatalog.isInstanceOf[io.unitycatalog.connectors.spark.UCSingleCatalog])
@@ -70,7 +70,7 @@ assert(spark.sessionState.catalogManager.currentCatalog.isInstanceOf[io.unitycat
 assert(spark.sessionState.catalogManager.currentCatalog.name == "spark_catalog")
 ```
 
-`SHOW NAMESPACES` requests the [UCProxy](../spark-integration/UCProxy.md) to [list the namespaces](../spark-integration/UCProxy.md#listNamespaces) with the name of the catalog.
+`SHOW NAMESPACES` requests the [UCProxy](../spark-connector/UCProxy.md) to [list the namespaces](../spark-connector/UCProxy.md#listNamespaces) with the name of the catalog.
 No `IN` clause means the current default catalog.
 
 !!! note
@@ -102,9 +102,9 @@ io.unitycatalog.client.ApiException: listSchemas call failed with: 404 - {"error
   at io.unitycatalog.client.api.SchemasApi.getApiException(SchemasApi.java:77)
   at io.unitycatalog.client.api.SchemasApi.listSchemasWithHttpInfo(SchemasApi.java:358)
   at io.unitycatalog.client.api.SchemasApi.listSchemas(SchemasApi.java:334)
-  at io.unitycatalog.connectors.spark.UCProxy.listNamespaces(../spark-integration/UCSingleCatalog.scala:218)
+  at io.unitycatalog.connectors.spark.UCProxy.listNamespaces(../spark-connector/UCSingleCatalog.scala:218)
   at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listNamespaces(DelegatingCatalogExtension.java:140)
-  at io.unitycatalog.connectors.spark.UCSingleCatalog.listNamespaces(../spark-integration/UCSingleCatalog.scala:63)
+  at io.unitycatalog.connectors.spark.UCSingleCatalog.listNamespaces(../spark-connector/UCSingleCatalog.scala:63)
   at org.apache.spark.sql.execution.datasources.v2.ShowNamespacesExec.run(ShowNamespacesExec.scala:42)
   ...
 ```
@@ -125,7 +125,7 @@ Querying `unity` catalog works just fine.
 +---------+
 ```
 
-When requested for the [tables](../spark-integration/UCProxy.md#listTables), `UCProxy` uses the name of the catalog (i.e., `spark_catalog`) as the catalog name to talk to the [TableService](../server/TableService.md) for the [table list](../server/TableService.md#listTables).
+When requested for the [tables](../spark-connector/UCProxy.md#listTables), `UCProxy` uses the name of the catalog (i.e., `spark_catalog`) as the catalog name to talk to the [TableService](../server/TableService.md) for the [table list](../server/TableService.md#listTables).
 
 === "Spark Shell"
 
@@ -138,9 +138,9 @@ io.unitycatalog.client.ApiException: listTables call failed with: 404 - {"error_
   at io.unitycatalog.client.api.TablesApi.getApiException(TablesApi.java:76)
   at io.unitycatalog.client.api.TablesApi.listTablesWithHttpInfo(TablesApi.java:342)
   at io.unitycatalog.client.api.TablesApi.listTables(TablesApi.java:317)
-  at io.unitycatalog.connectors.spark.UCProxy.listTables(../spark-integration/UCSingleCatalog.scala:129)
+  at io.unitycatalog.connectors.spark.UCProxy.listTables(../spark-connector/UCSingleCatalog.scala:129)
   at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listTables(DelegatingCatalogExtension.java:68)
-  at io.unitycatalog.connectors.spark.UCSingleCatalog.listTables(../spark-integration/UCSingleCatalog.scala:38)
+  at io.unitycatalog.connectors.spark.UCSingleCatalog.listTables(../spark-connector/UCSingleCatalog.scala:38)
   ...
 ```
 
@@ -208,9 +208,9 @@ There's a tiny bug in Unity Catalog with `DESC NAMESPACE` with just a catalog an
 
 ```text
 java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
-  at io.unitycatalog.connectors.spark.UCProxy.loadNamespaceMetadata(../spark-integration/UCSingleCatalog.scala:249)
+  at io.unitycatalog.connectors.spark.UCProxy.loadNamespaceMetadata(../spark-connector/UCSingleCatalog.scala:249)
   at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.loadNamespaceMetadata(DelegatingCatalogExtension.java:156)
-  at io.unitycatalog.connectors.spark.UCSingleCatalog.loadNamespaceMetadata(../spark-integration/UCSingleCatalog.scala:72)
+  at io.unitycatalog.connectors.spark.UCSingleCatalog.loadNamespaceMetadata(../spark-connector/UCSingleCatalog.scala:72)
   ...
 ```
 
