@@ -85,7 +85,7 @@
          <lastmod>2024-09-07</lastmod>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/demo/namespace-support-in-spark-integration/</loc>
+         <loc>https://books.japila.pl/unity-catalog-internals/demo/namespace-support-in-spark-connector/</loc>
          <lastmod>2024-09-07</lastmod>
     </url>
     <url>
@@ -245,19 +245,19 @@
          <lastmod>2024-09-07</lastmod>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/spark-integration/</loc>
+         <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/</loc>
          <lastmod>2024-09-07</lastmod>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/spark-integration/GcsVendedTokenProvider/</loc>
+         <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/GcsVendedTokenProvider/</loc>
          <lastmod>2024-09-07</lastmod>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/spark-integration/UCProxy/</loc>
+         <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/UCProxy/</loc>
          <lastmod>2024-09-07</lastmod>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/spark-integration/UCSingleCatalog/</loc>
+         <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/UCSingleCatalog/</loc>
          <lastmod>2024-09-07</lastmod>
     </url>
 </urlset>
