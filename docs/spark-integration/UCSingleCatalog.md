@@ -2,6 +2,13 @@
 
 `UCSingleCatalog` is a `TableCatalog` ([Spark SQL]({{ book.spark_sql }}/connector/catalog/TableCatalog/)).
 
+`UCSingleCatalog` supports [loading tables](#loadTable) from the following cloud object storages:
+
+Cloud Object Storage | Scheme
+-|-
+ [Amazon S3](https://aws.amazon.com/s3/) | `s3://`
+ [Google Cloud Storage](https://cloud.google.com/storage) | `gs://`
+
 ## DeltaCatalog { #deltaCatalog }
 
 `UCSingleCatalog` creates a `DeltaCatalog` ([Delta Lake]({{ book.delta }}/DeltaCatalog)) when requested to [initialize](#initialize).
