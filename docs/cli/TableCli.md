@@ -26,10 +26,10 @@ void handle(
 
 Subcommand | Handler | API Handlers
 -|-|-
- `create` | [createTable](#createTable) | `TablesApi`<br>
- `delete` | [deleteTable](#deleteTable) | `TablesApi`<br>
- `get` | [getTable](#getTable) | `TablesApi`<br>
- `list` | [listTables](#listTables) | `TablesApi`<br>
+ `create` | [createTable](#createTable) | `TablesApi`
+ `delete` | [deleteTable](#deleteTable) | `TablesApi`
+ `get` | [getTable](#getTable) | `TablesApi`
+ `list` | [listTables](#listTables) | `TablesApi`
  `read` | [readTable](#readTable) | `TablesApi`<br>`TemporaryTableCredentialsApi`
  `write` | [writeTable](#writeTable) | `TablesApi`<br>`TemporaryTableCredentialsApi`
 
