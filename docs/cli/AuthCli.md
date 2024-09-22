@@ -14,7 +14,7 @@ For detailed help on auth sub-commands, use bin/uc auth <sub-command> --help
 [login](#login) and [exchange](#exchange) use [doExchange](#doExchange) for authentication with the following difference:
 
 * [login](#login) uses [Oauth2CliExchange](../oauth2-authentication/Oauth2CliExchange.md) to [authenticate](../oauth2-authentication/Oauth2CliExchange.md#authenticate) and generate an identity token.
-* [exchange](#exchange) expects an identity token to be given (using `identity_token` parameter on command line).
+* [exchange](#exchange) expects an identity token to be given (using `identity_token` option on command line).
 
 ## Handle Command Line { #handle }
 
@@ -28,7 +28,7 @@ void handle(
 
 Subcommand | Handler
 -|-
- `login` | One of the following based on `identity_token` param:<ul><li>[exchange](#exchange) for `identity_token` param</li><li>[login](#login)</li></ul>
+ `login` | One of the following based on `identity_token` option:<ul><li>[exchange](#exchange) for `identity_token` param</li><li>[login](#login)</li></ul>
 
 ---
 
@@ -48,6 +48,12 @@ String exchange(
 
 `exchange` [doExchange](#doExchange) with the `identityToken` identity token.
 
+---
+
+`login` is used when:
+
+* `AuthCli` is requested to [handle `login` subcommand](#handle) with `identity_token` option used on the command line
+
 ## Login
 
 ```java
@@ -56,7 +62,15 @@ String login(
   JSONObject json)
 ```
 
-`login`...FIXME
+`login` creates a [Oauth2CliExchange](../oauth2-authentication/Oauth2CliExchange.md) to [authenticate](../oauth2-authentication/Oauth2CliExchange.md#authenticate) (and create an identity token).
+
+In the end, `login` [doExchange](#doExchange) with the identity token as the value of `identityToken` key in the `login` input map).
+
+---
+
+`login` is used when:
+
+* `AuthCli` is requested to [handle `login` subcommand](#handle) with no `identity_token` option used on the command line
 
 ## doExchange { #doExchange }
 
