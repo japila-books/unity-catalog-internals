@@ -125,6 +125,8 @@ extra:
   openapi:
     home: https://openapi-generator.tech
     github: https://github.com/OpenAPITools
+  scala:
+    version: 2.13
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/jaceklaskowski
@@ -137,7 +139,7 @@ extra:
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@jaceklaskowski
   spark3:
-    version: 3.5.1
+    version: 3.5.2
   spark4:
     version: 4.0.0-preview1
 

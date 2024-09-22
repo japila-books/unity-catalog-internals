@@ -19,8 +19,7 @@ That's why the catalog name is the default Spark SQL catalog `spark_catalog` (no
 === "SHELL"
 
     ``` bash
-    ./bin/uc catalog create \
-        --name spark_catalog
+    ./bin/uc catalog create --name spark_catalog
     ```
 
 ```text
