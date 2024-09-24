@@ -12,7 +12,7 @@ This demo shows how to set up a Spark application (namely `spark-shell` and `pys
 Build the Spark Connector module.
 
 ``` shell
-build/sbt '++2.13' clean package publishLocal spark/publishLocal
+build/sbt '++2.13' clean package publishLocal
 ```
 
 !!! note "Scala 2.13"
