@@ -152,7 +152,7 @@ nav:
     - features/index.md
     - ... | docker/**.md
     - ... | iceberg/**.md
-    - ... | logging.md
+    - logging.md
     - ... | oauth2-authentication/**.md
     - ... | persistent-storage/**.md
     - ... | server-authorization/**.md

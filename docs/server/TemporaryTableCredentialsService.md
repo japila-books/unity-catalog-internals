@@ -6,9 +6,19 @@ Method | URL | Handler | Params
 -|-|-|-
  POST | | [generateTemporaryTableCredential](#generateTemporaryTableCredential) | [GenerateTemporaryTableCredential](GenerateTemporaryTableCredential.md)
 
+## Creating Instance
+
+`TemporaryTableCredentialsService` takes the following to be created:
+
+* <span id="credentialOps"> [CredentialOperations](CredentialOperations.md)
+
+`TemporaryTableCredentialsService` is created when:
+
+* `UnityCatalogServer` is requested to [register the API services](UnityCatalogServer.md#addServices)
+
 ## TableRepository { #TABLE_REPOSITORY }
 
-`TemporaryTableCredentialsService` gets at the system-wide [TableRepository](../persistent-storage/TableRepository.md#getInstance) instance when created.
+`TemporaryTableCredentialsService` looks up the system-wide [TableRepository](../persistent-storage/TableRepository.md#getInstance) instance when created.
 
 ## Looking Up Table Credentials { #generateTemporaryTableCredential }
 

@@ -1,0 +1,3 @@
+# TemporaryPathCredentialsService
+
+`TemporaryPathCredentialsService` is...FIXME

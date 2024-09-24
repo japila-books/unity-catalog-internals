@@ -1,0 +1,3 @@
+# AwsCredentialVendor
+
+`AwsCredentialVendor` is...FIXME

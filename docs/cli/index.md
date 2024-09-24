@@ -6,7 +6,7 @@
 $ ./bin/uc --help
 
 Usage: bin/uc <entity> <operation> [options]
-Entities: schema, volume, model_version, auth, catalog, function, registered_model, table
+Entities: schema, volume, model_version, auth, catalog, function, registered_model, user, table
 
 By default, the client will connect to UC running locally at http://localhost:8080
 
@@ -28,6 +28,7 @@ Unity Catalog CLI supports the following entities (commands):
 * [registered_model](ModelCli.md)
 * [schema](SchemaCli.md)
 * [table](TableCli.md)
+* [user](UserCli.md)
 * [volume](VolumeCli.md)
 
 ## Options

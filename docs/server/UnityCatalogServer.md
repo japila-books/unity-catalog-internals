@@ -66,12 +66,15 @@ URL | Service
 -|-
  `/` | Returns `Hello, Unity Catalog!` message
  `/api/1.0/unity-control/auth` |  [AuthService](AuthService.md)
+ `/api/1.0/unity-control/scim2/Users` |  [Scim2UserService](Scim2UserService.md)
  `/api/2.1/unity-catalog/catalogs` | [CatalogService](CatalogService.md)
  `/api/2.1/unity-catalog/functions` | [FunctionService](FunctionService.md)
  `/api/2.1/unity-catalog/iceberg` | [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md)
  `/api/2.1/unity-catalog/models` | [ModelService](ModelService.md)
  `/api/2.1/unity-catalog/schemas` | [SchemaService](SchemaService.md)
  `/api/2.1/unity-catalog/tables` | [TableService](TableService.md)
+ `/api/2.1/unity-catalog/temporary-model-version-credentials` | [TemporaryModelVersionCredentialsService](TemporaryModelVersionCredentialsService.md)
+ `/api/2.1/unity-catalog/temporary-path-credentials` | [TemporaryPathCredentialsService](TemporaryPathCredentialsService.md)
  `/api/2.1/unity-catalog/temporary-table-credentials` | [TemporaryTableCredentialsService](TemporaryTableCredentialsService.md)
  `/api/2.1/unity-catalog/temporary-volume-credentials` | [TemporaryVolumeCredentialsService](TemporaryVolumeCredentialsService.md)
  `/api/2.1/unity-catalog/volumes` | [VolumeService](VolumeService.md)
