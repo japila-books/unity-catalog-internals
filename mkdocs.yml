@@ -150,6 +150,7 @@ nav:
   - index.md
   - Features:
     - features/index.md
+    - ... | basic-server-access-control/**.md
     - ... | docker/**.md
     - ... | iceberg/**.md
     - logging.md
