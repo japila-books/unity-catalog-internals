@@ -28,9 +28,11 @@ Command | Handler
  `catalog` | [CatalogCli](CatalogCli.md)
  `function` | [FunctionCli](FunctionCli.md)
  `model_version` | [ModelVersionCli](ModelVersionCli.md)
+ `permission` | [PermissionCli](PermissionCli.md)
  `registered_model` | [ModelCli](ModelCli.md)
  `schema` | [SchemaCli](SchemaCli.md)
  `table` | [TableCli](TableCli.md)
+ `user` | [UserCli](UserCli.md)
  `volume` | [VolumeCli](VolumeCli.md)
 
 ## Creating ApiClient { #getApiClient }
