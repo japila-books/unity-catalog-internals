@@ -1,0 +1,3 @@
+# AllowingAuthorizer
+
+`AllowingAuthorizer` is...FIXME

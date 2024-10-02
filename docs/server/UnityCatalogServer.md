@@ -14,6 +14,13 @@ title: UnityCatalogServer
 
 `UnityCatalogServer` starts Armeria documentation service at http://localhost:8081/docs and the other [Unity Catalog API services](#addServices).
 
+## Configuration Files
+
+`UnityCatalogServer` uses the following configuration files:
+
+* `etc/conf/server.log4j2.properties`
+* [etc/conf/server.properties](../persistent-storage/ServerPropertiesUtils.md)
+
 ## Port
 
 `UnityCatalogServer` takes a port number when [created](#creating-instance).
@@ -60,6 +67,9 @@ void addServices(
   ServerBuilder sb)
 ```
 
+`addServices` initializes an authorizer based on [server.authorization](../server-authorization/index.md#server.authorization) configuration property.
+When enabled (`enable`), `addServices` creates a [JCasbinAuthorizer](../server-authorization/JCasbinAuthorizer.md) and [initializes the admin user](../server-authorization/UnityAccessUtil.md#initializeAdmin). Otherwise, `addServices` creates an [AllowingAuthorizer](../server-authorization/AllowingAuthorizer.md).
+
 `addServices` creates and registers Unity Catalog API services at the `/api/2.1/unity-catalog/` base path.
 
 URL | Service
@@ -71,6 +81,7 @@ URL | Service
  `/api/2.1/unity-catalog/functions` | [FunctionService](FunctionService.md)
  `/api/2.1/unity-catalog/iceberg` | [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md)
  `/api/2.1/unity-catalog/models` | [ModelService](ModelService.md)
+ `/api/2.1/unity-catalog/permissions` | [PermissionService](PermissionService.md)
  `/api/2.1/unity-catalog/schemas` | [SchemaService](SchemaService.md)
  `/api/2.1/unity-catalog/tables` | [TableService](TableService.md)
  `/api/2.1/unity-catalog/temporary-model-version-credentials` | [TemporaryModelVersionCredentialsService](TemporaryModelVersionCredentialsService.md)
@@ -78,6 +89,19 @@ URL | Service
  `/api/2.1/unity-catalog/temporary-table-credentials` | [TemporaryTableCredentialsService](TemporaryTableCredentialsService.md)
  `/api/2.1/unity-catalog/temporary-volume-credentials` | [TemporaryVolumeCredentialsService](TemporaryVolumeCredentialsService.md)
  `/api/2.1/unity-catalog/volumes` | [VolumeService](VolumeService.md)
+
+With [server.authorization](../server-authorization/index.md#server.authorization) configuration property enabled, `addServices` prints out the following INFO message to the logs:
+
+``` text
+Authorization enabled.
+```
+
+`addServices` registers HTTP service decorators.
+
+HTTP Service Decorator | Path Prefix
+-|-
+[UnityAccessDecorator](../server-authorization/UnityAccessDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
+[AuthDecorator](../server-authorization/AuthDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
 
 ## Launch UnityCatalogServer { #main }
 
