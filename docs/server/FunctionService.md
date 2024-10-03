@@ -9,6 +9,22 @@ Method | URL | Handler | Params
  GET | `/{name}` | [getFunction](#getFunction) | `name`
  GET | | [listFunctions](#listFunctions) | `catalog_name`<br>`schema_name`<br>`max_results`<br>`page_token` (not used)
 
+## Creating Instance
+
+`FunctionService` takes the following to be created:
+
+* <span id="authorizer"> [UnityCatalogAuthorizer](../server-authorization/UnityCatalogAuthorizer.md)
+
+While being created, `FunctionService` creates an [UnityAccessEvaluator](#evaluator).
+
+`FunctionService` is created when:
+
+* `UnityCatalogServer` is requested to [register the API services](UnityCatalogServer.md#addServices)
+
+## UnityAccessEvaluator { #evaluator }
+
+`FunctionService` creates an [UnityAccessEvaluator](../server-authorization/UnityAccessEvaluator.md) (with the given [UnityCatalogAuthorizer](#authorizer)) when [created](#creating-instance).
+
 ## Listing Functions { #listFunctions }
 
 ```java

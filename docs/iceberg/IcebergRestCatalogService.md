@@ -25,6 +25,7 @@ Method | URL | Handler | Params
 * [CatalogService](#catalogService)
 * <span id="schemaService"> [SchemaService](../server/SchemaService.md)
 * <span id="tableService"> [TableService](../server/TableService.md)
+* <span id="tableConfigService"> [TableConfigService](../iceberg/TableConfigService.md)
 * [MetadataService](#metadataService)
 
 `IcebergRestCatalogService` is created when:

@@ -12,6 +12,22 @@ Method | URL | Handler | Params
 
 `CatalogService` is also used to create [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md#catalogService).
 
+## Creating Instance
+
+`CatalogService` takes the following to be created:
+
+* <span id="authorizer"> [UnityCatalogAuthorizer](../server-authorization/UnityCatalogAuthorizer.md)
+
+While being created, `CatalogService` creates an [UnityAccessEvaluator](#evaluator).
+
+`CatalogService` is created when:
+
+* `UnityCatalogServer` is requested to [register the API services](UnityCatalogServer.md#addServices)
+
+## UnityAccessEvaluator { #evaluator }
+
+`CatalogService` creates an [UnityAccessEvaluator](../server-authorization/UnityAccessEvaluator.md) (with the given [UnityCatalogAuthorizer](#authorizer)) when [created](#creating-instance).
+
 ## listCatalogs { #listCatalogs }
 
 ```scala

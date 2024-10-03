@@ -40,3 +40,13 @@ server: Armeria/1.28.4
 ## UserRepository { #USER_REPOSITORY }
 
 `Scim2UserService` looks up the system-wide [UserRepository](../persistent-storage/UserRepository.md) when created.
+
+## Creating Instance
+
+`Scim2UserService` takes the following to be created:
+
+* <span id="authorizer"> [UnityCatalogAuthorizer](../server-authorization/UnityCatalogAuthorizer.md)
+
+`Scim2UserService` is created when:
+
+* `UnityCatalogServer` is requested to [register the API services](UnityCatalogServer.md#addServices)

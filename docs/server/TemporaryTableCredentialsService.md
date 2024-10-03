@@ -10,11 +10,18 @@ Method | URL | Handler | Params
 
 `TemporaryTableCredentialsService` takes the following to be created:
 
+* <span id="authorizer"> [UnityCatalogAuthorizer](../server-authorization/UnityCatalogAuthorizer.md)
 * <span id="credentialOps"> [CredentialOperations](CredentialOperations.md)
+
+While being created, `TemporaryTableCredentialsService` creates an [UnityAccessEvaluator](#evaluator).
 
 `TemporaryTableCredentialsService` is created when:
 
 * `UnityCatalogServer` is requested to [register the API services](UnityCatalogServer.md#addServices)
+
+## UnityAccessEvaluator { #evaluator }
+
+`TemporaryTableCredentialsService` creates an [UnityAccessEvaluator](../server-authorization/UnityAccessEvaluator.md) (with the given [UnityCatalogAuthorizer](#authorizer)) when [created](#creating-instance).
 
 ## TableRepository { #TABLE_REPOSITORY }
 

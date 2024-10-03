@@ -16,6 +16,22 @@ Method | URL | Handler | Params
  PATCH | `/{full_name}/versions/{version}/finalize` | [finalizeModelVersion](#finalizeModelVersion) | `FinalizeModelVersion`
  POST | `/versions` | [createModelVersion](#createModelVersion) | `CreateModelVersion`
 
+## Creating Instance
+
+`ModelService` takes the following to be created:
+
+* <span id="authorizer"> [UnityCatalogAuthorizer](../server-authorization/UnityCatalogAuthorizer.md)
+
+While being created, `ModelService` creates an [UnityAccessEvaluator](#evaluator).
+
+`ModelService` is created when:
+
+* `UnityCatalogServer` is requested to [register the API services](UnityCatalogServer.md#addServices)
+
+## UnityAccessEvaluator { #evaluator }
+
+`ModelService` creates an [UnityAccessEvaluator](../server-authorization/UnityAccessEvaluator.md) (with the given [UnityCatalogAuthorizer](#authorizer)) when [created](#creating-instance).
+
 ## ModelRepository { #MODEL_REPOSITORY }
 
 `ModelService` gets the system-wide [ModelRepository](../persistent-storage/ModelRepository.md) when created.
