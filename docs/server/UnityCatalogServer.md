@@ -36,7 +36,7 @@ Unless specified on command-line using `-p,--port <arg>` option, `UnityCatalogSe
 While being created, `UnityCatalogServer` builds the [Server](#server):
 
 1. Handle HTTP requests at the given [port](#port)
-1. Bind the Armeria documentation service ([Armeria]({{ armeria.javadoc }}/com/linecorp/armeria/server/docs/DocService.html)) under `/docs` URL
+1. Bind the Armeria documentation service ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/docs/DocService.html)) under `/docs` URL
 1. [Register the API services](#addServices)
 
 `UnityCatalogServer` is created when:
@@ -45,7 +45,7 @@ While being created, `UnityCatalogServer` builds the [Server](#server):
 
 ### Server
 
-`UnityCatalogServer` creates a `Server` ([Armeria]({{ armeria.javadoc }}/com/linecorp/armeria/server/Server.html)) when [created](#creating-instance).
+`UnityCatalogServer` creates a `Server` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/Server.html)) when [created](#creating-instance).
 
 ### SecurityContext { #securityContext }
 

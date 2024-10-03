@@ -107,7 +107,7 @@ extra:
     github: https://github.com/unitycatalog/unitycatalog/blob/main
   armeria:
     version: 1.28.4
-    javadoc: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
+    api: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
   delta3:
     version: 3.2.1
   delta4:

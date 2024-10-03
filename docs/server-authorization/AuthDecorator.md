@@ -1,6 +1,6 @@
 # AuthDecorator
 
-`AuthDecorator` is a `DecoratingHttpServiceFunction` ([Armeria]({{ armeria.javadoc }}/com/linecorp/armeria/server/DecoratingHttpServiceFunction.html)) for a JWT access-token authorization in the [Unity Catalog Server](../server/index.md).
+`AuthDecorator` is a `DecoratingHttpServiceFunction` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/DecoratingHttpServiceFunction.html)) for a JWT access-token authorization in the [Unity Catalog Server](../server/index.md).
 
 ## Serve Incoming HttpRequest { #serve }
 
@@ -13,7 +13,7 @@
       HttpRequest req)
     ```
 
-    `serve` is part of the `DecoratingHttpServiceFunction` ([Armeria]({{ armeria.javadoc }}/com/linecorp/armeria/server/DecoratingHttpServiceFunction.html#serve(com.linecorp.armeria.server.HttpService,com.linecorp.armeria.server.ServiceRequestContext,com.linecorp.armeria.common.HttpRequest))) abstraction.
+    `serve` is part of the `DecoratingHttpServiceFunction` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/DecoratingHttpServiceFunction.html#serve(com.linecorp.armeria.server.HttpService,com.linecorp.armeria.server.ServiceRequestContext,com.linecorp.armeria.common.HttpRequest))) abstraction.
 
 `serve` prints out the following DEBUG message to the logs (with the path of the given `HttpRequest`):
 
