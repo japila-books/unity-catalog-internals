@@ -119,6 +119,10 @@ extra:
   java:
     version: 17
     spec: https://docs.oracle.com/javase/specs/jls/se17/html
+  jcasbin:
+    version: 1.55.0
+    api: https://www.javadoc.io/static/org.casbin/jcasbin/1.55.0
+    github: https://github.com/casbin/jcasbin
   log4j:
     version: 2.23.1
     manual: https://logging.apache.org/log4j/2.x/manual

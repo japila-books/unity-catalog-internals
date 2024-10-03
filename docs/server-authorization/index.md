@@ -1,10 +1,14 @@
 # Server Authorization
 
-**Server Authorization** can be enabled in [Unity Catalog Server](../server/index.md) using `server.authorization` property in `etc/conf/server.properties` configuration file.
+**Server Authorization** can be enabled in [Unity Catalog Server](../server/index.md) using [server.authorization](#server.authorization) property in `etc/conf/server.properties` configuration file.
+
+## server.authorization { #server.authorization }
 
 To enable the server authorization `server.authorization` property should be `enable` (case-insensitive).
 
 With server authorization enabled, Unity Catalog Server registers [AuthDecorator](AuthDecorator.md) to intercept all requests to `/api/2.1/unity-catalog/`-prefixed URLs.
+
+With server authorization enabled, Unity Catalog Server uses [JCasbinAuthorizer](JCasbinAuthorizer.md) for role-based access control (RBAC).
 
 ## Bearer Authentication
 

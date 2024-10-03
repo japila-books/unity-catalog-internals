@@ -4,7 +4,25 @@
 
 ## Contract (Subset)
 
-### grantAuthorization { #grantAuthorization }
+### Authorize { #authorize }
+
+``` java
+boolean authorize(
+  UUID principal,
+  UUID resource,
+  Privileges action)
+```
+
+See:
+
+* [JCasbinAuthorizer](JCasbinAuthorizer.md#authorize)
+
+Used when:
+
+* `PermissionService` is requested for the [authorizations](../server/PermissionService.md#getAuthorization)
+* `UnityAccessEvaluator` is [created](UnityAccessEvaluator.md#authorizeHandle)
+
+### Grant Authorization { #grantAuthorization }
 
 ```java
 boolean grantAuthorization(
