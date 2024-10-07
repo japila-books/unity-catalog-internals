@@ -9,13 +9,13 @@ AwsCredentials findS3BucketConfig(
 
 `findS3BucketConfig` requests the system-wide [PropertiesUtil](../persistent-storage/PropertiesUtil.md#instance) instance for [getS3BucketConfig](../persistent-storage/PropertiesUtil.md#getS3BucketConfig).
 
-`findS3BucketConfig` creates a [AwsCredentials](../server/AwsCredentials.md).
+`findS3BucketConfig` creates an `AwsCredentials`.
 
 Property | Value
 -|-
- [accessKeyId](../server/AwsCredentials.md#accessKeyId) | [accessKey](../persistent-storage/S3BucketConfig.md#accessKey)
- [secretAccessKey](../server/AwsCredentials.md#secretAccessKey) | [secretKey](../persistent-storage/S3BucketConfig.md#secretKey)
- [sessionToken](../server/AwsCredentials.md#sessionToken) | [sessionToken](../persistent-storage/S3BucketConfig.md#sessionToken)
+ `accessKeyId` | [accessKey](../persistent-storage/S3BucketConfig.md#accessKey)
+ `secretAccessKey` | [secretKey](../persistent-storage/S3BucketConfig.md#secretKey)
+ `sessionToken` | [sessionToken](../persistent-storage/S3BucketConfig.md#sessionToken)
 
 ---
 

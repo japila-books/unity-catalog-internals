@@ -56,9 +56,9 @@ For a table stored in a S3 bucket, `loadTable` sets the following Hadoop propert
 
 Hadoop Property | Value
 -|-
- `fs.s3a.access.key` | `accessKeyId` of the [AwsCredentials](../server/AwsCredentials.md)
- `fs.s3a.secret.key` | `secretAccessKey` of the [AwsCredentials](../server/AwsCredentials.md)
- `fs.s3a.session.token` | `sessionToken` of the [AwsCredentials](../server/AwsCredentials.md)
+ `fs.s3a.access.key` | `accessKeyId` of the `AwsCredentials`
+ `fs.s3a.secret.key` | `secretAccessKey` of the `AwsCredentials`
+ `fs.s3a.session.token` | `sessionToken` of the `AwsCredentials`
  `fs.s3a.impl` | `org.apache.hadoop.fs.s3a.S3AFileSystem`
  `fs.s3a.path.style.access` | `true`
 

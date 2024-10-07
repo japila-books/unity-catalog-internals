@@ -132,7 +132,7 @@ void handleTableStorageLocation(
 For a local filesystem path (a non-`s3://` storage location), `handleTableStorageLocation` [creates an empty delta table](DeltaKernelUtils.md#createDeltaTable) (the directory with a delta log at the storage location).
 
 !!! note "No AwsCredentials Used"
-    `handleTableStorageLocation` [creates an empty delta table](DeltaKernelUtils.md#createDeltaTable) with no [AwsCredentials](../server/AwsCredentials.md) (`null`).
+    `handleTableStorageLocation` [creates an empty delta table](DeltaKernelUtils.md#createDeltaTable) with no `AwsCredentials` (`null`).
 
 ## Write to Delta Table { #writeTable }
 

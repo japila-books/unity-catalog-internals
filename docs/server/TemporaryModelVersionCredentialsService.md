@@ -5,7 +5,7 @@
 `TemporaryModelVersionCredentialsService` takes the following to be created:
 
 * <span id="authorizer"> [UnityCatalogAuthorizer](../server-authorization/UnityCatalogAuthorizer.md)
-* <span id="credentialOps"> [CredentialOperations](CredentialOperations.md)
+* <span id="credentialOps"> [CredentialOperations](../credential-vending/CredentialOperations.md)
 
 While being created, `TemporaryModelVersionCredentialsService` creates an [UnityAccessEvaluator](#evaluator).
 
@@ -16,3 +16,12 @@ While being created, `TemporaryModelVersionCredentialsService` creates an [Unity
 ## UnityAccessEvaluator { #evaluator }
 
 `TemporaryModelVersionCredentialsService` creates an [UnityAccessEvaluator](../server-authorization/UnityAccessEvaluator.md) (with the given [UnityCatalogAuthorizer](#authorizer)) when [created](#creating-instance).
+
+## generateTemporaryModelVersionCredentials { #generateTemporaryModelVersionCredentials }
+
+``` java
+HttpResponse generateTemporaryModelVersionCredentials(
+  GenerateTemporaryModelVersionCredential generateTemporaryModelVersionCredentials)
+```
+
+`generateTemporaryModelVersionCredentials`...FIXME

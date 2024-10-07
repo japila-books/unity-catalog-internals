@@ -11,7 +11,7 @@ Method | URL | Handler | Params
 `TemporaryTableCredentialsService` takes the following to be created:
 
 * <span id="authorizer"> [UnityCatalogAuthorizer](../server-authorization/UnityCatalogAuthorizer.md)
-* <span id="credentialOps"> [CredentialOperations](CredentialOperations.md)
+* <span id="credentialOps"> [CredentialOperations](../credential-vending/CredentialOperations.md)
 
 While being created, `TemporaryTableCredentialsService` creates an [UnityAccessEvaluator](#evaluator).
 
@@ -27,9 +27,9 @@ While being created, `TemporaryTableCredentialsService` creates an [UnityAccessE
 
 `TemporaryTableCredentialsService` looks up the system-wide [TableRepository](../persistent-storage/TableRepository.md#getInstance) instance when created.
 
-## Looking Up Table Credentials { #generateTemporaryTableCredential }
+## Generate Temporary Table Credentials { #generateTemporaryTableCredential }
 
-```java
+``` java
 HttpResponse generateTemporaryTableCredential(
   GenerateTemporaryTableCredential generateTemporaryTableCredential)
 ```

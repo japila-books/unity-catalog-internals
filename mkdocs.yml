@@ -155,6 +155,7 @@ nav:
   - Features:
     - features/index.md
     - ... | basic-server-access-control/**.md
+    - ... | credential-vending/**.md
     - ... | docker/**.md
     - ... | iceberg/**.md
     - logging.md
