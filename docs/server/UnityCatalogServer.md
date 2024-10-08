@@ -19,7 +19,7 @@ title: UnityCatalogServer
 `UnityCatalogServer` uses the following configuration files:
 
 * `etc/conf/server.log4j2.properties`
-* [etc/conf/server.properties](../persistent-storage/ServerPropertiesUtils.md)
+* [etc/conf/server.properties](ServerPropertiesUtils.md)
 
 ## Port
 

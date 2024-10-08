@@ -36,9 +36,7 @@ HttpResponse generateTemporaryTableCredential(
 
 `generateTemporaryTableCredential` [looks up the table metadata](../persistent-storage/TableRepository.md#getTableById) (by the `tableId` of the given `GenerateTemporaryTableCredential`) in the [TableRepository](#TABLE_REPOSITORY).
 
-Unless the storage location is on S3 (starts with `s3://` prefix), `generateTemporaryTableCredential` assumes local file system and returns empty credentials.
-
-For a S3 storage location, `generateTemporaryTableCredential` [finds the S3 storage location credentials](TemporaryCredentialUtils.md#findS3BucketConfig).
+`generateTemporaryTableCredential`...FIXME
 
 ## Demo
 

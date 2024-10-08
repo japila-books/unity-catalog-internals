@@ -53,12 +53,12 @@ The Spark Connector module is under `unitycatalog-spark_2.13/{{ uc.version }}/ja
 
 ## Run Spark Application with Unity Catalog
 
-=== "Spark {{ spark3.version }} + Delta Lake {{ delta3.version }}"
+=== "Spark {{ spark.version }} + Delta Lake {{ delta.version }}"
 
     ``` shell
     ./bin/spark-shell \
       --packages \
-        io.delta:delta-spark_{{ scala.version }}:{{ delta3.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }} \
+        io.delta:delta-spark_{{ scala.version }}:{{ delta.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }} \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
@@ -78,16 +78,16 @@ The Spark Connector module is under `unitycatalog-spark_2.13/{{ uc.version }}/ja
     ```
 
     ``` text
-    scala> assert(spark.version == "{{ spark3.version }}")
-    scala> assert(io.delta.VERSION == "{{ delta3.version }}")
+    scala> assert(spark.version == "{{ spark.version }}")
+    scala> assert(io.delta.VERSION == "{{ delta.version }}")
     ```
 
-=== "PySpark {{ spark3.version }} + Delta Lake {{ delta3.version }}"
+=== "PySpark {{ spark.version }} + Delta Lake {{ delta.version }}"
 
     ``` shell
     ./bin/pyspark \
       --packages \
-        io.delta:delta-spark_{{ scala.version }}:{{ delta3.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }} \
+        io.delta:delta-spark_{{ scala.version }}:{{ delta.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }} \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \

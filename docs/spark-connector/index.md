@@ -12,7 +12,7 @@ The following features are supported:
 
 ## Spark and Java Compatibility
 
-Apache Spark {{ spark3.version }} and Java 11 are used to build Spark Connector module for better Apache Spark interoperability (see [this commit]({{ uc.commit }}/d2fbca32cd0068fabe0d2e7f0fb277ba892a6be3)).
+Apache Spark {{ spark.version }} and Java 11 are used to build Spark Connector module for better Apache Spark interoperability (see [this commit]({{ uc.commit }}/d2fbca32cd0068fabe0d2e7f0fb277ba892a6be3)).
 
 ## Namespace Support
 

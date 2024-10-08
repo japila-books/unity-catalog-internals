@@ -105,10 +105,11 @@ extra:
     version: 0.3.0-SNAPSHOT
     commit: https://github.com/unitycatalog/unitycatalog/commit
     github: https://github.com/unitycatalog/unitycatalog/blob/main
+    slack: https://unitycatalog.slack.com/archives
   armeria:
     version: 1.28.4
     api: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
-  delta3:
+  delta:
     version: 3.2.1
   delta4:
     version: 4.0.0rc1
@@ -142,7 +143,7 @@ extra:
       link: https://jaceklaskowski.medium.com
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@jaceklaskowski
-  spark3:
+  spark:
     version: 3.5.3
   spark4:
     version: 4.0.0-preview1

@@ -1,0 +1,3 @@
+# AzureCredentialVendor
+
+`AzureCredentialVendor` is...FIXME
