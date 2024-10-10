@@ -20,3 +20,12 @@ hide:
   --conf "spark.sql.catalog.unity.token=$(cat ../unitycatalog/etc/conf/token.txt)" \
   --conf "spark.sql.defaultCatalog=unity"
 ```
+
+``` text
+## Demo: Spark Connector and External Tables on AWS S3
+s3.bucketPath.0=s3://japila-unitycatalog
+s3.region.0=FIXME_region
+s3.awsRoleArn.0=FIXME_awsRoleArn
+s3.accessKey.0=FIXME_accessKey
+s3.secretKey.0=FIXME_secretKey
+```

@@ -1,6 +1,6 @@
 # Spark Connector
 
-Unity Catalog supports Apache Spark and Delta Lake using **Spark Connector** ([UCSingleCatalog](UCSingleCatalog.md) and [UCProxy](UCProxy.md)).
+**Spark Connector** allows Apache Spark to use Unity Catalog as a metastore.
 
 The following features are supported:
 
@@ -9,6 +9,13 @@ The following features are supported:
 * Support the path table syntax of delta tables
 * [Temporary credentials for secured access](./UCProxy.md#loadTable) to local and S3 tables ([parquet tables only, no delta tables yet]({{ uc.commit }}/681acbdb46f375d00e402739bc3ea31fc407e732))
 * [Namespace](#namespace-support)
+
+Spark Connector supports Delta Lake, Iceberg and Hudi tables via [UniForm]({{ book.delta }}/uniform/).
+
+!!! note "No Native Iceberg Table Support"
+    There is no native Iceberg table support. It is slated for v0.3 or v0.4 per the [Proposed UC Roadmap CY2024Q4](https://github.com/unitycatalog/unitycatalog/discussions/411).
+
+Spark Connector is [UCSingleCatalog](UCSingleCatalog.md) and [UCProxy](UCProxy.md).
 
 ## Spark and Java Compatibility
 
