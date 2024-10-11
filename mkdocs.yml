@@ -155,6 +155,7 @@ nav:
   - index.md
   - Features:
     - features/index.md
+    - ... | ai/**.md
     - ... | basic-server-access-control/**.md
     - ... | credential-vending/**.md
     - ... | docker/**.md
