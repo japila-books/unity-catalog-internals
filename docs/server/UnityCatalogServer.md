@@ -119,3 +119,16 @@ void main(
 `main` requests the `UnityCatalogServer` to [start](#start).
 
 `main`...FIXME
+
+## Logging
+
+Enable `ALL` logging level for `io.unitycatalog.server.UnityCatalogServer` logger to see what happens inside.
+
+Add the following line to `etc/conf/server.log4j2.properties`:
+
+```text
+logger.UnityCatalogServer.name = io.unitycatalog.server.UnityCatalogServer
+logger.UnityCatalogServer.level = all
+```
+
+Refer to [Logging](../logging.md).
