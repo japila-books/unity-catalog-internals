@@ -1,6 +1,6 @@
 # UnityAccessDecorator
 
-`UnityAccessDecorator` is used by [UnityCatalogServer](../server/UnityCatalogServer.md) to enforce access control rules on the [API services](../server/UnityCatalogServer.md#addServices):
+`UnityAccessDecorator` is used by [UnityCatalogServer](../server/UnityCatalogServer.md) to enforce access control rules on the following [API services](../server/UnityCatalogServer.md#addServices) endpoints:
 
 * `/api/2.1/unity-catalog/`
 * `/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)
@@ -10,6 +10,24 @@
 `UnityAccessDecorator` uses [AuthorizeExpression](AuthorizeExpression.md).
 
 `UnityAccessDecorator` is a `DecoratingHttpServiceFunction` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/DecoratingHttpServiceFunction.html)).
+
+## Creating Instance
+
+`UnityAccessDecorator` takes the following to be created:
+
+* <span id="authorizer"> [UnityCatalogAuthorizer](UnityCatalogAuthorizer.md)
+
+While being created, `UnityAccessDecorator` creates the [UnityAccessEvaluator](#evaluator) (with the [UnityCatalogAuthorizer](#authorizer)).
+
+`UnityAccessDecorator` is created when:
+
+* `UnityCatalogServer` is requested to [add the API services](../server/UnityCatalogServer.md#addServices) (with [Server Authorization](index.md) enabled)
+
+### UnityAccessEvaluator { #evaluator }
+
+`UnityAccessDecorator` creates an [UnityAccessEvaluator](UnityAccessEvaluator.md) (with the [UnityCatalogAuthorizer](#authorizer)) when [created](#creating-instance).
+
+This `UnityAccessEvaluator` is used to [evaluate](UnityAccessEvaluator.md#evaluate) a principal to access securables while [checking authorization](#checkAuthorization).
 
 ## Serve Incoming HTTP Request { #serve }
 
@@ -32,7 +50,9 @@ AccessDecorator checking [path]
 
 `serve` [finds the service method](#findServiceMethod).
 
-When found, `serve`...FIXME
+When found, `serve` finds the [AuthorizeExpression](#findAuthorizeExpression) and the [AuthorizeKey](#findAuthorizeKeys) annotations (if defined on the method).
+
+For the authorization expression and the authorization resource(s) found, `serve` [finds the principal](IdentityUtils.md#findPrincipalId) and [authorizeByRequest](#authorizeByRequest).
 
 Otherwise, `serve` prints out the following WARN message to the logs:
 
@@ -40,7 +60,31 @@ Otherwise, `serve` prints out the following WARN message to the logs:
 Couldn't unwrap service.
 ```
 
-### findAuthorizeExpression { #findAuthorizeExpression }
+### Find Service Method { #findServiceMethod }
+
+```java
+Method findServiceMethod(
+  HttpService httpService)
+```
+
+??? note "Static Method"
+    `findServiceMethod` is a Java **class method** to be invoked without a reference to a particular object.
+
+    Learn more in the [Java Language Specification]({{ java.spec }}/jls-8.html#jls-8.4.3.2).
+
+`findServiceMethod` tries to unwrap the given `HttpService` to be a `SimpleDecoratingHttpService` that is in turn tried to be unwrapped to an `AnnotatedService`.
+
+If the given `HttpService` is unwrapped to an `AnnotatedService` successfully, `findServiceMethod` prints out the following DEBUG message to the logs:
+
+``` text
+serviceName = [serviceName], methodName = [methodName]
+```
+
+`findServiceMethod` gives the `Class` by the `serviceName` and then [finds the methods](#findMethodsByName) in the `Class` matching the `methodName`.
+
+`findServiceMethod` returns the one and only `methodName` method of the `Class`, if found. Otherwise, it's undefined (`null`).
+
+### Find Authorize Expression { #findAuthorizeExpression }
 
 ```java
 String findAuthorizeExpression(
@@ -66,7 +110,7 @@ Otherwise, `findAuthorizeExpression` prints out the following DEBUG message to t
 authorize = (none found)
 ```
 
-### authorizeByRequest { #authorizeByRequest }
+### Authorize By Request { #authorizeByRequest }
 
 ``` java
 HttpResponse authorizeByRequest(
@@ -79,6 +123,17 @@ HttpResponse authorizeByRequest(
 ```
 
 `authorizeByRequest`...FIXME
+
+### Check Authorization { #checkAuthorization }
+
+``` java
+void checkAuthorization(
+  UUID principal,
+  String expression,
+  Map<SecurableType, Object> resourceKeys)
+```
+
+`checkAuthorization`...FIXME
 
 ## Logging
 
