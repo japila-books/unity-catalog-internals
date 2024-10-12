@@ -2,382 +2,386 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/logging/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/ai/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/ai/BaseFunctionClient/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/ai/DatabricksFunctionClient/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/basic-server-access-control/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/AuthCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/CatalogCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/CliUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/DeltaKernelUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/DeltaKernelWriteUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/FunctionCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/ModelCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/ModelVersionCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/PermissionCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/PythonInvoker/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/SchemaCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/TableCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/UnityCatalogCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/UserCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/VolumeCli/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/client/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/client/ApiClient/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/contenders/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/AwsCredentialVendor/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/AzureCredentialVendor/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/CredentialContext/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/CredentialOperations/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/GcpCredentialVendor/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/demo/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/demo/crud-external-delta-table/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/demo/namespace-support-in-spark-connector/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/demo/spark-connector-and-external-tables-on-aws-s3/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/demo/spark-connector/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/docker/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/features/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/iceberg/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/iceberg/FileIOFactory/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/iceberg/IcebergRestCatalogService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/iceberg/MetadataService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/iceberg/TableConfigService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/oauth2-authentication/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/oauth2-authentication/AuthCallbackHandler/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/oauth2-authentication/Oauth2CliExchange/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/CatalogRepository/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/FileUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/FunctionRepository/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/HibernateUtil/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/HibernateUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/ModelRepository/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/PagedListingHelper/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/RepositoryUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/SchemaRepository/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/TableRepository/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/UriUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/UserRepository/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/persistent-storage/VolumeRepository/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/AuthService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/CatalogService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/CreateCatalog/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/CreateTable/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/FunctionService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/GenerateTemporaryTableCredential/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/ModelService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/PermissionService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/SchemaService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/Scim2UserService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/ServerPropertiesUtils/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TableService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryModelVersionCredentialsService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryPathCredentialsService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryTableCredentialsService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryVolumeCredentialsService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/UnityCatalogServer/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/VolumeService/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/AllowingAuthorizer/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/AuthDecorator/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/AuthorizeExpression/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/IdentityUtils/</loc>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/JCasbinAuthorizer/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/JwksOperations/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/SecurityConfiguration/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/SecurityContext/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/UnityAccessDecorator/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/UnityAccessEvaluator/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/UnityAccessUtil/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server-authorization/UnityCatalogAuthorizer/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/GcsVendedTokenProvider/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/UCProxy/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/spark-connector/UCSingleCatalog/</loc>
-         <lastmod>2024-10-11</lastmod>
+         <lastmod>2024-10-12</lastmod>
     </url>
 </urlset>
