@@ -22,6 +22,40 @@ Used when:
 * `PermissionService` is requested for the [authorizations](../server/PermissionService.md#getAuthorization)
 * `UnityAccessEvaluator` is [created](UnityAccessEvaluator.md#authorizeHandle)
 
+### Authorize All Privileges { #authorizeAll }
+
+``` java
+boolean authorizeAll(
+  UUID principal,
+  UUID resource,
+  Privileges... actions)
+```
+
+See:
+
+* [JCasbinAuthorizer](JCasbinAuthorizer.md#authorizeAll)
+
+Used when:
+
+* `UnityAccessEvaluator` is [created](UnityAccessEvaluator.md#authorizeAllHandle)
+
+### Authorize Any Privileges { #authorizeAny }
+
+``` java
+boolean authorizeAny(
+  UUID principal,
+  UUID resource,
+  Privileges... actions)
+```
+
+See:
+
+* [JCasbinAuthorizer](JCasbinAuthorizer.md#authorizeAny)
+
+Used when:
+
+* `UnityAccessEvaluator` is [created](UnityAccessEvaluator.md#authorizeAnyHandle)
+
 ### Grant Authorization { #grantAuthorization }
 
 ```java

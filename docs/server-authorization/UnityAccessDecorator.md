@@ -133,7 +133,31 @@ void checkAuthorization(
   Map<SecurableType, Object> resourceKeys)
 ```
 
-`checkAuthorization`...FIXME
+In essence, `checkAuthorization` reports a `BaseException` to indicate "Access denied". Otherwise, authorization is granted.
+
+---
+
+`checkAuthorization` prints out the following DEBUG message to the logs:
+
+``` text
+resourceKeys = [resourceKeys]
+```
+
+`checkAuthorization` [resolves resource names into IDs](KeyMapperUtil.md#mapResourceKeys).
+
+`checkAuthorization` prints out the following DEBUG message to the logs:
+
+``` text
+resourceIds = [resourceIds]
+```
+
+`checkAuthorization` requests the [UnityAccessEvaluator](#evaluator) to [evaluate](UnityAccessEvaluator.md#evaluate) with the given `principal`, `expression` and the resolved resource IDs.
+
+In case when the `UnityAccessEvaluator` does not evaluate the expression for the `principal` and the resource IDs successfully, `checkAuthorization` reports a `BaseException` with the following message:
+
+``` text
+Access denied.
+```
 
 ## Logging
 
@@ -141,7 +165,7 @@ Enable `ALL` logging level for `io.unitycatalog.server.auth.decorator.UnityAcces
 
 Add the following line to `etc/conf/server.log4j2.properties`:
 
-```text
+``` text
 logger.UnityAccessDecorator.name = io.unitycatalog.server.auth.decorator.UnityAccessDecorator
 logger.UnityAccessDecorator.level = all
 ```
