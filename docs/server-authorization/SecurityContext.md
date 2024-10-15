@@ -130,4 +130,13 @@ Subject (`sub`) | The subject (based on the given `DecodedJWT`)
 
 ## Logging
 
-`SecurityContext` uses [io.unitycatalog.server.UnityCatalogServer](../server/UnityCatalogServer.md#logging) logger.
+Enable `ALL` logging level for `io.unitycatalog.server.security.SecurityContext` logger to see what happens inside.
+
+Add the following line to `etc/conf/server.log4j2.properties`:
+
+```text
+logger.SecurityContext.name = io.unitycatalog.server.security.SecurityContext
+logger.SecurityContext.level = all
+```
+
+Refer to [Logging](../logging.md).
