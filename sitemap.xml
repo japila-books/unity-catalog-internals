@@ -53,6 +53,10 @@
          <lastmod>2024-10-17</lastmod>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/cli/MetastoreCli/</loc>
+         <lastmod>2024-10-17</lastmod>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/cli/ModelCli/</loc>
          <lastmod>2024-10-17</lastmod>
     </url>
@@ -273,6 +277,10 @@
          <lastmod>2024-10-17</lastmod>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/MetastoreService/</loc>
+         <lastmod>2024-10-17</lastmod>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/ModelService/</loc>
          <lastmod>2024-10-17</lastmod>
     </url>
@@ -310,6 +318,10 @@
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/TemporaryVolumeCredentialsService/</loc>
+         <lastmod>2024-10-17</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/URLTranscoderVerticle/</loc>
          <lastmod>2024-10-17</lastmod>
     </url>
     <url>
