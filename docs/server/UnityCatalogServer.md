@@ -2,17 +2,27 @@
 title: UnityCatalogServer
 ---
 
-# UnityCatalogServer &mdash; Unity Catalog's Localhost Reference Server
+# UnityCatalogServer &mdash; Localhost Reference Server
 
 `UnityCatalogServer` is Unity Catalog's **Localhost Reference Server**.
 
 `UnityCatalogServer` can be started on command line to [handle REST API requests](#addServices) at the [port](#port).
 
 ```console
-./bin/start-uc-server [-p|--port port]
+❯ ./bin/start-uc-server --help
+usage: bin/start-uc-server
+ -h,--help         Print help message.
+ -p,--port <arg>   Port number to run the server on. Default is 8080.
+ -v,--version      Display the version of the Unity Catalog server
 ```
 
 `UnityCatalogServer` starts Armeria documentation service at http://localhost:8081/docs and the other [Unity Catalog API services](#addServices).
+
+## Metastore
+
+`UnityCatalogServer` [runs](#start) with a single metastore only that [can be created unless available already](../persistent-storage/MetastoreRepository.md#initMetastoreIfNeeded).
+
+The summary of the single metastore is available through [MetastoreService](MetastoreService.md) at `/api/2.1/unity-catalog/` URL.
 
 ## Configuration Files
 
@@ -77,6 +87,7 @@ URL | Service
  `/` | Returns `Hello, Unity Catalog!` message
  `/api/1.0/unity-control/auth` |  [AuthService](AuthService.md)
  `/api/1.0/unity-control/scim2/Users` |  [Scim2UserService](Scim2UserService.md)
+ `/api/2.1/unity-catalog/` | [MetastoreService](MetastoreService.md)
  `/api/2.1/unity-catalog/catalogs` | [CatalogService](CatalogService.md)
  `/api/2.1/unity-catalog/functions` | [FunctionService](FunctionService.md)
  `/api/2.1/unity-catalog/iceberg` | [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md)
@@ -118,7 +129,38 @@ void main(
 
 `main` requests the `UnityCatalogServer` to [start](#start).
 
-`main`...FIXME
+`main` creates a [URLTranscoderVerticle](URLTranscoderVerticle.md) on the following ports:
+
+Port | Description
+-|-
+8080 or `--port` | Transcode Port
+8081 | Service Port
+
+`main` deploys the `URLTranscoderVerticle` on a non-clustered Vert.x instance.
+
+## Start Server { #start }
+
+```java
+void start()
+```
+
+`start` prints out the following INFO message to the logs:
+
+```text
+Starting server...
+```
+
+`start` requests the [MetastoreRepository](../persistent-storage/MetastoreRepository.md) to [initMetastoreIfNeeded](../persistent-storage/MetastoreRepository.md#initMetastoreIfNeeded).
+
+`start` requests this [Server](#server) to start and listen to the defined ports.
+
+`start` waits until this `Server` is fully started up.
+
+---
+
+`start` is used when:
+
+* `UnityCatalogServer` is [launched on command line](#main)
 
 ## Logging
 

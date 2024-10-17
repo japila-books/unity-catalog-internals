@@ -1,6 +1,6 @@
 # Localhost Reference Server
 
-Unity Catalog comes with **Localhost Reference Server** that can be launched on command line using `./bin/start-uc-server` utility.
+Unity Catalog comes with [Localhost Reference Server](UnityCatalogServer.md) that can be launched on command line using `./bin/start-uc-server` utility.
 
 ``` console
 ❯ ./bin/start-uc-server -h
@@ -11,3 +11,6 @@ usage: bin/start-uc-server
 ```
 
 `start-uc-server` runs [UnityCatalogServer](UnityCatalogServer.md) to [handle REST API requests](UnityCatalogServer.md#addServices) at a [port](UnityCatalogServer.md#port) (specified using `-p` or `--port` option or defaults to `8080`).
+
+!!! note
+    The REST API requests can come from any Unity Catalog API-compatible client, incl. [Unity Catalog CLI](../cli/index.md).

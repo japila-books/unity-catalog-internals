@@ -3,10 +3,10 @@
 **Unity Catalog CLI** can be started using `./bin/uc` command-line utility that runs [UnityCatalogCli](UnityCatalogCli.md).
 
 ```text
-$ ./bin/uc --help
+❯ ./bin/uc --help
 
 Usage: bin/uc <entity> <operation> [options]
-Entities: schema, volume, model_version, auth, catalog, function, registered_model, user, table
+Entities: schema, volume, model_version, metastore, auth, catalog, function, permission, registered_model, user, table
 
 By default, the client will connect to UC running locally at http://localhost:8080
 
@@ -24,6 +24,7 @@ Unity Catalog CLI supports the following entities (commands):
 * [auth](AuthCli.md)
 * [catalog](CatalogCli.md)
 * [function](FunctionCli.md)
+* [metastore](MetastoreCli.md)
 * [model_version](ModelVersionCli.md)
 * [registered_model](ModelCli.md)
 * [schema](SchemaCli.md)

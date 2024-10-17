@@ -66,7 +66,7 @@ OpenJDK 64-Bit Server VM Zulu17.52+17-CA (build 17.0.12+7-LTS, mixed mode, shari
 Please provide a entity.
 
 Usage: bin/uc <entity> <operation> [options]
-Entities: schema, volume, model_version, auth, catalog, function, permission, registered_model, user, table
+Entities: schema, volume, model_version, metastore, auth, catalog, function, permission, registered_model, user, table
 
 By default, the client will connect to UC running locally at http://localhost:8080
 

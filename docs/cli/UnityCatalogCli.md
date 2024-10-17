@@ -27,6 +27,7 @@ Command | Handler
  `auth` | [AuthCli](AuthCli.md)
  `catalog` | [CatalogCli](CatalogCli.md)
  `function` | [FunctionCli](FunctionCli.md)
+ `metastore` | [MetastoreCli](MetastoreCli.md)
  `model_version` | [ModelVersionCli](ModelVersionCli.md)
  `permission` | [PermissionCli](PermissionCli.md)
  `registered_model` | [ModelCli](ModelCli.md)
