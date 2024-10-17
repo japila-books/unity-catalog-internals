@@ -198,12 +198,12 @@ Table written to successfully at: file:///tmp/delta_table/
 
 ## Spark Connector
 
-=== "Spark 3.5.1 + Delta Lake 3.2.0"
+=== "Spark 3.5.1 + Delta Lake {{ delta.version }}"
 
     ``` bash
     ./bin/spark-shell \
         --packages \
-            io.delta:delta-spark_2.13:3.2.0,io.unitycatalog:unitycatalog-spark:0.2.0-SNAPSHOT \
+            io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
         --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
         --conf spark.sql.catalog.spark_catalog=io.unitycatalog.connectors.spark.UCSingleCatalog \
         --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \

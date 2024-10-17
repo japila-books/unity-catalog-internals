@@ -47,8 +47,8 @@ OpenJDK Runtime Environment Zulu17.52+17-CA (build 17.0.12+7-LTS)
 OpenJDK 64-Bit Server VM Zulu17.52+17-CA (build 17.0.12+7-LTS, mixed mode, sharing)
 ```
 
-```text
-$ ./bin/start-uc-server
+``` text
+❯ ./bin/start-uc-server
 ###################################################################
 #  _    _       _ _            _____      _        _              #
 # | |  | |     (_) |          / ____|    | |      | |             #
@@ -57,20 +57,20 @@ $ ./bin/start-uc-server
 # | |__| | | | | | |_| |_| | | |___| (_| | || (_| | | (_) | (_| | #
 #  \____/|_| |_|_|\__|\__, |  \_____\__,_|\__\__,_|_|\___/ \__, | #
 #                      __/ |                                __/ | #
-#                     |___/               v0.2.0-SNAPSHOT  |___/  #
+#                     |___/               v0.3.0-SNAPSHOT  |___/  #
 ###################################################################
 ```
 
-```text
-$ ./bin/uc
+``` text
+❯ ./bin/uc
 Please provide a entity.
 
 Usage: bin/uc <entity> <operation> [options]
-Entities: schema, volume, catalog, function, table
+Entities: schema, volume, model_version, auth, catalog, function, permission, registered_model, user, table
 
 By default, the client will connect to UC running locally at http://localhost:8080
 
-To connect to specific UC server, use --server https://<host>
+To connect to specific UC server, use --server https://<host>:<port>
 
 Currently, auth using bearer token is supported. Please specify the token via --auth_token <PAT Token>
 
