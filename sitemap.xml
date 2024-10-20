@@ -113,6 +113,10 @@
          <lastmod>2024-10-20</lastmod>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/AwsPolicyGenerator/</loc>
+         <lastmod>2024-10-20</lastmod>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/AzureCredentialVendor/</loc>
          <lastmod>2024-10-20</lastmod>
     </url>
@@ -305,7 +309,7 @@
          <lastmod>2024-10-20</lastmod>
     </url>
     <url>
-         <loc>https://books.japila.pl/unity-catalog-internals/server/ServerPropertiesUtils/</loc>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/ServerProperties/</loc>
          <lastmod>2024-10-20</lastmod>
     </url>
     <url>
