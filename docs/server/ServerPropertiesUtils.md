@@ -38,7 +38,7 @@ This `ServerPropertiesUtils` instance is used when:
 
 `ServerPropertiesUtils` [loads server configuration](#loadProperties) from `etc/conf/server.properties` when [created](#creating-instance).
 
-When there is no `etc/conf/server.properties`, the server properties are empty.
+When there is no `etc/conf/server.properties`, the server properties is empty.
 
 `ServerPropertiesUtils` uses the properties for the following:
 
@@ -47,7 +47,9 @@ When there is no `etc/conf/server.properties`, the server properties are empty.
 * [getGcsConfigurations](#getGcsConfigurations)
 * [getAdlsConfigurations](#getAdlsConfigurations)
 
-## getGcsConfigurations { #getGcsConfigurations }
+## Get Storage Configurations
+
+### GCS { #getGcsConfigurations }
 
 ``` java
 Map<String, String> getGcsConfigurations()
@@ -65,13 +67,13 @@ Map<String, String> getGcsConfigurations()
 
 * `GcpCredentialVendor` is [created](../credential-vending/GcpCredentialVendor.md#gcsConfigurations)
 
-## getS3Configurations { #getS3Configurations }
+### S3 { #getS3Configurations }
 
 ``` java
 Map<String, S3StorageConfig> getS3Configurations()
 ```
 
-`getS3Configurations` creates a `S3StorageConfig` for every collection of `n`-indexed properties from the [server.properties](#properties) file (with `n` starting from `0`):
+`getS3Configurations` creates a [S3StorageConfig](../credential-vending/S3StorageConfig.md) for every collection of `n`-indexed properties from the [server.properties](#properties) file (with `n` starting from `0`):
 
 * `s3.bucketPath.[n]`
 * `s3.region.[n]`

@@ -46,3 +46,20 @@ Storage Scheme | Credential Vending Mechanism | TemporaryCredentials
 * `TemporaryPathCredentialsService` is requested to [generateTemporaryPathCredential](../server/TemporaryPathCredentialsService.md#generateTemporaryPathCredential)
 * `TemporaryTableCredentialsService` is requested to [generateTemporaryTableCredential](../server/TemporaryTableCredentialsService.md#generateTemporaryTableCredential)
 * `TemporaryVolumeCredentialsService` is requested to [generateTemporaryTableCredential](../server/TemporaryVolumeCredentialsService.md#generateTemporaryTableCredential)
+
+## vendAwsCredential { #vendAwsCredential }
+
+```java
+Credentials vendAwsCredential(
+  CredentialContext context)
+```
+
+`vendAwsCredential` requests the [AwsCredentialVendor](#awsCredentialVendor) to [vendAwsCredentials](AwsCredentialVendor.md#vendAwsCredentials) for the given [CredentialContext](CredentialContext.md).
+
+---
+
+`vendAwsCredential` is used when:
+
+* `CredentialOperations` is requested to [vend credentials](#vendCredential) for`s3://` storage scheme
+* `FileIOFactory` is requested to [getAwsCredentialsProvider](../iceberg/FileIOFactory.md#getAwsCredentialsProvider)
+* `TableConfigService` is requested to [getS3Config](../iceberg/TableConfigService.md#getS3Config)

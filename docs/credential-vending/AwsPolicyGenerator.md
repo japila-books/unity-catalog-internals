@@ -1,0 +1,3 @@
+# AwsPolicyGenerator
+
+`AwsPolicyGenerator` is...FIXME

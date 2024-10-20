@@ -1,5 +1,16 @@
 # CredentialContext
 
+## Creating Instance
+
+`CredentialContext` takes the following to be created:
+
+* <span id="storageScheme"> Storage Scheme
+* <span id="storageBase"> Storage Base (e.g., S3 bucket)
+* <span id="privileges"> Privileges
+* <span id="locations"> Locations
+
+`CredentialContext` is created using [CredentialContext.create](#create) factory method.
+
 ## Create CredentialContext { #create }
 
 ``` java
