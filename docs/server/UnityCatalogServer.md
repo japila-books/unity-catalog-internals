@@ -29,7 +29,7 @@ The summary of the single metastore is available through [MetastoreService](Meta
 `UnityCatalogServer` uses the following configuration files:
 
 * `etc/conf/server.log4j2.properties`
-* [etc/conf/server.properties](ServerPropertiesUtils.md)
+* [etc/conf/server.properties](ServerProperties.md)
 
 ## Port
 

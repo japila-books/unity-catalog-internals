@@ -14,3 +14,7 @@ usage: bin/start-uc-server
 
 !!! note
     The REST API requests can come from any Unity Catalog API-compatible client, incl. [Unity Catalog CLI](../cli/index.md).
+
+## Server Configuration
+
+The Localhost Reference Server uses `etc/conf/server.properties` file for [server configuration](ServerProperties.md#loadProperties).

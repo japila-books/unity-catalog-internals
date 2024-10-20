@@ -1,27 +1,27 @@
-# ServerPropertiesUtils
+# ServerProperties
 
 ## Creating Instance
 
-`ServerPropertiesUtils` takes no arguments to be created.
+`ServerProperties` takes no arguments to be created.
 
-While being created, `ServerPropertiesUtils` [loads server configuration](#loadProperties).
+While being created, `ServerProperties` [loads server configuration](#loadProperties).
 
-`ServerPropertiesUtils` is created once to be available [system-wide](#instance).
+`ServerProperties` is created once to be available [system-wide](#instance).
 
-## ServerPropertiesUtils Instance { #instance }
+## ServerProperties Instance { #instance }
 
 ``` java
-ServerPropertiesUtils instance
+ServerProperties instance
 ```
 
-`ServerPropertiesUtils` is available system-wide as one single instance.
+`ServerProperties` is available system-wide as one single instance.
 
 ``` scala
-import io.unitycatalog.server.persist.utils.ServerPropertiesUtils
-val s3conf = ServerPropertiesUtils.getInstance.getS3Configurations
+import io.unitycatalog.server.persist.utils.ServerProperties
+val s3conf = ServerProperties.getInstance.getS3Configurations
 ```
 
-This `ServerPropertiesUtils` instance is used when:
+This `ServerProperties` instance is used when:
 
 * `UnityCatalogServer` is requested to [addServices](UnityCatalogServer.md#addServices)
 * [FileUtils](../persistent-storage/FileUtils.md#properties) is created (and requested to [modifyS3Directory](../persistent-storage/FileUtils.md#modifyS3Directory))
@@ -36,11 +36,11 @@ This `ServerPropertiesUtils` instance is used when:
 
 ## Server Properties { #properties }
 
-`ServerPropertiesUtils` [loads server configuration](#loadProperties) from `etc/conf/server.properties` when [created](#creating-instance).
+`ServerProperties` [loads server configuration](#loadProperties) from `etc/conf/server.properties` when [created](#creating-instance).
 
 When there is no `etc/conf/server.properties`, the server properties is empty.
 
-`ServerPropertiesUtils` uses the properties for the following:
+`ServerProperties` uses the properties for the following:
 
 * [getProperty](#getProperty)
 * [getS3Configurations](#getS3Configurations)
@@ -124,13 +124,13 @@ Properties loaded successfully
 
 ## Logging
 
-Enable `ALL` logging level for `io.unitycatalog.server.persist.utils.ServerPropertiesUtils` logger to see what happens inside.
+Enable `ALL` logging level for `io.unitycatalog.server.persist.utils.ServerProperties` logger to see what happens inside.
 
 Add the following line to `etc/conf/server.log4j2.properties`:
 
 ```text
-logger.ServerPropertiesUtils.name = io.unitycatalog.server.persist.utils.ServerPropertiesUtils
-logger.ServerPropertiesUtils.level = all
+logger.ServerProperties.name = io.unitycatalog.server.persist.utils.ServerProperties
+logger.ServerProperties.level = all
 ```
 
 Refer to [Logging](../logging.md).

@@ -2,7 +2,7 @@
 
 `AwsCredentialVendor` is used to [vend S3 bucket credentials](#vendAwsCredentials) for [CredentialOperations](CredentialOperations.md#awsCredentialVendor) (to [vend credentials](CredentialOperations.md#vendCredential) for `s3://` storage scheme).
 
-`AwsCredentialVendor` uses [server.properties](../server/ServerPropertiesUtils.md#getS3Configurations) configuration file for S3 bucket security configurations.
+`AwsCredentialVendor` uses [server.properties](../server/ServerProperties.md#getS3Configurations) configuration file for S3 bucket security configurations.
 
 !!! note "AWS Security Token Service (STS)"
     `AwsCredentialVendor` uses [AWS Security Token Service (STS)](https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html) to request [temporary, limited-privilege security credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html):
@@ -17,7 +17,7 @@
 Map<String, S3StorageConfig> s3Configurations
 ```
 
-`AwsCredentialVendor` initializes `s3Configurations` based on [server.properties](../server/ServerPropertiesUtils.md#getS3Configurations) configuration file.
+`AwsCredentialVendor` initializes `s3Configurations` based on [server.properties](../server/ServerProperties.md#getS3Configurations) configuration file.
 
 This `s3Configurations` is used to look up [S3StorageConfig](S3StorageConfig.md)s to [vend S3 bucket credentials](#vendAwsCredentials).
 

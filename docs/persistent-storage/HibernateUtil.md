@@ -2,9 +2,9 @@
 
 `HibernateUtil` is used to access the system-wide [SessionFactory](#sessionFactory) ([Hibernate]({{ hibernate.javadoc }}/org/hibernate/SessionFactory.html)).
 
-## ServerPropertiesUtils { #properties }
+## ServerProperties { #properties }
 
-`HibernateUtil` gets at the only instance of [ServerPropertiesUtils](../server/ServerPropertiesUtils.md#instance) in a static initializer.
+`HibernateUtil` gets at the only instance of [ServerProperties](../server/ServerProperties.md#instance) in a static initializer.
 
 ??? note "Static Initializer"
     A **static initializer** declared in a class is executed when the class is initialized.

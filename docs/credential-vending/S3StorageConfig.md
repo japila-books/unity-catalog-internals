@@ -11,7 +11,7 @@
 * <span id="secretKey"> Secret Key
 * <span id="sessionToken"> Session Token
 
-`S3StorageConfig` is created only when `ServerProperties` is requested for the [S3 configurations](../server/ServerPropertiesUtils.md#getS3Configurations).
+`S3StorageConfig` is created only when `ServerProperties` is requested for the [S3 configurations](../server/ServerProperties.md#getS3Configurations).
 
 `S3StorageConfig` is used by the following services:
 
