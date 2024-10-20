@@ -8,6 +8,7 @@ hide:
 
 The following demo are available:
 
+* [Unity Catalog Up and Running](unity-catalog-up-and-running.md)
 * [Spark Connector](spark-connector.md)
 * [CRUD with External Delta Table](crud-external-delta-table.md)
 * [Namespace Support in Spark Connector](namespace-support-in-spark-connector.md)
