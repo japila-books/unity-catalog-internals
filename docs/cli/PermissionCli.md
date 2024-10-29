@@ -9,21 +9,6 @@ Valid sub-commands for permission are: get, create, delete
 For detailed help on permission sub-commands, use bin/uc permission <sub-command> --help
 ```
 
-!!! note
-    **Permissions** and **Privilege Assignments** are synonyms.
-
-## Securable Types
-
-There are the following types of the securables in Unity Catalog:
-
-1. `catalog`
-1. `function`
-1. `metastore`
-1. `registered_model`
-1. `schema`
-1. `table`
-1. `volume`
-
 ## Handle Command Line { #handle }
 
 ```java
@@ -34,13 +19,13 @@ void handle(
 
 `handle` handles the given `cmd`.
 
-`handle` creates a `GrantsApi` (with the given [ApiClient](../client/ApiClient.md)).
+`handle` creates a [GrantsApi](../client/GrantsApi.md) (with the given [ApiClient](../client/ApiClient.md)).
 
 Subcommand | Handler | API Handlers
 -|-|-
- `create` | [updatePermission](#updatePermission) | `GrantsApi`
- `delete` | [updatePermission](#updatePermission) | `GrantsApi`
- `get` | [getPermission](#getPermission) | `GrantsApi`
+ `create` | [updatePermission](#updatePermission) | [GrantsApi](../client/GrantsApi.md)
+ `delete` | [updatePermission](#updatePermission) | [GrantsApi](../client/GrantsApi.md)
+ `get` | [getPermission](#getPermission) | [GrantsApi](../client/GrantsApi.md)
 
 ---
 
@@ -84,4 +69,4 @@ Optional Params:
 * `name`
 * `principal`
 
-`getPermission` requests the `GrantsApi` for the privilege assignments of the given `name` (of `securable_type` type).
+`getPermission` requests the [GrantsApi](../client/GrantsApi.md) for the privilege assignments of the given `name` (of `securable_type` type).

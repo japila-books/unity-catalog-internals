@@ -12,8 +12,23 @@
 * The root of the hierarchy is a catalog.
 * There is a new concept of a metastore, which is primarily a resource to assign server-level privileges with.
 
-??? note
+!!! note "Permissions and Privilege Assignments"
+    **Permissions** and **Privilege Assignments** are synonyms.
+
+??? note "Commit"
     Basic Server Access Control is available since [this commit]({{ uc.commit }}/f9a9bf1f84cb4c7fa03ecb569ae19f306a7cd85b).
+
+## Securables
+
+Unity Catalog supports the following types of securables to apply (_create_) permissions to:
+
+1. `catalog`
+1. `function`
+1. `metastore`
+1. `registered_model`
+1. `schema`
+1. `table`
+1. `volume`
 
 ## Privileges
 
@@ -35,14 +50,14 @@ Privilege | Description
 
 ## Unity Catalog CLI
 
-The CLI interface provides a new `permission` command.
+The CLI interface provides a new [permission](../cli/PermissionCli.md) command.
 
 ``` bash
 ./bin/uc permission create \
   --securable_type catalog \
   --name mycatalog \
   --principal user@myorg.com \
-  --privilege "CREATE CATALOG`
+  --privilege "CREATE CATALOG"
 ```
 
 ``` bash
