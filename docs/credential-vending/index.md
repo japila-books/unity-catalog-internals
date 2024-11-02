@@ -23,6 +23,20 @@ Credential Vending supports the following privileges:
 ??? note "Permissions"
     Privileges is a synonym of Permissions.
 
+## Path Operations
+
+There are the following path operations supported in Unity Catalog:
+
+* `PATH_CREATE_TABLE`
+* `PATH_READ`
+* `PATH_READ_WRITE`
+* `UNKNOWN_PATH_OPERATION`
+
+The path operations are used for [TemporaryPathCredentialsService](../server/TemporaryPathCredentialsService.md) to determine the [privileges for a path operation](../server/TemporaryPathCredentialsService.md#pathOperationToPrivileges) (while [generating temporary path credentials](../server/TemporaryPathCredentialsService.md#generateTemporaryPathCredential)).
+
+??? note "OpenAPI Generator"
+    Path operations are defined in `PathOperation` enum in Unity Catalog's [OpenAPI specification]({{ uc.github }}/api/all.yaml).
+
 ## Amazon S3
 
 [Alex Reid once wrote]({{ uc.slack }}/C076YREKX8W/p1728333073156489?thread_ts=1728308961.254459&cid=C076YREKX8W):

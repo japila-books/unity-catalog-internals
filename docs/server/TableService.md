@@ -1,6 +1,6 @@
 # TableService
 
-`TableService` is a Unity Catalog API service that [UnityCatalogServer](UnityCatalogServer.md) uses to handle HTTP requests at `/api/2.1/unity-catalog/tables` URL.
+`TableService` is an API service that [UnityCatalogServer](UnityCatalogServer.md) uses to handle HTTP requests at `/api/2.1/unity-catalog/tables` URL.
 
 Method | URL | Handler | Params
 -|-|-|-

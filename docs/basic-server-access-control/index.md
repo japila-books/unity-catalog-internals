@@ -20,7 +20,7 @@
 
 ## Securables
 
-Unity Catalog supports the following types of securables to apply (_create_) permissions to:
+Unity Catalog defines the following securables to apply (_create_) permissions to:
 
 1. `catalog`
 1. `function`
@@ -30,9 +30,22 @@ Unity Catalog supports the following types of securables to apply (_create_) per
 1. `table`
 1. `volume`
 
+??? note "OpenAPI Generator"
+    Securable types are defined in `SecurableType` enum in Unity Catalog's [OpenAPI specification]({{ uc.github }}/api/all.yaml).
+
+## Principals
+
+There are the following principal types supported in Unity Catalog:
+
+* `USER`
+* `GROUP`
+
+??? note "OpenAPI Generator"
+    Principals are defined in `PrincipalType` enum in Unity Catalog's [OpenAPI specification]({{ uc.github }}/api/all.yaml).
+
 ## Privileges
 
-The initial set of privileges are as follows:
+The privileges to grant are as follows:
 
 Privilege | Description
 -|-
@@ -40,13 +53,16 @@ Privilege | Description
  `USE CATALOG` | Allows the principal to access/use a catalog
  `CREATE SCHEMA` | Allows the principal to create schemas within a catalog
  `USE SCHEMA` | Allows the principal to access/use the schema and child tables
- `CREATE_TABLE` | Allows the principal to create tables in the schema
+ `CREATE TABLE` | Allows the principal to create tables in the schema
  `SELECT` | Allows the principal to run queries against table(s)
- `CREATE_FUNCTION` | Allows principal to create functions in the schema
+ `CREATE FUNCTION` | Allows principal to create functions in the schema
  `EXECUTE` | Allows the principal to execute function(s)
- `CREATE_VOLUME` | Allows principal to create volumes in the schema
+ `CREATE VOLUME` | Allows principal to create volumes in the schema
  `READ VOLUME` | Allows the principal to access volumes within the catalog
  `CREATE MODEL` | Allows the principal to create models within a schema
+
+??? note "OpenAPI Generator"
+    Privileges are defined in `Privilege` enum in Unity Catalog's [OpenAPI specification]({{ uc.github }}/api/all.yaml).
 
 ## Unity Catalog CLI
 
