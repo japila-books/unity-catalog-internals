@@ -73,6 +73,6 @@ Set<CredentialContext.Privilege> pathOperationToPrivileges(
 PathOperation | Privileges
 -|-
  `PATH_READ` | `SELECT`
- `PATH_READ_WRITE` | `SELECT` and `UPDATE`
- `PATH_CREATE_TABLE` | `SELECT` and `UPDATE`
+ `PATH_READ_WRITE` | `SELECT`, `UPDATE`
+ `PATH_CREATE_TABLE` | `SELECT`, `UPDATE`
  `UNKNOWN_PATH_OPERATION` | (empty)

@@ -37,6 +37,19 @@ The path operations are used for [TemporaryPathCredentialsService](../server/Tem
 ??? note "OpenAPI Generator"
     Path operations are defined in `PathOperation` enum in Unity Catalog's [OpenAPI specification]({{ uc.github }}/api/all.yaml).
 
+## Model Version Operations
+
+There are the following model version operations supported in Unity Catalog:
+
+* `READ_MODEL_VERSION`
+* `READ_WRITE_MODEL_VERSION`
+* `UNKNOWN_MODEL_VERSION_OPERATION`
+
+The path operations are used for [TemporaryModelVersionCredentialsService](../server/TemporaryModelVersionCredentialsService.md) to determine the [privileges for a model version operation](../server/TemporaryModelVersionCredentialsService.md#modelVersionOperationToPrivileges) (while [generating temporary model version credentials](../server/TemporaryModelVersionCredentialsService.md#generateTemporaryModelVersionCredentials)).
+
+??? note "OpenAPI Generator"
+    Path operations are defined in `ModelVersionOperation` enum in Unity Catalog's [OpenAPI specification]({{ uc.github }}/api/all.yaml).
+
 ## Amazon S3
 
 [Alex Reid once wrote]({{ uc.slack }}/C076YREKX8W/p1728333073156489?thread_ts=1728308961.254459&cid=C076YREKX8W):
