@@ -1,6 +1,6 @@
 # TableService
 
-`TableService` is an API service that [UnityCatalogServer](UnityCatalogServer.md) uses to handle HTTP requests at `/api/2.1/unity-catalog/tables` URL.
+`TableService` is an API service of [UnityCatalogServer](UnityCatalogServer.md) to handle HTTP requests at `/api/2.1/unity-catalog/tables` URL.
 
 Method | URL | Handler | Params
 -|-|-|-
@@ -38,6 +38,15 @@ While being created, `TableService` creates an [UnityAccessEvaluator](#evaluator
 HttpResponse createTable(
   CreateTable createTable)
 ```
+
+`createTable` handles `POST` requests with the following [AuthorizeKeys](../server-authorization/AuthorizeKeys.md):
+
+Value | Key
+-|-
+ `SCHEMA` | `schema_name`
+ `CATALOG` | `catalog_name`
+
+---
 
 `createTable` requests the system-wide [TableRepository](#TABLE_REPOSITORY) instance to [persist](../persistent-storage/TableRepository.md#createTable) the given [table metadata](CreateTable.md).
 

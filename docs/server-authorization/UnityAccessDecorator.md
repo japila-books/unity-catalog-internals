@@ -84,6 +84,20 @@ serviceName = [serviceName], methodName = [methodName]
 
 `findServiceMethod` returns the one and only `methodName` method of the `Class`, if found. Otherwise, it's undefined (`null`).
 
+### Find Authorize Keys { #findAuthorizeKeys }
+
+```java
+List<KeyLocator> findAuthorizeKeys(
+  Method method)
+```
+
+??? note "Static Method"
+    `findAuthorizeKeys` is a Java **class method** to be invoked without a reference to a particular object.
+
+    Learn more in the [Java Language Specification]({{ java.spec }}/jls-8.html#jls-8.4.3.2).
+
+`findAuthorizeKeys`...FIXME
+
 ### Find Authorize Expression { #findAuthorizeExpression }
 
 ```java
