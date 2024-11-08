@@ -12,6 +12,9 @@
 * [TemporaryPathCredentialsService](../server/TemporaryPathCredentialsService.md)
 * [VolumeService](../server/VolumeService.md)
 
+!!! note
+    `AuthorizeKey` is a Java annotation (see [9.6. Annotation Interfaces]({{ java.spec }}/jls-9.html#jls-9.6)).
+
 Every operation of an API service is decorated with `AuthorizeKey` annotation for server authorization.
 
 `AuthorizeKey` consists of a [SecurableType](../basic-server-access-control/index.md#securables) and an optional name of the securable.

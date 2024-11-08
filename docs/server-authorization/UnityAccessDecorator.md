@@ -50,15 +50,26 @@ AccessDecorator checking [path]
 
 `serve` [finds the service method](#findServiceMethod).
 
-When found, `serve` finds the [AuthorizeExpression](#findAuthorizeExpression) and the [AuthorizeKey](#findAuthorizeKeys) annotations (if defined on the method).
+When found, `serve` finds the [@AuthorizeExpression](#findAuthorizeExpression) and the [@AuthorizeKey](#findAuthorizeKeys) annotations (if defined on the method and the parameters).
 
-For the authorization expression and the authorization resource(s) found, `serve` [finds the principal](IdentityUtils.md#findPrincipalId) and [authorizeByRequest](#authorizeByRequest).
+Only when there are an authorize expression and keys found, `serve` [finds the principal](IdentityUtils.md#findPrincipalId) and [authorizeByRequest](#authorizeByRequest).
 
-Otherwise, `serve` prints out the following WARN message to the logs:
+Otherwise, `serve` prints out one of the WARN messages to the logs and passes the request on to the target (_delegate_) service (as if no authorization were even attempted).
 
-``` text
-Couldn't unwrap service.
-```
+??? note "WARN Messages"
+    `serve` prints out one of the following WARN messages to the logs:
+
+    ```text
+    No authorization resource(s) found.
+    ```
+
+    ```text
+    No authorization expression found.
+    ```
+
+    ```text
+    Couldn't unwrap service.
+    ```
 
 ### Find Service Method { #findServiceMethod }
 
@@ -96,7 +107,41 @@ List<KeyLocator> findAuthorizeKeys(
 
     Learn more in the [Java Language Specification]({{ java.spec }}/jls-8.html#jls-8.4.3.2).
 
-`findAuthorizeKeys`...FIXME
+`findAuthorizeKeys` finds [@AuthorizeKey](AuthorizeKey.md) annotations on the given `Method` ([Java]({{ java.api }}/java/lang/reflect/Method.html#getAnnotation(java.lang.Class))). If found, `findAuthorizeKeys` adds a locator with the following:
+
+Source | Securable
+-|-
+`SYSTEM` | The `value`<br>of the [@AuthorizeKey](AuthorizeKey.md) annotation
+
+`findAuthorizeKeys` finds [@AuthorizeKey](AuthorizeKey.md) annotations (incl. [@AuthorizeKeys](AuthorizeKeys.md)) on the method's parameters.
+
+??? note "WARN Log Message"
+    In case `findAuthorizeKeys` finds both [@AuthorizeKey](AuthorizeKey.md) and [@AuthorizeKeys](AuthorizeKeys.md) annotations, `findAuthorizeKeys` prints out the following WARN message to the logs:
+
+    ```text
+    Both AuthorizeKey and AuthorizeKeys present
+    ```
+
+`findAuthorizeKeys` collects the `AuthorizeKey`s.
+
+For keys with the key specified, `findAuthorizeKeys` adds a locator with the following:
+
+Source | Securable | Key
+-|-|-
+`PAYLOAD` | The `value`<br>of the [@AuthorizeKey](AuthorizeKey.md) annotation | The `key`<br>of the [@AuthorizeKey](AuthorizeKey.md) annotation
+
+Otherwise, `findAuthorizeKeys` finds parameters with `@Param` annotation. If found, `findAuthorizeKeys` adds a locator with the following:
+
+Source | Securable | Key
+-|-|-
+`PARAM` | The `value`<br>of the [@AuthorizeKey](AuthorizeKey.md) annotation | The `value`<br>of the `@Param` annotation
+
+??? note "WARN Log Message"
+    In case `findAuthorizeKeys` finds no `@Param` annotation on the parameter, `findAuthorizeKeys` prints out the following WARN message to the logs:
+
+    ```text
+    Couldn't find param key for authorization key
+    ```
 
 ### Find Authorize Expression { #findAuthorizeExpression }
 

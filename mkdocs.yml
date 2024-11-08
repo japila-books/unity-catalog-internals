@@ -119,6 +119,7 @@ extra:
     home: https://iceberg.apache.org
   java:
     version: 17
+    api: https://docs.oracle.com/en/java/javase/17/docs/api/java.base
     spec: https://docs.oracle.com/javase/specs/jls/se17/html
   jcasbin:
     version: 1.55.0
