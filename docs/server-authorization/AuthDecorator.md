@@ -2,6 +2,21 @@
 
 `AuthDecorator` is a `DecoratingHttpServiceFunction` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/DecoratingHttpServiceFunction.html)) for a JWT access-token authorization in the [Unity Catalog Server](../server/index.md).
 
+## Decoded JSON Web Token { #DECODED_JWT_ATTR }
+
+```java
+AttributeKey<DecodedJWT> DECODED_JWT_ATTR
+```
+
+`DECODED_JWT_ATTR` is an `AttributeKey` (Netty) with a JSON Web Token (decoded from its string representation).
+
+`AuthDecorator` sets the decoded JSON Web Token while [serving incoming requests](#serve).
+
+`DECODED_JWT_ATTR` is used when:
+
+* [Scim2UserService](../server/Scim2UserService.md) is requested for the [current user](../server/Scim2UserService.md#getCurrentUser)
+* `IdentityUtils` is requested for the [email address of the principal](IdentityUtils.md#findPrincipalEmailAddress)
+
 ## Serve Incoming HttpRequest { #serve }
 
 ??? note "DecoratingHttpServiceFunction"
@@ -62,9 +77,7 @@ Validating access-token for issuer: [issuer]
 Access allowed for subject: [sub]
 ```
 
-In the end, `serve` sets `DECODED_JWT_ATTR` attribute in the `ServiceRequestContext`.
-
-!!! note "FIXME Why is `DECODED_JWT_ATTR` attribute required and where is it used?"
+In the end, `serve` sets [DECODED_JWT_ATTR](#DECODED_JWT_ATTR) attribute in the `ServiceRequestContext`.
 
 ## Logging
 
