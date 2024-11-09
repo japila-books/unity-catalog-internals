@@ -56,7 +56,23 @@ HttpResponse getAuthorization(
   String name)
 ```
 
+`getAuthorization` [finds the ID](#getResourceId) of the given `SecurableType` and `name`.
+
+`getAuthorization` [finds the ID of the current principal](../server-authorization/IdentityUtils.md#findPrincipalId).
+
 `getAuthorization`...FIXME
+
+---
+
+`getAuthorization` is used when `PermissionService` is requested for the following authorizations:
+
+* [Catalog](#getCatalogAuthorization)
+* [Function](#getFunctionAuthorization)
+* [Metastore](#getMetastoreAuthorization)
+* [RegisteredModel](#getRegisteredModelAuthorization)
+* [Schema](#getSchemaAuthorization)
+* [Table](#getTableAuthorization)
+* [Volume](#getVolumeAuthorization)
 
 ## Update Authorization { #updateAuthorization }
 
@@ -68,3 +84,16 @@ HttpResponse updateAuthorization(
 ```
 
 `updateAuthorization`...FIXME
+
+## Get Metastore Authorization { #getMetastoreAuthorization }
+
+```java
+HttpResponse getMetastoreAuthorization(
+  String name)
+```
+
+`getMetastoreAuthorization` [getAuthorization](#getAuthorization) of the `METASTORE` securable type with the given `name`.
+
+---
+
+`getMetastoreAuthorization` is used to handle `GET /metastore/{name}` requests.
