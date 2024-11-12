@@ -5,6 +5,15 @@
 * [AuthService](../server/AuthService.md#securityContext)
 * [AuthDecorator](AuthDecorator.md#securityContext)
 
+`SecurityContext` is [created](#creating-instance) with the following:
+
+Property | Value
+-|-
+ [Configuration directory](#configurationFolder) | `etc/conf`
+ [SecurityConfiguration](#securityConfiguration) | A new [SecurityConfiguration](SecurityConfiguration.md) with `etc/conf` configuration directory
+ [Service Name](#serviceName) | `server`
+ [Local Issuer](#localIssuer) | `internal`
+
 ## Creating Instance
 
 `SecurityContext` takes the following to be created:
