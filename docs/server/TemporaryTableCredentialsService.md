@@ -43,7 +43,7 @@ HttpResponse generateTemporaryTableCredential(
 ### Local File System
 
 ```console
-$ http http://localhost:8081/api/2.1/unity-catalog/temporary-table-credentials \
+$ http http://localhost:8080/api/2.1/unity-catalog/temporary-table-credentials \
     table_id=b5d6db68-5eca-485c-be5f-5f53d4f27f60 \
     operation=READ
 HTTP/1.1 200 OK
@@ -102,7 +102,7 @@ $ ./bin/uc table create \
 ```
 
 ```console
-$ http http://localhost:8081/api/2.1/unity-catalog/temporary-table-credentials \
+$ http http://localhost:8080/api/2.1/unity-catalog/temporary-table-credentials \
     table_id=020270b2-621e-4157-a73d-6a63c3b86bdd   \
     operation=READ
 
@@ -143,7 +143,7 @@ s3.sessionToken.0=FIXME_sessionToken
 ```
 
 ```console
-$ http http://localhost:8081/api/2.1/unity-catalog/temporary-table-credentials \
+$ http http://localhost:8080/api/2.1/unity-catalog/temporary-table-credentials \
     table_id=020270b2-621e-4157-a73d-6a63c3b86bdd   \
     operation=READ
 HTTP/1.1 200 OK

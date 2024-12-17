@@ -10,7 +10,7 @@ Method | URL | Handler | Params
  DELETE | `/{full_name}` | [deleteTable](#deleteTable) | <ul><li>fullName</ul>
 
 ```console
-$ http http://localhost:8081/api/2.1/unity-catalog/tables catalog_name==unity schema_name==default | jq '.tables[].name'
+$ http http://localhost:8080/api/2.1/unity-catalog/tables catalog_name==unity schema_name==default | jq '.tables[].name'
 "numbers"
 "marksheet_uniform"
 "marksheet"

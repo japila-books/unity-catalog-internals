@@ -18,7 +18,7 @@ Method | URL | Handler | AuthorizeKey
  ... | | |
 
 ``` console
-$ http http://localhost:8081/api/2.1/unity-catalog/permissions/catalog/unity
+$ http http://localhost:8080/api/2.1/unity-catalog/permissions/catalog/unity
 HTTP/1.1 200 OK
 content-length: 28
 content-type: application/json

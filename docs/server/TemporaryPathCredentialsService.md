@@ -18,7 +18,7 @@ Method | AuthorizeExpression | Securables
     The following demo requires `url` being configured in [etc/conf/server.properties](index.md#server-configuration) (using`s3.bucketPath.0=s3://uc-japila` and the others).
 
 ```console
-$ http http://localhost:8081/api/2.1/unity-catalog/temporary-path-credentials \
+$ http http://localhost:8080/api/2.1/unity-catalog/temporary-path-credentials \
     url=s3://uc-japila \
     operation=PATH_CREATE_TABLE
 HTTP/1.1 200 OK

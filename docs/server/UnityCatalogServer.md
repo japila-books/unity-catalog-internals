@@ -16,7 +16,7 @@ usage: bin/start-uc-server
  -v,--version      Display the version of the Unity Catalog server
 ```
 
-`UnityCatalogServer` starts Armeria documentation service at http://localhost:8081/docs and the other [Unity Catalog API services](#addServices).
+`UnityCatalogServer` starts Armeria documentation service at http://localhost:8080/docs and the other [Unity Catalog API services](#addServices).
 
 ## Metastore
 
@@ -86,6 +86,7 @@ URL | Service
 -|-
  `/` | Returns `Hello, Unity Catalog!` message
  `/api/1.0/unity-control/auth` |  [AuthService](AuthService.md)
+ `/api/1.0/unity-control/scim2/Me` |  [Scim2SelfService](Scim2SelfService.md)
  `/api/1.0/unity-control/scim2/Users` |  [Scim2UserService](Scim2UserService.md)
  `/api/2.1/unity-catalog/` | [MetastoreService](MetastoreService.md)
  `/api/2.1/unity-catalog/catalogs` | [CatalogService](CatalogService.md)

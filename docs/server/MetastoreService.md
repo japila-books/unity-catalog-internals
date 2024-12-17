@@ -7,7 +7,7 @@ Method | URL | Handler | Params
  GET | `/metastore_summary` | [getMetastoreSummary](#getMetastoreSummary) | &nbsp;
 
 ```console
-$ http http://localhost:8081/api/2.1/unity-catalog/metastore_summary | jq '.metastore_id'
+$ http http://localhost:8080/api/2.1/unity-catalog/metastore_summary | jq '.metastore_id'
 "92418bf6-e62c-4d4c-bb5d-e5eda5c82688"
 ```
 
