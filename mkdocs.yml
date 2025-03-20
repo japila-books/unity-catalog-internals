@@ -166,6 +166,7 @@ nav:
     - ... | persistent-storage/**.md
     - ... | server-authorization/**.md
     - ... | spark-connector/**.md
+  - ... | openapi/**.md
   - ... | server/**.md
   - ... | cli/**.md
   - ... | client/**.md
