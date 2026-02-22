@@ -1,0 +1,21 @@
+# https://lukasgeiter.github.io/mkdocs-awesome-nav/
+nav:
+  - index.md
+  - Features:
+    - features/index.md
+    - AI Core Library: ai
+    - Basic Server Access Control: basic-server-access-control
+    - Credential Vending: credential-vending
+    - Docker Support: docker
+    - Iceberg Support: iceberg
+    - logging.md
+    - OAuth2 Authentication: oauth2-authentication
+    - Persistent Storage: persistent-storage
+    - Server Authorization: server-authorization
+    - Spark Connector: spark-connector
+  - OpenAPI: openapi
+  - Server: server
+  - CLI: cli
+  - Client API: client
+  - Demo: demo
+  - Contenders: contenders

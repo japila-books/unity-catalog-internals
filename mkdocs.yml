@@ -3,23 +3,25 @@ site_url: https://books.japila.pl/unity-catalog-internals
 site_author: Jacek Laskowski
 site_description: Demystifying inner-workings of Unity Catalog
 
-repo_name: unity-catalog-internals
+repo_name: GitHub
 repo_url: https://github.com/japila-books/unity-catalog-internals
 edit_uri: edit/main/docs/
 
-copyright: Copyright &copy; 2024 Jacek Laskowski
+copyright: Copyright &copy; 2026 Jacek Laskowski
 
 theme:
   name: material
   language: en
   icon:
     logo: material/book-open-page-variant
-    repo: fontawesome/brands/github
+    repo: material/github
   features:
     # https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#adding-annotations
     - content.code.annotate
     # https://squidfunk.github.io/mkdocs-material/upgrade/#contentcodecopy
     - content.code.copy
+    # https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#linked-content-tabs
+    - content.tabs.link
     - content.tooltips
     - navigation.indexes
     - navigation.instant
@@ -32,19 +34,22 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
+    - toc.follow
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - scheme: slate
-      primary: blue
-      accent: blue
-      toggle:
-        icon: material/toggle-switch
+        icon: material/brightness-auto
         name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
 
 # https://squidfunk.github.io/mkdocs-material/customization/#additional-css
 extra_css:
@@ -66,15 +71,10 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
@@ -83,13 +83,14 @@ markdown_extensions:
   - pymdownx.tilde
 
 plugins:
-  - search
-  - minify:
-      minify_html: true
-  - awesome-pages
+  # https://lukasgeiter.github.io/mkdocs-awesome-nav/migration-v3/
+  - awesome-nav
   - macros
   # https://squidfunk.github.io/mkdocs-material/reference/#built-in-meta-plugin
   - meta
+  - minify:
+      minify_html: true
+  - search
   # https://squidfunk.github.io/mkdocs-material/reference/#built-in-typeset-plugin
   - typeset
 
@@ -102,7 +103,7 @@ extra:
     delta: https://books.japila.pl/delta-lake-internals
     spark_sql: https://books.japila.pl/spark-sql-internals
   uc:
-    version: 0.3.0-SNAPSHOT
+    version: 0.4.0
     commit: https://github.com/unitycatalog/unitycatalog/commit
     github: https://github.com/unitycatalog/unitycatalog/blob/main
     slack: https://unitycatalog.slack.com/archives
@@ -110,12 +111,13 @@ extra:
     version: 1.28.4
     api: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
   delta:
-    version: 3.2.1
+    version: 4.0.1
   delta4:
-    version: 4.0.0rc1
+    version: 4.0.1
   hibernate:
     javadoc: https://docs.jboss.org/hibernate/orm/6.5/javadocs
   iceberg:
+    version: 1.9.2
     home: https://iceberg.apache.org
   java:
     version: 17
@@ -126,7 +128,7 @@ extra:
     api: https://www.javadoc.io/static/org.casbin/jcasbin/1.55.0
     github: https://github.com/casbin/jcasbin
   log4j:
-    version: 2.23.1
+    version: 2.25.3
     manual: https://logging.apache.org/log4j/2.x/manual
   openapi:
     home: https://openapi-generator.tech
@@ -138,35 +140,18 @@ extra:
       link: https://github.com/jaceklaskowski
     - icon: fontawesome/brands/bluesky
       link: https://bsky.app/profile/books.japila.pl
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/jaceklaskowski
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/jaceklaskowski
     - icon: fontawesome/brands/medium
       link: https://jaceklaskowski.medium.com
+    - icon: fontawesome/brands/mastodon
+      link: https://fosstodon.org/@jaceklaskowski
   spark:
-    version: 3.5.3
+    version: 4.0.0
   spark4:
-    version: 4.0.0-preview1
+    version: 4.0.0
 
-# The sections with ... use awesome-pages plugin
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
-# Review .pages for setup
-nav:
-  - index.md
-  - Features:
-    - features/index.md
-    - ... | ai/**.md
-    - ... | basic-server-access-control/**.md
-    - ... | credential-vending/**.md
-    - ... | docker/**.md
-    - ... | iceberg/**.md
-    - logging.md
-    - ... | oauth2-authentication/**.md
-    - ... | persistent-storage/**.md
-    - ... | server-authorization/**.md
-    - ... | spark-connector/**.md
-  - ... | openapi/**.md
-  - ... | server/**.md
-  - ... | cli/**.md
-  - ... | client/**.md
-  - ... | demo/**.md
-  - ... | contenders/**.md
+# nav section is in the separate file ".nav.yml" managed by Awesome Nav for MkDocs plugin
+# https://lukasgeiter.github.io/mkdocs-awesome-nav/features/nav/
