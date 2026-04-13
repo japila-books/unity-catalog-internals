@@ -11,7 +11,7 @@ hide:
 ``` bash
 ./bin/spark-sql \
   --name "uc-external-tables-s3" \
-  --packages "org.apache.hadoop:hadoop-aws:3.3.4,io.delta:delta-spark_{{ scala.version }}:{{ delta.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }}" \
+  --packages "org.apache.hadoop:hadoop-aws:3.3.4,io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark_2.13:{{ uc.version }}" \
   --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" \
   --conf "spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog" \
   --conf "spark.hadoop.fs.s3.impl=org.apache.hadoop.fs.s3a.S3AFileSystem" \

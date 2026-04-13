@@ -7,63 +7,73 @@ hide:
 
 This demo shows how to set up a Spark application (namely `spark-shell` and `pyspark`) with Unity Catalog using the [Spark Connector](../spark-connector/index.md) module.
 
-## Build Spark Connector
+## (optional) Build Spark Connector
 
 Build the Spark Connector module.
 
-``` shell
-build/sbt '++2.13' clean package publishLocal
+In the directory where you cloned the Unity Catalog repo to, execute the following:
+
+```shell
+./build/sbt -DsparkVersion=4.1.1 clean package publishLocal
 ```
 
-!!! note "Scala 2.13"
-    This demo uses the Scala 2.13 builds of Apache Spark, Delta Lake and Unity Catalog.
-
-    Unless you built Apache Spark with Scala 2.13, replace any `2.13` in this demo with `2.12`.
-
-    Use `spark-shell --version` or `pyspark --version` to learn about your Spark build:
-
-    ```text
-    ❯ ./bin/pyspark --version
-    Welcome to
-        ____              __
-        / __/__  ___ _____/ /__
-        _\ \/ _ \/ _ `/ __/  '_/
-    /___/ .__/\_,_/_/ /_/\_\   version 3.5.2
-        /_/
-
-    Using Scala version 2.13.8, OpenJDK 64-Bit Server VM, 17.0.12
-    Branch heads/v3.5.2
-    Compiled by user jacek on 2024-08-19T17:24:05Z
-    Revision a26a80208d7c96b3e3e898f137a05d69cba759d6
-    Url <https://github.com/apache/spark.git>
-    Type --help for more information.
-    ```
+??? note "sparkVersion"
+    Unity Catalog builds with Apache Spark 4.0.0 by default.
+    You can overwrite the version with `sparkVersion` JVM property (as in the example above).
 
 Once the build is finished, you should find the following directories in the local `~/.ivy2` directory.
 
 ```text
-❯ ls -l ~/.ivy2/local/io.unitycatalog
+$ ls -l ~/.ivy2/local/io.unitycatalog
 total 0
-drwxr-xr-x@ 3 jacek  staff  96 Sep 22 18:53 unitycatalog-client
-drwxr-xr-x@ 3 jacek  staff  96 Sep 22 18:53 unitycatalog-server
-drwxr-xr-x@ 3 jacek  staff  96 Sep 22 18:53 unitycatalog-spark_2.13
+drwxr-xr-x@ 3 jacek  staff  96 Apr 13 19:21 unitycatalog-client
+drwxr-xr-x@ 3 jacek  staff  96 Apr 13 19:21 unitycatalog-server
+drwxr-xr-x@ 3 jacek  staff  96 Apr 13 19:21 unitycatalog-spark_2.13
 ```
 
-The Spark Connector module is under `unitycatalog-spark_2.13/{{ uc.version }}/jars` directory.
+The Spark Connector module is in `unitycatalog-spark_2.13/{{ uc.version }}/jars` directory.
+
+```text
+$ ls -l ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_2.13/0.4.1/jars
+total 168
+-rw-r--r--@ 1 jacek  staff  75192 Apr 13 19:21 unitycatalog-spark_2.13.jar
+-rw-r--r--@ 1 jacek  staff     32 Apr 13 19:21 unitycatalog-spark_2.13.jar.md5
+-rw-r--r--@ 1 jacek  staff     40 Apr 13 19:21 unitycatalog-spark_2.13.jar.sha1
+```
+
+!!! warning "`~/.ivy2` and `~/.ivy2.5.2`"
+    sbt uses `~/.ivy2` directory by default to store dependencies (local and downloaded).
+    Apache Spark uses `~/.ivy2.5.2` directory to manage dependencies.
+
+    The dependency names are different, too.
+
+    Copy `unitycatalog-spark_2.13.jar` and the others to `~/.ivy2.5.2/jars/` so the newly-built jars could be picked up.
+
+    ```shell
+    cp ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_2.13/{{ uc.version }}/jars/unitycatalog-spark_2.13.jar \
+       ~/.ivy2.5.2/jars/io.unitycatalog_unitycatalog-spark_2.13-{{ uc.version }}.jar
+    ```
 
 ## Run Spark Application with Unity Catalog
+
+This demo re-configures the Spark SQL built-in default two-level-only catalog `spark_catalog` and defines a brand new `unity` catalog.
+Both use the very same configuration for simplicity yet serve similar but slightly different purposes.
 
 === "Spark {{ spark.version }} + Delta Lake {{ delta.version }}"
 
     ``` shell
     ./bin/spark-shell \
       --packages \
-        io.delta:delta-spark_{{ scala.version }}:{{ delta.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }} \
+        io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
+      --conf spark.sql.catalog.spark_catalog.type=static \
+      --conf spark.sql.catalog.spark_catalog.token=some_token \
       --conf spark.sql.catalog.unity=io.unitycatalog.spark.UCSingleCatalog \
-      --conf spark.sql.catalog.unity.uri=http://localhost:8080
+      --conf spark.sql.catalog.unity.uri=http://localhost:8080 \
+      --conf spark.sql.catalog.unity.type=static \
+      --conf spark.sql.catalog.unity.token=some_token
     ```
 
     ``` text
@@ -71,84 +81,47 @@ The Spark Connector module is under `unitycatalog-spark_2.13/{{ uc.version }}/ja
           ____              __
          / __/__  ___ _____/ /__
         _\ \/ _ \/ _ `/ __/  '_/
-       /___/ .__/\_,_/_/ /_/\_\   version 3.5.2
-          /_/
-    
-    Using Scala version 2.13.8 (OpenJDK 64-Bit Server VM, Java 17.0.12)
-    ```
-
-    ``` text
-    scala> assert(spark.version == "{{ spark.version }}")
-    scala> assert(io.delta.VERSION == "{{ delta.version }}")
-    ```
-
-=== "PySpark {{ spark.version }} + Delta Lake {{ delta.version }}"
-
-    ``` shell
-    ./bin/pyspark \
-      --packages \
-        io.delta:delta-spark_{{ scala.version }}:{{ delta.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }} \
-      --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
-      --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
-      --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
-      --conf spark.sql.catalog.unity=io.unitycatalog.spark.UCSingleCatalog \
-      --conf spark.sql.catalog.unity.uri=http://localhost:8080
-    ```
-
-    ``` text
-    Welcome to
-          ____              __
-         / __/__  ___ _____/ /__
-        _\ \/ _ \/ _ `/ __/  '_/
-       /__ / .__/\_,_/_/ /_/\_\   version 3.5.2
-          /_/
-    
-    Using Python version 3.9.16 (main, May 15 2023 18:51:40)
-    ```
-
-=== "Spark {{ spark4.version }} + Delta Lake {{ delta4.version }}"
-
-    Download Apache Spark {{ spark4.version }} from [Preview release of Spark 4.0](https://spark.apache.org/news/spark-4.0.0-preview1.html).
-
-    ``` shell
-    ./bin/spark-shell \
-      --conf spark.jars.ivy=$HOME/.ivy2 \
-      --packages \
-        io.delta:delta-spark_{{ scala.version }}:{{ delta4.version }},io.unitycatalog:unitycatalog-spark_{{ scala.version }}:{{ uc.version }} \
-      --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
-      --conf spark.sql.catalog.spark_catalog=io.unitycatalog.connectors.spark.UCSingleCatalog \
-      --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
-      --conf spark.sql.catalog.unity=io.unitycatalog.connectors.spark.UCSingleCatalog \
-      --conf spark.sql.catalog.unity.uri=http://localhost:8080
-    ```
-
-    ``` text
-    Welcome to
-          ____              __
-        / __/__  ___ _____/ /__
-        _\ \/ _ \/ _ `/ __/  '_/
-      /___/ .__/\_,_/_/ /_/\_\   version 4.0.0-preview1
+       /___/ .__/\_,_/_/ /_/\_\   version 4.1.1
           /_/
 
-    Using Scala version 2.13.14 (OpenJDK 64-Bit Server VM, Java 17.0.11)
+    Using Scala version 2.13.17 (OpenJDK 64-Bit Server VM, Java 17.0.18)
     ```
 
     ```scala
-    assert(spark4.version == "{{ spark4.version }}", "Unity Catalog {{ uc.version }} supports Apache Spark {{ spark4.version }} only")
-    assert(io.delta4.version == "{{ delta4.version }}", "Unity Catalog {{ uc.version }} supports Delta Lake {{ delta4.version }} only")
+    assert(spark.version == "{{ spark.version }}")
+    assert(io.delta.VERSION == "{{ delta.version }}")
     ```
 
-## Default spark_catalog
+=== "uv + PySpark {{ spark.version }} + Delta Lake {{ delta.version }}"
+
+    ``` shell
+    uvx --from "pyspark=={{ spark.version }}" pyspark \
+      --packages \
+        io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
+      --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
+      --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
+      --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
+      --conf spark.sql.catalog.unity=io.unitycatalog.spark.UCSingleCatalog \
+      --conf spark.sql.catalog.unity.uri=http://localhost:8080
+    ```
+
+    ```py
+    assert(spark.version == "4.1.1")
+    ```
+
+## spark_catalog Catalog
+
+### Default Hive Catalog in Spark SQL
 
 The following is a list of the catalogs Unity Catalog comes with and knows about.
 
 ``` console
 $ ./bin/uc catalog list
-┌─────┬────────────┬──────────┬─────────────┬──────────┬────────────────────────────────────┐
-│NAME │  COMMENT   │PROPERTIES│ CREATED_AT  │UPDATED_AT│                 ID                 │
-├─────┼────────────┼──────────┼─────────────┼──────────┼────────────────────────────────────┤
-│unity│Main catalog│{}        │1720429531248│null      │f68e0329-d510-4558-b984-457218f573d9│
-└─────┴────────────┴──────────┴─────────────┴──────────┴────────────────────────────────────┘
+┌─────┬────────────┬──────────┬─────┬─────────────┬──────────┬──────────┬──────────┬────────────────────────────────────┬────────────┬────────────────┐
+│NAME │  COMMENT   │PROPERTIES│OWNER│ CREATED_AT  │CREATED_BY│UPDATED_AT│UPDATED_BY│                 ID                 │STORAGE_ROOT│STORAGE_LOCATION│
+├─────┼────────────┼──────────┼─────┼─────────────┼──────────┼──────────┼──────────┼────────────────────────────────────┼────────────┼────────────────┤
+│unity│Main catalog│{}        │null │1721234405334│null      │null      │null      │f029b870-9468-4f10-badc-630b41e5690d│null        │null            │
+└─────┴────────────┴──────────┴─────┴─────────────┴──────────┴──────────┴──────────┴────────────────────────────────────┴────────────┴────────────────┘
 ```
 
 There is no `spark_catalog` catalog listed (as it is the default internal Spark SQL catalog).
@@ -156,50 +129,35 @@ There is no `spark_catalog` catalog listed (as it is the default internal Spark 
 The following is a list of the catalogs Spark SQL knows about.
 
 ``` scala
-spark.catalog.listCatalogs().show()
+spark.catalog.listDatabases().show(truncate=false)
 ```
 
-``` text
-+-------------+-----------+
-|         name|description|
-+-------------+-----------+
-|spark_catalog|       NULL|
-+-------------+-----------+
+```text
+scala> spark.catalog.listDatabases().show(truncate=false)
+io.unitycatalog.client.ApiException: listSchemas call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Catalog not found: spark_catalog"}
+  at io.unitycatalog.client.api.SchemasApi.getApiException(SchemasApi.java:77)
+  at io.unitycatalog.client.api.SchemasApi.listSchemasWithHttpInfo(SchemasApi.java:358)
+  at io.unitycatalog.client.api.SchemasApi.listSchemas(SchemasApi.java:334)
+  at io.unitycatalog.spark.UCProxy.listNamespaces(UCSingleCatalog.scala:825)
+  at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listNamespaces(DelegatingCatalogExtension.java:140)
+  at io.unitycatalog.spark.UCSingleCatalog.listNamespaces(UCSingleCatalog.scala:335)
+  at org.apache.spark.sql.execution.command.ShowNamespacesCommand.run(ShowNamespacesCommand.scala:44)
+  ...
 ```
 
-There is the default `spark_catalog` catalog (but no Unity Catalog-specific `unity` catalog).
-
-``` scala
-spark.catalog.listDatabases().show()
-```
-
-``` text
-+----+-------------+-----------+-----------+
-|name|      catalog|description|locationUri|
-+----+-------------+-----------+-----------+
-|demo|spark_catalog|       NULL|       NULL|
-+----+-------------+-----------+-----------+
-```
+This query failed as the current catalog is the built-in `spark_catalog` that is not known to Unity Catalog.
 
 ``` scala
 assert(spark.catalog.currentCatalog() == "spark_catalog")
 ```
 
-``` scala
-spark.catalog.setCurrentCatalog("unity")
-```
+There are a couple of options to set it up properly (_fix it_):
 
-``` text
-scala> spark.catalog.listTables("default")
-io.unitycatalog.client.ApiException: listTables call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Schema not found: default"}
-  at io.unitycatalog.client.api.TablesApi.getApiException(TablesApi.java:76)
-  at io.unitycatalog.client.api.TablesApi.listTablesWithHttpInfo(TablesApi.java:342)
-  at io.unitycatalog.client.api.TablesApi.listTables(TablesApi.java:317)
-  at io.unitycatalog.spark.UCProxy.listTables(UCSingleCatalog.scala:168)
-  at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listTables(DelegatingCatalogExtension.java:68)
-  at io.unitycatalog.spark.UCSingleCatalog.listTables(UCSingleCatalog.scala:52)
-...
-```
+1. Define a new `spark_catalog` catalog in Unity Catalog.
+1. Set the default catalog to be any catalog known to Unity Catalog.
+1. Use three-part names for the tables in the `unity` catalog (that is available in Unity Catalog).
+
+### Create spark_catalog Catalog in Unity Catalog
 
 Let's create `spark_catalog` in Unity Catalog.
 
@@ -220,7 +178,7 @@ Let's create `spark_catalog` in Unity Catalog.
 ```
 
 ``` console
-❯ tree /tmp/uc_demo
+$ tree /tmp/uc_demo
 /tmp/uc_demo
 └── _delta_log
     └── 00000000000000000000.json
@@ -228,50 +186,25 @@ Let's create `spark_catalog` in Unity Catalog.
 2 directories, 1 file
 ```
 
+Let's list all the available tables in `spark_catalog` catalog in Unity Catalog.
+There should be `uc_demo` table available.
+
 ``` scala
-scala> spark.catalog.listTables()
-org.apache.spark.sql.catalyst.parser.ParseException:
-[PARSE_SYNTAX_ERROR] Syntax error at or near end of input.(line 1, pos 0)
-
-== SQL ==
-
-^^^
-
-  at org.apache.spark.sql.catalyst.parser.ParseException.withCommand(parsers.scala:257)
-  at org.apache.spark.sql.catalyst.parser.AbstractParser.parse(parsers.scala:98)
-  at org.apache.spark.sql.execution.SparkSqlParser.parse(SparkSqlParser.scala:54)
-  at org.apache.spark.sql.catalyst.parser.AbstractSqlParser.parseMultipartIdentifier(AbstractSqlParser.scala:54)
-  at io.delta.sql.parser.DeltaSqlParser.parseMultipartIdentifier(DeltaSqlParser.scala:153)
-  at org.apache.spark.sql.internal.CatalogImpl.parseIdent(CatalogImpl.scala:51)
-  at org.apache.spark.sql.internal.CatalogImpl.resolveNamespace(CatalogImpl.scala:427)
-  at org.apache.spark.sql.internal.CatalogImpl.listTablesInternal(CatalogImpl.scala:143)
-  at org.apache.spark.sql.internal.CatalogImpl.listTables(CatalogImpl.scala:127)
-  at org.apache.spark.sql.internal.CatalogImpl.listTables(CatalogImpl.scala:118)
-  ... 42 elided
+spark.catalog.listTables().show(truncate=false)
 ```
 
-Switch back to `spark_catalog` catalog.
-
-``` scala
-sql("SET CATALOG spark_catalog")
-```
-
-We've registered an empty `uc_demo` table in Unity Catalog already.
-
-``` scala
-assert(spark.catalog.tableExists("uc_demo"))
-```
-
-It was equivalent to the following query:
-
-``` scala
-assert(spark.catalog.tableExists("default.uc_demo"))
+```text
++-------+-------------+---------+-----------+---------+-----------+
+|name   |catalog      |namespace|description|tableType|isTemporary|
++-------+-------------+---------+-----------+---------+-----------+
+|uc_demo|spark_catalog|[default]|NULL       |EXTERNAL |false      |
++-------+-------------+---------+-----------+---------+-----------+
 ```
 
 Let's change (_write to_) the `uc_demo` delta table that was registered to Unity Catalog.
 
 ``` scala
-sql("INSERT INTO uc_demo(id) VALUES (1)").show(truncate=false)
+spark.range(1).write.insertInto("uc_demo")
 ```
 
 It works! 🥳
@@ -286,7 +219,7 @@ spark.table("uc_demo").show
 +---+
 | id|
 +---+
-|  1|
+|  0|
 +---+
 ```
 
@@ -341,7 +274,7 @@ sql("DESC EXTENDED unity.default.numbers").show(truncate=false)
 |# Detailed Table Information|                                                                                         |       |
 |Name                        |unity.default.numbers                                                                    |       |
 |Type                        |EXTERNAL                                                                                 |       |
-|Location                    |file:/Users/jacek/dev/oss/unitycatalog/etc/data/external/unity/default/tables/numbers    |       |
+|Location                    |file:/Users/jacek/oss/unitycatalog/etc/data/external/unity/default/tables/numbers        |       |
 |Provider                    |delta                                                                                    |       |
 |Table Properties            |[delta.minReaderVersion=1,delta.minWriterVersion=2,option.key1=value1,option.key2=value2]|       |
 +----------------------------+-----------------------------------------------------------------------------------------+-------+
@@ -352,41 +285,40 @@ sql("DESC EXTENDED unity.default.numbers").show(truncate=false)
 ```
 
 ``` text
-┌───────────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│              KEY              │                                                                    VALUE                                                                    │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│NAME                           │numbers                                                                                                                                      │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│CATALOG_NAME                   │unity                                                                                                                                        │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│SCHEMA_NAME                    │default                                                                                                                                      │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│TABLE_TYPE                     │EXTERNAL                                                                                                                                     │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│DATA_SOURCE_FORMAT             │DELTA                                                                                                                                        │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│COLUMNS                        │{"name":"as_int","type_text":"int","type_json":"{\"name\":\"as_int\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}","type_name":"I│
-│                               │NT","type_precision":0,"type_scale":0,"type_interval_type":null,"position":0,"comment":"Int column","nullable":false,"partition_index":null} │
-│                               │{"name":"as_double","type_text":"double","type_json":"{\"name\":\"as_double\",\"type\":\"double\",\"nullable\":false,\"metadata\":{}}","type_│
-│                               │name":"DOUBLE","type_precision":0,"type_scale":0,"type_interval_type":null,"position":1,"comment":"Double                                    │
-│                               │column","nullable":false,"partition_index":null}                                                                                             │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│STORAGE_LOCATION               │file:///Users/jacek/dev/oss/unitycatalog/etc/data/external/unity/default/tables/numbers/                                                     │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│COMMENT                        │External table                                                                                                                               │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│PROPERTIES                     │{"key1":"value1","key2":"value2"}                                                                                                            │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│OWNER                          │null                                                                                                                                         │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│CREATED_AT                     │1721234405617                                                                                                                                │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│CREATED_BY                     │null                                                                                                                                         │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│UPDATED_AT                     │1721234405617                                                                                                                                │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│UPDATED_BY                     │null                                                                                                                                         │
-├───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-│TABLE_ID                       │32025924-be53-4d67-ac39-501a86046c01                                                                                                         │
-└───────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│               KEY                │                                                                          VALUE                                                                           │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│NAME                              │numbers                                                                                                                                                   │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│CATALOG_NAME                      │unity                                                                                                                                                     │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│SCHEMA_NAME                       │default                                                                                                                                                   │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│TABLE_TYPE                        │EXTERNAL                                                                                                                                                  │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│DATA_SOURCE_FORMAT                │DELTA                                                                                                                                                     │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│COLUMNS                           │{"name":"as_int","type_text":"int","type_json":"{\"name\":\"as_int\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}","type_name":"INT","type_pre│
+│                                  │cision":0,"type_scale":0,"type_interval_type":null,"position":0,"comment":"Int column","nullable":false,"partition_index":null}                           │
+│                                  │{"name":"as_double","type_text":"double","type_json":"{\"name\":\"as_double\",\"type\":\"double\",\"nullable\":false,\"metadata\":{}}","type_name":"DOUBLE│
+│                                  │","type_precision":0,"type_scale":0,"type_interval_type":null,"position":1,"comment":"Double column","nullable":false,"partition_index":null}             │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│STORAGE_LOCATION                  │file:///Users/jacek/oss/unitycatalog/etc/data/external/unity/default/tables/numbers                                                                       │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│COMMENT                           │External table                                                                                                                                            │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│PROPERTIES                        │{"key1":"value1","key2":"value2"}                                                                                                                         │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│OWNER                             │null                                                                                                                                                      │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│CREATED_AT                        │1721234405617                                                                                                                                             │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│CREATED_BY                        │null                                                                                                                                                      │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│UPDATED_AT                        │1721234405617                                                                                                                                             │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│UPDATED_BY                        │null                                                                                                                                                      │
+├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│TABLE_ID                          │32025924-be53-4d67-ac39-501a86046c01                                                                                                                      │
+└──────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```

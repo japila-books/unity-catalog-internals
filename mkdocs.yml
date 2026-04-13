@@ -103,38 +103,49 @@ extra:
     delta: https://books.japila.pl/delta-lake-internals
     spark_sql: https://books.japila.pl/spark-sql-internals
   uc:
-    version: 0.4.0
+    version: 0.4.1
     commit: https://github.com/unitycatalog/unitycatalog/commit
-    github: https://github.com/unitycatalog/unitycatalog/blob/main
+    github: https://github.com/unitycatalog/unitycatalog/blob/v0.4.1
     slack: https://unitycatalog.slack.com/archives
   armeria:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L325
     version: 1.28.4
     api: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
   delta:
-    version: 4.0.1
-  delta4:
-    version: 4.0.1
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L24
+    version: 4.1.0
+  hadoop:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L27
+    version: 3.4.2
+    api: https://hadoop.apache.org/docs/r3.4.2/api/index.html
   hibernate:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L341
+    version: 6.5.0.Final
     javadoc: https://docs.jboss.org/hibernate/orm/6.5/javadocs
   iceberg:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L364-L367
     version: 1.9.2
     home: https://iceberg.apache.org
   java:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L42-L43
     version: 17
     api: https://docs.oracle.com/en/java/javase/17/docs/api/java.base
     spec: https://docs.oracle.com/javase/specs/jls/se17/html
   jcasbin:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L379
     version: 1.55.0
     api: https://www.javadoc.io/static/org.casbin/jcasbin/1.55.0
     github: https://github.com/casbin/jcasbin
   log4j:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L32
     version: 2.25.3
     manual: https://logging.apache.org/log4j/2.x/manual
   openapi:
     home: https://openapi-generator.tech
     github: https://github.com/OpenAPITools
   scala:
-    version: 2.13
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L22
+    version: 2.13.17
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/jaceklaskowski
@@ -149,9 +160,10 @@ extra:
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@jaceklaskowski
   spark:
-    version: 4.0.0
-  spark4:
-    version: 4.0.0
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.4.1/build.sbt#L25
+    # version: 4.0.0
+    # This book uses a custom-built UC on Spark 4.1.1
+    version: 4.1.1
 
 # nav section is in the separate file ".nav.yml" managed by Awesome Nav for MkDocs plugin
 # https://lukasgeiter.github.io/mkdocs-awesome-nav/features/nav/
