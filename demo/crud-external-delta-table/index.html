@@ -120,9 +120,9 @@
 ├───────────────────────────────────────┼──────────────────────────────────────┤
 │15                                     │TksgpbjlIW                            │
 └───────────────────────────────────────┴──────────────────────────────────────┘
-</code></pre></div> <h2 id=spark-connector>Spark Connector<a class=headerlink href=#spark-connector title="Permanent link">&para;</a></h2> <div class="tabbed-set tabbed-alternate" data-tabs=7:1><input checked=checked id=__tabbed_7_1 name=__tabbed_7 type=radio><div class=tabbed-labels><label for=__tabbed_7_1>Spark 3.5.1 + Delta Lake 4.1.0</label></div> <div class=tabbed-content> <div class=tabbed-block> <div class=highlight><pre><span></span><code>./bin/spark-shell<span class=w> </span><span class=se>\</span>
+</code></pre></div> <h2 id=spark-connector>Spark Connector<a class=headerlink href=#spark-connector title="Permanent link">&para;</a></h2> <div class="tabbed-set tabbed-alternate" data-tabs=7:1><input checked=checked id=__tabbed_7_1 name=__tabbed_7 type=radio><div class=tabbed-labels><label for=__tabbed_7_1>Spark 3.5.1 + Delta Lake 4.2.0</label></div> <div class=tabbed-content> <div class=tabbed-block> <div class=highlight><pre><span></span><code>./bin/spark-shell<span class=w> </span><span class=se>\</span>
 <span class=w>    </span>--packages<span class=w> </span><span class=se>\</span>
-<span class=w>        </span>io.delta:delta-spark_2.13:4.1.0,io.unitycatalog:unitycatalog-spark:0.4.1<span class=w> </span><span class=se>\</span>
+<span class=w>        </span>io.delta:delta-spark_2.13:4.2.0,io.unitycatalog:unitycatalog-spark:0.5.0<span class=w> </span><span class=se>\</span>
 <span class=w>    </span>--conf<span class=w> </span>spark.sql.extensions<span class=o>=</span>io.delta.sql.DeltaSparkSessionExtension<span class=w> </span><span class=se>\</span>
 <span class=w>    </span>--conf<span class=w> </span>spark.sql.catalog.spark_catalog<span class=o>=</span>io.unitycatalog.connectors.spark.UCSingleCatalog<span class=w> </span><span class=se>\</span>
 <span class=w>    </span>--conf<span class=w> </span>spark.sql.catalog.spark_catalog.uri<span class=o>=</span>http://localhost:8080<span class=w> </span><span class=se>\</span>
