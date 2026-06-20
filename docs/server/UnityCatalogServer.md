@@ -31,33 +31,22 @@ The summary of the single metastore is available through [MetastoreService](Meta
 * `etc/conf/server.log4j2.properties`
 * [etc/conf/server.properties](ServerProperties.md)
 
-## Port
+## Server
 
-`UnityCatalogServer` takes a port number when [created](#creating-instance).
+`UnityCatalogServer` [builds a Server](#initializeServer) when [created](#creating-instance).
 
-Unless specified on command-line using `-p,--port <arg>` option, `UnityCatalogServer` defaults to `8080` or the closest one available.
+### initializeServer { #initializeServer }
 
-## Creating Instance
+```java
+Server initializeServer(
+  UnityCatalogServer.Builder unityCatalogServerBuilder)
+```
 
-`UnityCatalogServer` takes the following to be created:
+`initializeServer` creates a `Server` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/Server.html)) that listens on the [port](UnityCatalogServer.Builder.md#port) (of the given [UnityCatalogServer.Builder](UnityCatalogServer.Builder.md)).
 
-* [Port](#port)
+`initializeServer`...FIXME
 
-While being created, `UnityCatalogServer` builds the [Server](#server):
-
-1. Handle HTTP requests at the given [port](#port)
-1. Bind the Armeria documentation service ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/docs/DocService.html)) under `/docs` URL
-1. [Register the API services](#addServices)
-
-`UnityCatalogServer` is created when:
-
-* `UnityCatalogServer` command-line utility is [started](#main)
-
-### Server
-
-`UnityCatalogServer` creates a `Server` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/Server.html)) when [created](#creating-instance).
-
-### SecurityContext { #securityContext }
+## SecurityContext { #securityContext }
 
 `UnityCatalogServer` creates a [SecurityContext](../server-authorization/SecurityContext.md) when [created](#creating-instance) as follows:
 
@@ -69,6 +58,78 @@ Property | Value
  [Local Issuer](../server-authorization/SecurityContext.md#localIssuer) | `internal`
 
 This `SecurityContext` is used to create an [AuthService](AuthService.md).
+
+## Creating Instance
+
+`UnityCatalogServer` takes the following to be created:
+
+* <span id="unityCatalogServerBuilder"> [UnityCatalogServer.Builder](UnityCatalogServer.Builder.md)
+
+While being created, `UnityCatalogServer` does the following:
+
+1. Initializes the [logging](#logging) (using `etc/conf/server.log4j2.properties` configuration file).
+2. [Sets the default values for the port and server properties](#setDefaults) (unless set).
+3. Initializes this [securityContext](#securityContext), [serverProperties](#serverProperties) and [server](#server)
+
+??? note "Review"
+    While being created, `UnityCatalogServer` builds the [Server](#server):
+
+    1. Handle HTTP requests at the given [port](#port)
+    2. Bind the Armeria documentation service ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/docs/DocService.html)) under `/docs` URL
+    3. [Register the API services](#addServices)
+
+`UnityCatalogServer` is created when:
+
+* `UnityCatalogServer` command-line utility is [started](#main)
+
+### setDefaults { #setDefaults }
+
+```java
+void setDefaults(
+  UnityCatalogServer.Builder unityCatalogServerBuilder)
+```
+
+`setDefaults` sets the [port](UnityCatalogServer.Builder.md#port) and [serverProperties](UnityCatalogServer.Builder.md#serverProperties) to their default values unless defined:
+
+Property | Default
+-|-
+ [port](UnityCatalogServer.Builder.md#port) | `8080`
+ [serverProperties](UnityCatalogServer.Builder.md#serverProperties) | `etc/conf/server.properties`
+
+### initializeServer { #initializeServer }
+
+```java
+Server initializeServer(
+  UnityCatalogServer.Builder unityCatalogServerBuilder)
+```
+
+`initializeServer`...FIXME
+
+### addApiServices { #addApiServices }
+
+```java
+void addApiServices(
+  ServerBuilder armeriaServerBuilder,
+  UnityCatalogServer.Builder unityCatalogServerBuilder,
+  ServerProperties serverProperties,
+  UnityCatalogAuthorizer authorizer,
+  Repositories repositories)
+```
+
+`addApiServices`...FIXME
+
+### addDeltaApiServices { #addDeltaApiServices }
+
+```java
+void addDeltaApiServices(
+  ServerBuilder armeriaServerBuilder,
+  UnityCatalogAuthorizer authorizer,
+  Repositories repositories,
+  ServerProperties serverProperties,
+  StorageCredentialVendor storageCredentialVendor)
+```
+
+`addDeltaApiServices`...FIXME
 
 ## Register API Services { #addServices }
 
