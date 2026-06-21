@@ -1,6 +1,6 @@
 # HibernateUtil
 
-`HibernateUtil` is used to access the system-wide [SessionFactory](#sessionFactory) ([Hibernate]({{ hibernate.javadoc }}/org/hibernate/SessionFactory.html)).
+`HibernateUtil` is used to access the system-wide [SessionFactory](#sessionFactory) ([Hibernate]({{ hibernate.api }}/org/hibernate/SessionFactory.html)).
 
 ## ServerProperties { #properties }
 

@@ -1,22 +1,77 @@
 ---
 title: UnityCatalogServer
+subtitle: Localhost Reference Server
 ---
 
 # UnityCatalogServer &mdash; Localhost Reference Server
 
 `UnityCatalogServer` is Unity Catalog's **Localhost Reference Server**.
 
-`UnityCatalogServer` can be started on command line to [handle REST API requests](#addServices) at the [port](#port).
+`UnityCatalogServer` can be started as a command-line application using the [bin/start-uc-server](index.md#start-uc-server) shell script.
 
-```console
-❯ ./bin/start-uc-server --help
-usage: bin/start-uc-server
- -h,--help         Print help message.
- -p,--port <arg>   Port number to run the server on. Default is 8080.
- -v,--version      Display the version of the Unity Catalog server
+```text
+$ ./bin/start-uc-server
+###################################################################
+#  _    _       _ _            _____      _        _              #
+# | |  | |     (_) |          / ____|    | |      | |             #
+# | |  | |_ __  _| |_ _   _  | |     __ _| |_ __ _| | ___   __ _  #
+# | |  | | '_ \| | __| | | | | |    / _` | __/ _` | |/ _ \ / _` | #
+# | |__| | | | | | |_| |_| | | |___| (_| | || (_| | | (_) | (_| | #
+#  \____/|_| |_|_|\__|\__, |  \_____\__,_|\__\__,_|_|\___/ \__, | #
+#                      __/ |                                __/ | #
+#                     |___/                        v0.5.0  |___/  #
+###################################################################
 ```
 
-`UnityCatalogServer` starts Armeria documentation service at http://localhost:8080/docs and the other [Unity Catalog API services](#addServices).
+`UnityCatalogServer` command-line application starts the [Unity Catalog API services](#addServices) (with the Armeria documentation service at http://localhost:8080/docs).
+
+<figure markdown="span">
+  ![Launch UnityCatalogServer Command-Line Application](../images/UnityCatalogServer-main.png){ loading=lazy }
+</figure>
+
+## Launch UnityCatalogServer Command-Line Application { #main }
+
+```java
+void main(
+  String[] args)
+```
+
+`main` is the entry point of [bin/start-uc-server](index.md#start-uc-server) shell script.
+
+`main` performs the following steps in order:
+
+1. [Creates an `OptionParser`](OptionParser.md) to parse the command-line options (`args`).
+2. [Creates a `UnityCatalogServer.Builder`](#builder) and sets its [port](UnityCatalogServer.Builder.md#port) to the value of the [`--port` option](OptionParser.md#port) incremented by `1`.
+3. Requests the `UnityCatalogServer.Builder` to [build a `UnityCatalogServer` instance](UnityCatalogServer.Builder.md#build)
+4. [Prints the welcome ASCII art message](#printArt).
+5. [Starts the `UnityCatalogServer`](#start).
+6. Creates a [URLTranscoderVerticle](URLTranscoderVerticle.md) bound to the following ports:
+
+    Port | Role
+    -|-
+    `8080` or [`--port`](OptionParser.md#port) | Transcode port (inbound)
+    `8081` or `--port + 1` | Service port (forwarded)
+
+7. Deploys the `URLTranscoderVerticle` on a [non-clustered Vert.x instance]({{ vertx.api }}/io/vertx/core/Vertx.html).
+
+## Create UnityCatalogServer.Builder { #builder }
+
+```java
+UnityCatalogServer.Builder builder()
+```
+
+`builder` creates a new [UnityCatalogServer.Builder](UnityCatalogServer.Builder.md).
+
+??? note "Static Method"
+    `builder` is a Java **class method** to be invoked without a reference to a particular object.
+
+    Learn more in the [Java Language Specification]({{ java.spec }}/jls-8.html#jls-8.4.3.2).
+
+---
+
+`builder` is used when:
+
+* `UnityCatalogServer` is [launched as a command-line application](#main)
 
 ## Metastore
 
@@ -175,30 +230,6 @@ HTTP Service Decorator | Path Prefix
 -|-
 [UnityAccessDecorator](../server-authorization/UnityAccessDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
 [AuthDecorator](../server-authorization/AuthDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
-
-## Launch UnityCatalogServer { #main }
-
-```java
-void main(
-  String[] args)
-```
-
-`main` starts probing for the available port from `8081` or the first argument specified on command line.
-
-`main` [creates a UnityCatalogServer](#creating-instance).
-
-`main` requests the `UnityCatalogServer` to [print out the welcome ASCII art message](#printArt).
-
-`main` requests the `UnityCatalogServer` to [start](#start).
-
-`main` creates a [URLTranscoderVerticle](URLTranscoderVerticle.md) on the following ports:
-
-Port | Description
--|-
-8080 or `--port` | Transcode Port
-8081 | Service Port
-
-`main` deploys the `URLTranscoderVerticle` on a non-clustered Vert.x instance.
 
 ## Start Server { #start }
 
