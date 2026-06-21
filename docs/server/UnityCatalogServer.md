@@ -73,6 +73,55 @@ UnityCatalogServer.Builder builder()
 
 * `UnityCatalogServer` is [launched as a command-line application](#main)
 
+## Armeria Server { #server }
+
+`UnityCatalogServer` [initializes an Armeria Server](#initializeServer) when [created](#creating-instance).
+
+The server is started to listen to service requests when the `UnityCatalogServer` is requested to [start](#start).
+It is stopped when the `UnityCatalogServer` is requested to [stop](#stop).
+
+### Initialize Armeria Server { #initializeServer }
+
+```java
+Server initializeServer(
+  UnityCatalogServer.Builder unityCatalogServerBuilder)
+```
+
+`initializeServer` creates an Armeria `Server` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/Server.html)) to listen on the HTTP [port](UnityCatalogServer.Builder.md#port) (of the given [UnityCatalogServer.Builder](UnityCatalogServer.Builder.md)) on all available network interfaces.
+
+`initializeServer` creates a [HibernateConfigurator](../persistent-storage/HibernateConfigurator.md) (for the [serverProperties](UnityCatalogServer.Builder.md#serverProperties)).
+
+`initializeServer` [registers the API services](#addApiServices) (based on the [serverProperties](UnityCatalogServer.Builder.md#serverProperties)):
+
+1. Built-in Armeria documentation service ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/docs/DocService.html)) under `/docs` path (e.g., http://localhost:8081/docs/)
+2. [Repositories](Repositories.md) (and [initMetastoreIfNeeded](../persistent-storage/MetastoreRepository.md#initMetastoreIfNeeded))
+3. [UnityCatalogAuthorizer](#initializeAuthorizer)
+
+`initializeServer` [adds the security decorators](#addSecurityDecorators).
+
+`initializeServer` builds a newly-created Armeria `Server`.
+
+### Start Armeria Server { #start }
+
+```java
+void start()
+```
+
+`start` prints out the following INFO message to the logs:
+
+```text
+Starting Unity Catalog server...
+```
+
+`start` requests this [Armeria Server](#server) to start (and listen to the defined ports).
+It waits until this `Server` is fully started up.
+
+`start` prints out the following INFO message to the logs:
+
+```text
+Unity Catalog server started.
+```
+
 ## Metastore
 
 `UnityCatalogServer` [runs](#start) with a single metastore only that [can be created unless available already](../persistent-storage/MetastoreRepository.md#initMetastoreIfNeeded).
@@ -85,21 +134,6 @@ The summary of the single metastore is available through [MetastoreService](Meta
 
 * `etc/conf/server.log4j2.properties`
 * [etc/conf/server.properties](ServerProperties.md)
-
-## Server
-
-`UnityCatalogServer` [builds a Server](#initializeServer) when [created](#creating-instance).
-
-### initializeServer { #initializeServer }
-
-```java
-Server initializeServer(
-  UnityCatalogServer.Builder unityCatalogServerBuilder)
-```
-
-`initializeServer` creates a `Server` ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/Server.html)) that listens on the [port](UnityCatalogServer.Builder.md#port) (of the given [UnityCatalogServer.Builder](UnityCatalogServer.Builder.md)).
-
-`initializeServer`...FIXME
 
 ## SecurityContext { #securityContext }
 
@@ -230,30 +264,6 @@ HTTP Service Decorator | Path Prefix
 -|-
 [UnityAccessDecorator](../server-authorization/UnityAccessDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
 [AuthDecorator](../server-authorization/AuthDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
-
-## Start Server { #start }
-
-```java
-void start()
-```
-
-`start` prints out the following INFO message to the logs:
-
-```text
-Starting server...
-```
-
-`start` requests the [MetastoreRepository](../persistent-storage/MetastoreRepository.md) to [initMetastoreIfNeeded](../persistent-storage/MetastoreRepository.md#initMetastoreIfNeeded).
-
-`start` requests this [Server](#server) to start and listen to the defined ports.
-
-`start` waits until this `Server` is fully started up.
-
----
-
-`start` is used when:
-
-* `UnityCatalogServer` is [launched on command line](#main)
 
 ## Logging
 
