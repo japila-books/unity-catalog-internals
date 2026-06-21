@@ -125,6 +125,10 @@
          <lastmod>2026-06-21</lastmod>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/CloudCredentialVendor/</loc>
+         <lastmod>2026-06-21</lastmod>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/CredentialContext/</loc>
          <lastmod>2026-06-21</lastmod>
     </url>
@@ -138,6 +142,10 @@
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/S3StorageConfig/</loc>
+         <lastmod>2026-06-21</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/credential-vending/StorageCredentialVendor/</loc>
          <lastmod>2026-06-21</lastmod>
     </url>
     <url>
@@ -301,6 +309,22 @@
          <lastmod>2026-06-21</lastmod>
     </url>
     <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/CredentialService/</loc>
+         <lastmod>2026-06-21</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/DeltaApiService/</loc>
+         <lastmod>2026-06-21</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/DeltaCommitsService/</loc>
+         <lastmod>2026-06-21</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/ExternalLocationService/</loc>
+         <lastmod>2026-06-21</lastmod>
+    </url>
+    <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/FunctionService/</loc>
          <lastmod>2026-06-21</lastmod>
     </url>
@@ -342,6 +366,10 @@
     </url>
     <url>
          <loc>https://books.japila.pl/unity-catalog-internals/server/ServerProperties/</loc>
+         <lastmod>2026-06-21</lastmod>
+    </url>
+    <url>
+         <loc>https://books.japila.pl/unity-catalog-internals/server/StagingTableService/</loc>
          <lastmod>2026-06-21</lastmod>
     </url>
     <url>
