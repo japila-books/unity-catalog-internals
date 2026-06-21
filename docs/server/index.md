@@ -4,7 +4,7 @@ Unity Catalog comes with [Localhost Reference Server](UnityCatalogServer.md) tha
 
 ## start-uc-server Shell Script { #start-uc-server }
 
-`start-uc-server` runs [UnityCatalogServer](UnityCatalogServer.md) to [handle REST API requests](UnityCatalogServer.md#addServices) at a [port](UnityCatalogServer.md#port) (specified using `-p` or `--port` option or defaults to `8080`).
+`start-uc-server` runs [UnityCatalogServer](UnityCatalogServer.md) to [handle REST API requests](UnityCatalogServer.md#addServices) (at the port specified using [`--port` option](OptionParser.md#port)).
 
 ``` console
 ❯ ./bin/start-uc-server -h
@@ -15,7 +15,7 @@ usage: bin/start-uc-server
 ```
 
 !!! note
-    The REST API requests can come from any Unity Catalog API-compatible client (including [Unity Catalog CLI](../cli/index.md)).
+    The REST API requests can come from any Unity Catalog API-compatible client (e.g., [Unity Catalog CLI](../cli/index.md)).
 
 ## Server Configuration
 

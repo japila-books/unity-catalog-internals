@@ -1,0 +1,3 @@
+# CloudCredentialVendor
+
+`CloudCredentialVendor` is...FIXME

@@ -80,7 +80,7 @@ UnityCatalogServer.Builder builder()
 The server is started to listen to service requests when the `UnityCatalogServer` is requested to [start](#start).
 It is stopped when the `UnityCatalogServer` is requested to [stop](#stop).
 
-### Initialize Armeria Server { #initializeServer }
+### Initialize { #initializeServer }
 
 ```java
 Server initializeServer(
@@ -91,7 +91,7 @@ Server initializeServer(
 
 `initializeServer` creates a [HibernateConfigurator](../persistent-storage/HibernateConfigurator.md) (for the [serverProperties](UnityCatalogServer.Builder.md#serverProperties)).
 
-`initializeServer` [registers the API services](#addApiServices) (based on the [serverProperties](UnityCatalogServer.Builder.md#serverProperties)):
+`initializeServer` [registers the Unity Catalog API services](#addApiServices) (based on the [serverProperties](UnityCatalogServer.Builder.md#serverProperties)) with the following auxiliary services:
 
 1. Built-in Armeria documentation service ([Armeria]({{ armeria.api }}/com/linecorp/armeria/server/docs/DocService.html)) under `/docs` path (e.g., http://localhost:8081/docs/)
 2. [Repositories](Repositories.md) (and [initMetastoreIfNeeded](../persistent-storage/MetastoreRepository.md#initMetastoreIfNeeded))
@@ -101,7 +101,92 @@ Server initializeServer(
 
 `initializeServer` builds a newly-created Armeria `Server`.
 
-### Start Armeria Server { #start }
+### Register Unity Catalog API Services { #addApiServices }
+
+```java
+void addApiServices(
+  ServerBuilder armeriaServerBuilder,
+  UnityCatalogServer.Builder unityCatalogServerBuilder,
+  ServerProperties serverProperties,
+  UnityCatalogAuthorizer authorizer,
+  Repositories repositories)
+```
+
+`addApiServices` prints the following INFO message to the logs:
+
+```text
+Adding Unity Catalog API services...
+```
+
+`addApiServices` creates a [CloudCredentialVendor](../credential-vending/CloudCredentialVendor.md) unless defined using the given [UnityCatalogServer.Builder](UnityCatalogServer.Builder.md#cloudCredentialVendor).
+
+`addApiServices` creates a [StorageCredentialVendor](../credential-vending/StorageCredentialVendor.md).
+
+`addServices` registers the Unity Catalog API services.
+
+URL | Service
+-|-
+ `/` | Returns `Hello, Unity Catalog!` message
+ `/api/1.0/unity-control/auth` |  [AuthService](AuthService.md)
+ `/api/1.0/unity-control/scim2/Me` |  [Scim2SelfService](Scim2SelfService.md)
+ `/api/1.0/unity-control/scim2/Users` |  [Scim2UserService](Scim2UserService.md)
+ `/api/2.1/unity-catalog/` | <ol><li>[MetastoreService](MetastoreService.md)</li><li>[DeltaApiService](DeltaApiService.md)</li></ol>
+ `/api/2.1/unity-catalog/catalogs` | [CatalogService](CatalogService.md)
+ `/api/2.1/unity-catalog/credentials` | [CredentialService](CredentialService.md)
+ `/api/2.1/unity-catalog/delta/preview/commits` | [DeltaCommitsService](DeltaCommitsService.md)
+ `/api/2.1/unity-catalog/external-locations` | [ExternalLocationService](ExternalLocationService.md)
+ `/api/2.1/unity-catalog/functions` | [FunctionService](FunctionService.md)
+ `/api/2.1/unity-catalog/iceberg` | [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md)
+ `/api/2.1/unity-catalog/models` | [ModelService](ModelService.md)
+ `/api/2.1/unity-catalog/permissions` | [PermissionService](PermissionService.md)
+ `/api/2.1/unity-catalog/schemas` | [SchemaService](SchemaService.md)
+ `/api/2.1/unity-catalog/staging-tables` | [StagingTableService](StagingTableService.md)
+ `/api/2.1/unity-catalog/tables` | [TableService](TableService.md)
+ `/api/2.1/unity-catalog/temporary-model-version-credentials` | [TemporaryModelVersionCredentialsService](TemporaryModelVersionCredentialsService.md)
+ `/api/2.1/unity-catalog/temporary-path-credentials` | [TemporaryPathCredentialsService](TemporaryPathCredentialsService.md)
+ `/api/2.1/unity-catalog/temporary-table-credentials` | [TemporaryTableCredentialsService](TemporaryTableCredentialsService.md)
+ `/api/2.1/unity-catalog/temporary-volume-credentials` | [TemporaryVolumeCredentialsService](TemporaryVolumeCredentialsService.md)
+ `/api/2.1/unity-catalog/volumes` | [VolumeService](VolumeService.md)
+
+`addServices` prints the following INFO message to the logs while registering [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md):
+
+```text
+Adding Iceberg services...
+```
+
+`addServices` prints the following INFO message to the logs while registering [DeltaApiService](DeltaApiService.md):
+
+```text
+Adding UC Delta API services...
+```
+
+### Register Unity Catalog API Security Decorators { #addSecurityDecorators }
+
+```java
+void addSecurityDecorators(
+  ServerBuilder armeriaServerBuilder,
+  ServerProperties serverProperties,
+  UnityCatalogAuthorizer authorizer,
+  Repositories repositories)
+```
+
+!!! warning ""
+    `addSecurityDecorators` does nothing (_noop_) for [server.authorization](../server-authorization/index.md#server.authorization) configuration property disabled.
+
+With [server.authorization](../server-authorization/index.md#server.authorization) configuration property enabled, `addSecurityDecorators` prints the following INFO message to the logs:
+
+```text
+Enabling security decorators...
+```
+
+`addServices` registers the Unity Catalog API service decorators.
+
+HTTP Service Decorator | Path Prefix
+-|-
+[UnityAccessDecorator](../server-authorization/UnityAccessDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
+[AuthDecorator](../server-authorization/AuthDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
+
+### Start { #start }
 
 ```java
 void start()
@@ -120,6 +205,23 @@ It waits until this `Server` is fully started up.
 
 ```text
 Unity Catalog server started.
+```
+
+### Stop { #stop }
+
+```java
+void stop()
+```
+
+!!! warning "Testing Only"
+    `stop` is used for testing only.
+
+`stop` requests this [Armeria Server](#server) to stop and waits until it is stopped.
+
+`stop` prints out the following INFO message to the logs:
+
+```text
+Unity Catalog server stopped.
 ```
 
 ## Metastore
@@ -184,86 +286,6 @@ Property | Default
 -|-
  [port](UnityCatalogServer.Builder.md#port) | `8080`
  [serverProperties](UnityCatalogServer.Builder.md#serverProperties) | `etc/conf/server.properties`
-
-### initializeServer { #initializeServer }
-
-```java
-Server initializeServer(
-  UnityCatalogServer.Builder unityCatalogServerBuilder)
-```
-
-`initializeServer`...FIXME
-
-### addApiServices { #addApiServices }
-
-```java
-void addApiServices(
-  ServerBuilder armeriaServerBuilder,
-  UnityCatalogServer.Builder unityCatalogServerBuilder,
-  ServerProperties serverProperties,
-  UnityCatalogAuthorizer authorizer,
-  Repositories repositories)
-```
-
-`addApiServices`...FIXME
-
-### addDeltaApiServices { #addDeltaApiServices }
-
-```java
-void addDeltaApiServices(
-  ServerBuilder armeriaServerBuilder,
-  UnityCatalogAuthorizer authorizer,
-  Repositories repositories,
-  ServerProperties serverProperties,
-  StorageCredentialVendor storageCredentialVendor)
-```
-
-`addDeltaApiServices`...FIXME
-
-## Register API Services { #addServices }
-
-```java
-void addServices(
-  ServerBuilder sb)
-```
-
-`addServices` initializes an authorizer based on [server.authorization](../server-authorization/index.md#server.authorization) configuration property.
-When enabled (`enable`), `addServices` creates a [JCasbinAuthorizer](../server-authorization/JCasbinAuthorizer.md) and [initializes the admin user](../server-authorization/UnityAccessUtil.md#initializeAdmin). Otherwise, `addServices` creates an [AllowingAuthorizer](../server-authorization/AllowingAuthorizer.md).
-
-`addServices` creates and registers Unity Catalog API services at the `/api/2.1/unity-catalog/` base path.
-
-URL | Service
--|-
- `/` | Returns `Hello, Unity Catalog!` message
- `/api/1.0/unity-control/auth` |  [AuthService](AuthService.md)
- `/api/1.0/unity-control/scim2/Me` |  [Scim2SelfService](Scim2SelfService.md)
- `/api/1.0/unity-control/scim2/Users` |  [Scim2UserService](Scim2UserService.md)
- `/api/2.1/unity-catalog/` | [MetastoreService](MetastoreService.md)
- `/api/2.1/unity-catalog/catalogs` | [CatalogService](CatalogService.md)
- `/api/2.1/unity-catalog/functions` | [FunctionService](FunctionService.md)
- `/api/2.1/unity-catalog/iceberg` | [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md)
- `/api/2.1/unity-catalog/models` | [ModelService](ModelService.md)
- `/api/2.1/unity-catalog/permissions` | [PermissionService](PermissionService.md)
- `/api/2.1/unity-catalog/schemas` | [SchemaService](SchemaService.md)
- `/api/2.1/unity-catalog/tables` | [TableService](TableService.md)
- `/api/2.1/unity-catalog/temporary-model-version-credentials` | [TemporaryModelVersionCredentialsService](TemporaryModelVersionCredentialsService.md)
- `/api/2.1/unity-catalog/temporary-path-credentials` | [TemporaryPathCredentialsService](TemporaryPathCredentialsService.md)
- `/api/2.1/unity-catalog/temporary-table-credentials` | [TemporaryTableCredentialsService](TemporaryTableCredentialsService.md)
- `/api/2.1/unity-catalog/temporary-volume-credentials` | [TemporaryVolumeCredentialsService](TemporaryVolumeCredentialsService.md)
- `/api/2.1/unity-catalog/volumes` | [VolumeService](VolumeService.md)
-
-With [server.authorization](../server-authorization/index.md#server.authorization) configuration property enabled, `addServices` prints out the following INFO message to the logs:
-
-``` text
-Authorization enabled.
-```
-
-`addServices` registers HTTP service decorators.
-
-HTTP Service Decorator | Path Prefix
--|-
-[UnityAccessDecorator](../server-authorization/UnityAccessDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
-[AuthDecorator](../server-authorization/AuthDecorator.md) | <ul><li>`/api/2.1/unity-catalog/`<li>`/api/1.0/unity-control/` (except `/api/1.0/unity-control/auth/tokens`)</ul>
 
 ## Logging
 
