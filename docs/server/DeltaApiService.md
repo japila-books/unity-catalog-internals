@@ -1,4 +1,9 @@
-# DeltaApiService
+---
+title: DeltaApiService
+subtitle: REST API for Delta Tables
+---
+
+# DeltaApiService &mdash; REST API for Delta Tables
 
 `DeltaApiService` is a [Unity Catalog API service](UnityCatalogServer.md) to handle the [API endpoints](#ENDPOINTS) under [`/api/2.1/unity-catalog/`](UnityCatalogServer.md#addApiServices) path.
 
@@ -81,3 +86,40 @@ Set<CredentialContext.Privilege> toPrivileges(
 ```
 
 `toPrivileges`...FIXME
+
+## Demo
+
+``` bash
+$ http http://localhost:8080/api/2.1/unity-catalog/catalogs \
+    | jq '.catalogs[].name'
+"unity"
+```
+
+```console
+$ http http://localhost:8080/api/2.1/unity-catalog/delta/v1/config \
+    catalog==unity \
+    protocol-versions==1.0
+HTTP/1.1 200 OK
+content-length: 755
+content-type: application/json; charset=utf-8
+date: Mon, 22 Jun 2026 18:33:56 GMT
+server: Armeria/1.28.4
+
+{
+    "endpoints": [
+        "POST /v1/catalogs/{catalog}/schemas/{schema}/staging-tables",
+        "POST /v1/catalogs/{catalog}/schemas/{schema}/tables",
+        "GET /v1/catalogs/{catalog}/schemas/{schema}/tables",
+        "GET /v1/catalogs/{catalog}/schemas/{schema}/tables/{table}",
+        "POST /v1/catalogs/{catalog}/schemas/{schema}/tables/{table}",
+        "DELETE /v1/catalogs/{catalog}/schemas/{schema}/tables/{table}",
+        "HEAD /v1/catalogs/{catalog}/schemas/{schema}/tables/{table}",
+        "POST /v1/catalogs/{catalog}/schemas/{schema}/tables/{table}/rename",
+        "GET /v1/catalogs/{catalog}/schemas/{schema}/tables/{table}/credentials",
+        "POST /v1/catalogs/{catalog}/schemas/{schema}/tables/{table}/metrics",
+        "GET /v1/staging-tables/{table_id}/credentials",
+        "GET /v1/temporary-path-credentials"
+    ],
+    "protocol-version": "1.0"
+}
+```
