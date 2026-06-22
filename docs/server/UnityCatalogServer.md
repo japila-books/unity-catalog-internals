@@ -101,7 +101,7 @@ Server initializeServer(
 
 `initializeServer` builds a newly-created Armeria `Server`.
 
-### Register Unity Catalog API Services { #addApiServices }
+### <span id="addDeltaApiServices"><span id="addIcebergApiServices"> Register Unity Catalog API Services { #addApiServices }
 
 ```java
 void addApiServices(

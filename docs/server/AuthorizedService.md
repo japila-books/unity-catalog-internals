@@ -1,0 +1,3 @@
+# AuthorizedService
+
+`AuthorizedService` is...FIXME
