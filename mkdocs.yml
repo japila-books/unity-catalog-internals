@@ -103,48 +103,48 @@ extra:
     delta: https://books.japila.pl/delta-lake-internals
     spark_sql: https://books.japila.pl/spark-sql-internals
   uc:
-    version: 0.5.0
+    version: 0.6.0
     commit: https://github.com/unitycatalog/unitycatalog/commit
-    github: https://github.com/unitycatalog/unitycatalog/blob/v0.5.0
+    github: https://github.com/unitycatalog/unitycatalog/blob/v0.6.0
     slack: https://unitycatalog.slack.com/archives
   armeria:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L362
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L363
     version: 1.28.4
     api: https://javadoc.io/doc/com.linecorp.armeria/armeria-javadoc/1.28.4
   delta:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L24
-    version: 4.2.0
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L24
+    version: 4.3.1
   hadoop:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L40
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L40
     version: 3.4.2
     api: https://hadoop.apache.org/docs/r3.4.2/api/index.html
   hibernate:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L378
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L379
     version: 6.5.0.Final
     api: https://docs.hibernate.org/orm/6.5/javadocs
   iceberg:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L401
-    version: 1.9.2
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L43
+    version: 1.11.0
     home: https://iceberg.apache.org
   java:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L55
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L20
     version: 17
     api: https://docs.oracle.com/en/java/javase/17/docs/api/java.base
     spec: https://docs.oracle.com/javase/specs/jls/se17/html
   jcasbin:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L416
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L419
     version: 1.55.0
     api: https://www.javadoc.io/static/org.casbin/jcasbin/1.55.0
     github: https://github.com/casbin/jcasbin
   log4j:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L45
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L46
     version: 2.25.3
     manual: https://logging.apache.org/log4j/2.x/manual
   openapi:
     home: https://openapi-generator.tech
     github: https://github.com/OpenAPITools
   scala:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/build.sbt#L22
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L22
     version: 2.13.17
   social:
     - icon: fontawesome/brands/github
@@ -160,11 +160,12 @@ extra:
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@jaceklaskowski
   spark:
-    # https://github.com/unitycatalog/unitycatalog/blob/v0.5.0/project/spark-versions.json#L2
-    # version: 4.1.0
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/project/spark-versions.json#L6
+    # version: 4.2.0
     # This book uses a higher compatible version
-    version: 4.1.1
+    version: 4.2.0
   vertx:
+    # https://github.com/unitycatalog/unitycatalog/blob/v0.6.0/build.sbt#L410
     version: 4.3.5
     api: https://vertx.io/docs/4.3.5/apidocs/
 
