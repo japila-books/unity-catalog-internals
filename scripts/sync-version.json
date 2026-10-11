@@ -1,0 +1,7 @@
+{
+  "deps": {
+    "hibernate": {"derived": {"api": "https://docs.hibernate.org/orm/{major_minor}/javadocs"}},
+    "log4j": {"derived": {"manual": "https://logging.apache.org/log4j/{major}.x/manual"}},
+    "spark": {"pick": "max"}
+  }
+}
