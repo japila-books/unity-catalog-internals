@@ -11,9 +11,9 @@ Java 17 or above is required to start Unity Catalog's [server](../server/index.m
 
 ```text
 $ java --version
-openjdk 17.0.18 2026-01-20 LTS
-OpenJDK Runtime Environment Zulu17.64+15-CA (build 17.0.18+8-LTS)
-OpenJDK 64-Bit Server VM Zulu17.64+15-CA (build 17.0.18+8-LTS, mixed mode, sharing)
+openjdk 17.0.21 2026-10-20 LTS
+OpenJDK Runtime Environment Zulu17.70+111-CA (build 17.0.21+9-LTS)
+OpenJDK 64-Bit Server VM Zulu17.70+111-CA (build 17.0.21+9-LTS, mixed mode, sharing)
 ```
 
 ## Start UC Server
@@ -29,68 +29,77 @@ Open a separate terminal.
 Execute the following command:
 
 ```shell
-./bin/uc table list --catalog unity --schema default
+./bin/uc table list --catalog unity --schema default --output jsonPretty | jq '[.[] | {name, table_type}]'
 ```
 
-```console
-$ ./bin/uc table list --catalog unity --schema default --output json | jq ".[].name"
-"marksheet"
-"marksheet_uniform"
-"numbers"
-"user_countries"
+```json
+[
+  {
+    "name": "marksheet",
+    "table_type": "MANAGED"
+  },
+  {
+    "name": "marksheet_uniform",
+    "table_type": "EXTERNAL"
+  },
+  {
+    "name": "numbers",
+    "table_type": "EXTERNAL"
+  },
+  {
+    "name": "user_countries",
+    "table_type": "EXTERNAL"
+  }
+]
 ```
 
 ## Describe (Get) Table
 
 ### Managed Table
 
-```console
-$ ./bin/uc table get --full_name unity.default.marksheet --output jsonPretty
+```shell
+./bin/uc table get --full_name unity.default.marksheet --output jsonPretty | jq '.columns = [] | del(..|nulls)'
+```
+
+```json
 {
-  "name" : "marksheet",
-  "catalog_name" : "unity",
-  "schema_name" : "default",
-  "table_type" : "MANAGED",
-  "data_source_format" : "DELTA",
-  "columns" : [ {
-  ...
-  } ],
-  "storage_location" : "file:///Users/jacek/oss/unitycatalog/etc/data/managed/unity/default/tables/marksheet",
-  "comment" : "Managed table",
-  "properties" : {
-    "key1" : "value1",
-    "key2" : "value2"
+  "name": "marksheet",
+  "catalog_name": "unity",
+  "schema_name": "default",
+  "table_type": "MANAGED",
+  "data_source_format": "DELTA",
+  "columns": [],
+  "storage_location": "file:///Users/jacek/oss/unitycatalog/etc/data/managed/unity/default/tables/marksheet",
+  "comment": "Managed table",
+  "properties": {
+    "key1": "value1",
+    "key2": "value2"
   },
-  "owner" : null,
-  "created_at" : 1721234405595,
-  "created_by" : null,
-  "updated_at" : 1721234405595,
-  "updated_by" : null,
-  "table_id" : "c389adfa-5c8f-497b-8f70-26c2cca4976d"
+  "created_at": 1721234405595,
+  "updated_at": 1721234405595,
+  "table_id": "c389adfa-5c8f-497b-8f70-26c2cca4976d"
 }
 ```
 
 ### External Table
 
-!!! warning "Work in progress"
+```shell
+./bin/uc table get --full_name unity.default.user_countries --output jsonPretty | jq '.columns = [] | del(..|nulls)'
+```
 
-```console
-❯ ./bin/uc table get --full_name unity.default.test_table --output jsonPretty
+```json
 {
-  "name" : "test_table",
-  "catalog_name" : "unity",
-  "schema_name" : "default",
-  "table_type" : "EXTERNAL",
-  "data_source_format" : "DELTA",
-  "columns" : [ ],
-  "storage_location" : "s3://uc-japila/raw/test_table",
-  "comment" : null,
-  "properties" : { },
-  "owner" : null,
-  "created_at" : 1729282596872,
-  "created_by" : null,
-  "updated_at" : 1729282596872,
-  "updated_by" : null,
-  "table_id" : "37b15062-cd84-42c3-8b38-ee1e724f74c7"
+  "name": "user_countries",
+  "catalog_name": "unity",
+  "schema_name": "default",
+  "table_type": "EXTERNAL",
+  "data_source_format": "DELTA",
+  "columns": [],
+  "storage_location": "file:///Users/jacek/oss/unitycatalog/etc/data/external/unity/default/tables/user_countries",
+  "comment": "Partitioned table",
+  "properties": {},
+  "created_at": 1721234405622,
+  "updated_at": 1721234405622,
+  "table_id": "26ed93b5-9a18-4726-8ae8-c89dfcfea069"
 }
 ```

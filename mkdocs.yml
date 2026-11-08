@@ -164,8 +164,9 @@ extra:
   spark:
     # https://github.com/unitycatalog/unitycatalog/blob/v0.7.0/project/spark-versions.json#L6
     # version: 4.2.0
-    # This book uses a higher compatible version
+    # This book uses the highest compatible version
     version: 4.2.0
+    shortVersion: 4.2
   vertx:
     # https://github.com/unitycatalog/unitycatalog/blob/v0.7.0/build.sbt#L410
     version: 4.3.5

@@ -14,31 +14,43 @@ Build the Spark Connector module.
 In the directory where you cloned the Unity Catalog repo to, execute the following:
 
 ```shell
-./build/sbt -DsparkVersion=4.1.1 clean package publishLocal
+./build/sbt \
+    -DsparkVersion=4.2.0 \
+    -DdeltaVersion=4.4.1 \
+    -DskipDeltaSpark=true \
+    clean package publishLocal spark/publishLocal
 ```
 
-??? note "sparkVersion"
-    Unity Catalog builds with Apache Spark 4.0.0 by default.
-    You can overwrite the version with `sparkVersion` JVM property (as in the example above).
+??? warning "Apache Spark 4.3.0 Not Supported"
+    [Apache Spark 4.3.0](https://spark.apache.org/news/spark-4-3-0-released.html) was released on Oct 30, 2026.
+    Unity Catalog 0.7.0 builds with [Apache Spark 4.1.0]({{ uc.github }}/project/spark-versions.json#L2) by default.
+    You can overwrite the version with `sparkVersion` JVM property for the supported Spark version (as in the example above).
+
+    Replace `4.2.0` with `4.3.0` in [project/spark-versions.json]({{ uc.github }}/project/spark-versions.json#L6) and you should be able to build Unity Catalog 0.7.0 with Spark 4.3.0. Be careful as you're stepping onto an uncharted territory ☠️
 
 Once the build is finished, you should find the following directories in the local `~/.ivy2` directory.
 
-```text
-$ ls -l ~/.ivy2/local/io.unitycatalog
-total 0
-drwxr-xr-x@ 3 jacek  staff  96 Apr 13 19:21 unitycatalog-client
-drwxr-xr-x@ 3 jacek  staff  96 Apr 13 19:21 unitycatalog-server
-drwxr-xr-x@ 3 jacek  staff  96 Apr 13 19:21 unitycatalog-spark_2.13
+```shell
+ls -l ~/.ivy2/local/io.unitycatalog
 ```
 
-The Spark Connector module is in `unitycatalog-spark_2.13/{{ uc.version }}/jars` directory.
+```text
+drwxr-xr-x@ 3 jacek  staff  96 Nov  8 17:02 unitycatalog-client
+drwxr-xr-x@ 3 jacek  staff  96 Nov  8 17:02 unitycatalog-hadoop
+drwxr-xr-x@ 3 jacek  staff  96 Nov  8 17:02 unitycatalog-server
+drwxr-xr-x@ 3 jacek  staff  96 Nov  8 17:02 unitycatalog-spark_4.2_2.13
+```
+
+The Spark Connector module is in `unitycatalog-spark_{{ spark.shortVersion }}_2.13/{{ uc.version }}/jars` directory.
+
+```shell
+ls -l ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_{{ spark.shortVersion }}_2.13/{{ uc.version }}/jars
+```
 
 ```text
-$ ls -l ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_2.13/0.4.1/jars
-total 168
--rw-r--r--@ 1 jacek  staff  75192 Apr 13 19:21 unitycatalog-spark_2.13.jar
--rw-r--r--@ 1 jacek  staff     32 Apr 13 19:21 unitycatalog-spark_2.13.jar.md5
--rw-r--r--@ 1 jacek  staff     40 Apr 13 19:21 unitycatalog-spark_2.13.jar.sha1
+-rw-r--r--@ 1 jacek  staff  119741 Nov  8 17:02 unitycatalog-spark_4.2_2.13.jar
+-rw-r--r--@ 1 jacek  staff      32 Nov  8 17:02 unitycatalog-spark_4.2_2.13.jar.md5
+-rw-r--r--@ 1 jacek  staff      40 Nov  8 17:02 unitycatalog-spark_4.2_2.13.jar.sha1
 ```
 
 !!! warning "`~/.ivy2` and `~/.ivy2.5.2`"
@@ -47,11 +59,11 @@ total 168
 
     The dependency names are different, too.
 
-    Copy `unitycatalog-spark_2.13.jar` and the others to `~/.ivy2.5.2/jars/` so the newly-built jars could be picked up.
+    Copy `unitycatalog-spark_{{ spark.shortVersion }}_2.13` and the others to `~/.ivy2.5.2/jars/` so the newly-built jars could be picked up.
 
     ```shell
-    cp ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_2.13/{{ uc.version }}/jars/unitycatalog-spark_2.13.jar \
-       ~/.ivy2.5.2/jars/io.unitycatalog_unitycatalog-spark_2.13-{{ uc.version }}.jar
+    cp ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_{{ spark.shortVersion }}_2.13/{{ uc.version }}/jars/unitycatalog-spark_{{ spark.shortVersion }}_2.13.jar \
+       ~/.ivy2.5.2/jars/io.unitycatalog_unitycatalog-spark_{{ spark.shortVersion }}_2.13-{{ uc.version }}.jar
     ```
 
 ## Run Spark Application with Unity Catalog
@@ -59,12 +71,15 @@ total 168
 This demo re-configures the Spark SQL built-in default two-level-only catalog `spark_catalog` and defines a brand new `unity` catalog.
 Both use the very same configuration for simplicity yet serve similar but slightly different purposes.
 
-=== "Spark {{ spark.version }} + Delta Lake {{ delta.version }}"
+!!! warning "Apache Spark 4.2.1"
+    [Apache Spark 4.2.1](https://spark.apache.org/news/spark-4-2-1-released.html) is not officially supported by [Unity Catalog 0.7.0]({{ uc.github }}/project/spark-versions.json). Use at your own risk.
+
+=== "Spark 4.2.1 + Delta Lake 4.4.1"
 
     ``` shell
     ./bin/spark-shell \
       --packages \
-        io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
+        io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.shortVersion }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
@@ -81,23 +96,25 @@ Both use the very same configuration for simplicity yet serve similar but slight
           ____              __
          / __/__  ___ _____/ /__
         _\ \/ _ \/ _ `/ __/  '_/
-       /___/ .__/\_,_/_/ /_/\_\   version 4.1.1
+       /___/ .__/\_,_/_/ /_/\_\   version 4.2.1
           /_/
 
-    Using Scala version 2.13.17 (OpenJDK 64-Bit Server VM, Java 17.0.18)
+    Type in expressions to have them evaluated.
+    Spark connect server version 4.2.1.
+    Spark session available as 'spark'.
     ```
 
     ```scala
-    assert(spark.version == "{{ spark.version }}")
-    assert(io.delta.VERSION == "{{ delta.version }}")
+    assert(spark.version == "4.2.1")
+    assert(io.delta.VERSION == "4.4.1")
     ```
 
-=== "uv + PySpark {{ spark.version }} + Delta Lake {{ delta.version }}"
+=== "uv + PySpark 4.2.1 + Delta Lake 4.4.1"
 
     ``` shell
-    uvx --from "pyspark=={{ spark.version }}" pyspark \
+    uvx --from "pyspark==4.2.1" pyspark \
       --packages \
-        io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
+        io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.shortVersion }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
@@ -106,7 +123,7 @@ Both use the very same configuration for simplicity yet serve similar but slight
     ```
 
     ```py
-    assert(spark.version == "4.1.1")
+    assert(spark.version == "4.2.1")
     ```
 
 ## spark_catalog Catalog
@@ -115,18 +132,25 @@ Both use the very same configuration for simplicity yet serve similar but slight
 
 The following is a list of the catalogs Unity Catalog comes with and knows about.
 
-``` console
-$ ./bin/uc catalog list
-┌─────┬────────────┬──────────┬─────┬─────────────┬──────────┬──────────┬──────────┬────────────────────────────────────┬────────────┬────────────────┐
-│NAME │  COMMENT   │PROPERTIES│OWNER│ CREATED_AT  │CREATED_BY│UPDATED_AT│UPDATED_BY│                 ID                 │STORAGE_ROOT│STORAGE_LOCATION│
-├─────┼────────────┼──────────┼─────┼─────────────┼──────────┼──────────┼──────────┼────────────────────────────────────┼────────────┼────────────────┤
-│unity│Main catalog│{}        │null │1721234405334│null      │null      │null      │f029b870-9468-4f10-badc-630b41e5690d│null        │null            │
-└─────┴────────────┴──────────┴─────┴─────────────┴──────────┴──────────┴──────────┴────────────────────────────────────┴────────────┴────────────────┘
+```shell
+./bin/uc catalog list --output jsonPretty | jq '[.[] | del(..|nulls)]'
+```
+
+```json
+[
+  {
+    "name": "unity",
+    "comment": "Main catalog",
+    "properties": {},
+    "created_at": 1721234405334,
+    "id": "f029b870-9468-4f10-badc-630b41e5690d"
+  }
+]
 ```
 
 There is no `spark_catalog` catalog listed (as it is the default internal Spark SQL catalog).
 
-The following is a list of the catalogs Spark SQL knows about.
+In the terminal with Spark Shell, execute the following for the list of the catalogs Spark SQL knows about.
 
 ``` scala
 spark.catalog.listDatabases().show(truncate=false)
@@ -134,18 +158,18 @@ spark.catalog.listDatabases().show(truncate=false)
 
 ```text
 scala> spark.catalog.listDatabases().show(truncate=false)
-io.unitycatalog.client.ApiException: listSchemas call failed with: 404 - {"error_code":"NOT_FOUND","details":[{"reason":"NOT_FOUND","metadata":{},"@type":"google.rpc.ErrorInfo"}],"stack_trace":null,"message":"Catalog not found: spark_catalog"}
+io.unitycatalog.client.ApiException: listSchemas call failed with: 404 - {"error_code":"CATALOG_NOT_FOUND","details":[{"reason":"CATALOG_NOT_FOUND","@type":"type.googleapis.com/google.rpc.ErrorInfo"}],"message":"Catalog not found: spark_catalog"}
   at io.unitycatalog.client.api.SchemasApi.getApiException(SchemasApi.java:77)
   at io.unitycatalog.client.api.SchemasApi.listSchemasWithHttpInfo(SchemasApi.java:358)
   at io.unitycatalog.client.api.SchemasApi.listSchemas(SchemasApi.java:334)
-  at io.unitycatalog.spark.UCProxy.listNamespaces(UCSingleCatalog.scala:825)
-  at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listNamespaces(DelegatingCatalogExtension.java:140)
-  at io.unitycatalog.spark.UCSingleCatalog.listNamespaces(UCSingleCatalog.scala:335)
+  at io.unitycatalog.spark.UCProxy.listNamespaces(UCSingleCatalog.scala:1271)
+  at org.apache.spark.sql.connector.catalog.DelegatingCatalogExtension.listNamespaces(DelegatingCatalogExtension.java:147)
+  at io.unitycatalog.spark.UCSingleCatalog.listNamespaces(UCSingleCatalog.scala:576)
   at org.apache.spark.sql.execution.command.ShowNamespacesCommand.run(ShowNamespacesCommand.scala:44)
   ...
 ```
 
-This query failed as the current catalog is the built-in `spark_catalog` that is not known to Unity Catalog.
+This query failed as the current catalog is the built-in `spark_catalog` which is not known to Unity Catalog.
 
 ``` scala
 assert(spark.catalog.currentCatalog() == "spark_catalog")
@@ -177,8 +201,11 @@ Let's create `spark_catalog` in Unity Catalog.
     --format delta
 ```
 
-``` console
-$ tree /tmp/uc_demo
+```shell
+tree /tmp/uc_demo
+```
+
+```console
 /tmp/uc_demo
 └── _delta_log
     └── 00000000000000000000.json
@@ -186,7 +213,7 @@ $ tree /tmp/uc_demo
 2 directories, 1 file
 ```
 
-Let's list all the available tables in `spark_catalog` catalog in Unity Catalog.
+With the `spark_catalog` catalog in Unity Catalog created, we can now list all the available tables in the default Spark catalog.
 There should be `uc_demo` table available.
 
 ``` scala
@@ -208,6 +235,9 @@ spark.range(1).write.insertInto("uc_demo")
 ```
 
 It works! 🥳
+
+??? danger "Apache Spark 4.3.0 throws Exception"
+    Writing data to delta table raises an exception on Spark 4.3.0.
 
 Let's query (_read from_) the `uc_demo` delta table.
 
@@ -272,7 +302,10 @@ sql("DESC EXTENDED unity.default.numbers").show(truncate=false)
 |as_double                   |double                                                                                   |NULL   |
 |                            |                                                                                         |       |
 |# Detailed Table Information|                                                                                         |       |
-|Name                        |unity.default.numbers                                                                    |       |
+|Catalog                     |unity                                                                                    |       |
+|Namespace                   |default                                                                                  |       |
+|Database                    |default                                                                                  |       |
+|Table                       |numbers                                                                                  |       |
 |Type                        |EXTERNAL                                                                                 |       |
 |Location                    |file:/Users/jacek/oss/unitycatalog/etc/data/external/unity/default/tables/numbers        |       |
 |Provider                    |delta                                                                                    |       |
