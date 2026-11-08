@@ -41,10 +41,10 @@ drwxr-xr-x@ 3 jacek  staff  96 Nov  8 17:02 unitycatalog-server
 drwxr-xr-x@ 3 jacek  staff  96 Nov  8 17:02 unitycatalog-spark_4.2_2.13
 ```
 
-The Spark Connector module is in `unitycatalog-spark_{{ spark.shortVersion }}_2.13/{{ uc.version }}/jars` directory.
+The Spark Connector module is in `unitycatalog-spark_{{ spark.version_short }}_2.13/{{ uc.version }}/jars` directory.
 
 ```shell
-ls -l ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_{{ spark.shortVersion }}_2.13/{{ uc.version }}/jars
+ls -l ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_{{ spark.version_short }}_2.13/{{ uc.version }}/jars
 ```
 
 ```text
@@ -59,11 +59,11 @@ ls -l ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_{{ spark.shortVersion }}_
 
     The dependency names are different, too.
 
-    Copy `unitycatalog-spark_{{ spark.shortVersion }}_2.13` and the others to `~/.ivy2.5.2/jars/` so the newly-built jars could be picked up.
+    Copy `unitycatalog-spark_{{ spark.version_short }}_2.13` and the others to `~/.ivy2.5.2/jars/` so the newly-built jars could be picked up.
 
     ```shell
-    cp ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_{{ spark.shortVersion }}_2.13/{{ uc.version }}/jars/unitycatalog-spark_{{ spark.shortVersion }}_2.13.jar \
-       ~/.ivy2.5.2/jars/io.unitycatalog_unitycatalog-spark_{{ spark.shortVersion }}_2.13-{{ uc.version }}.jar
+    cp ~/.ivy2/local/io.unitycatalog/unitycatalog-spark_{{ spark.version_short }}_2.13/{{ uc.version }}/jars/unitycatalog-spark_{{ spark.version_short }}_2.13.jar \
+       ~/.ivy2.5.2/jars/io.unitycatalog_unitycatalog-spark_{{ spark.version_short }}_2.13-{{ uc.version }}.jar
     ```
 
 ## Run Spark Application with Unity Catalog
@@ -79,7 +79,7 @@ Both use the very same configuration for simplicity yet serve similar but slight
     ``` shell
     ./bin/spark-shell \
       --packages \
-        io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.shortVersion }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
+        io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.version_short }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
@@ -114,7 +114,7 @@ Both use the very same configuration for simplicity yet serve similar but slight
     ``` shell
     uvx --from "pyspark==4.2.1" pyspark \
       --packages \
-        io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.shortVersion }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
+        io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.version_short }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
       --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
       --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
       --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
