@@ -16,7 +16,7 @@ OpenJDK Runtime Environment Zulu17.70+111-CA (build 17.0.21+9-LTS)
 OpenJDK 64-Bit Server VM Zulu17.70+111-CA (build 17.0.21+9-LTS, mixed mode, sharing)
 ```
 
-## Start UC Server
+## Start Unity Catalog Server
 
 ```shell
 ./bin/start-uc-server
