@@ -6,7 +6,7 @@ Unity Catalog comes with [Localhost Reference Server](UnityCatalogServer.md) tha
 
 `start-uc-server` runs [UnityCatalogServer](UnityCatalogServer.md) to [handle REST API requests](UnityCatalogServer.md#addServices) (at the port specified using [`--port` option](OptionParser.md#port)).
 
-``` console
+```console
 ❯ ./bin/start-uc-server -h
 usage: bin/start-uc-server
  -h,--help         Print help message.

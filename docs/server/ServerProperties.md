@@ -10,24 +10,25 @@ While being created, `ServerProperties` [loads server configuration](#loadProper
 
 ## ServerProperties Instance { #instance }
 
-``` java
+```java
 ServerProperties instance
 ```
 
 `ServerProperties` is available system-wide as one single instance.
 
-``` scala
-import io.unitycatalog.server.persist.utils.ServerProperties
+```scala
+import io.unitycatalog.server.utils.ServerProperties
 val s3conf = ServerProperties.getInstance.getS3Configurations
 ```
 
 This `ServerProperties` instance is used when:
 
-* `UnityCatalogServer` is requested to [addServices](UnityCatalogServer.md#addServices)
+* `UnityCatalogServer` is requested to [addApiServices](UnityCatalogServer.md#addApiServices)
 * [FileUtils](../persistent-storage/FileUtils.md#properties) is created (and requested to [modifyS3Directory](../persistent-storage/FileUtils.md#modifyS3Directory))
 * [HibernateUtils](../persistent-storage/HibernateUtils.md#properties) is created
 * [UriUtils](../persistent-storage/UriUtils.md#properties) is created
 * `AuthService` is requested to [grantToken](AuthService.md#grantToken)
+* `IcebergRestCatalogService` is requested to handle [config](../iceberg/IcebergRestCatalogService.md#config) and write requests (see [server.iceberg-table.enabled](../iceberg/index.md#server.iceberg-table.enabled))
 * `AwsCredentialVendor` is [created](../credential-vending/AwsCredentialVendor.md#s3Configurations)
 * `AzureCredentialVendor` is [created](../credential-vending/AzureCredentialVendor.md#adlsConfigurations)
 * `GcpCredentialVendor` is [created](../credential-vending/GcpCredentialVendor.md#gcsConfigurations)
@@ -38,7 +39,7 @@ This `ServerProperties` instance is used when:
 
 `ServerProperties` [loads server configuration](#loadProperties) from `etc/conf/server.properties` when [created](#creating-instance).
 
-When there is no `etc/conf/server.properties`, the server properties is empty.
+When there is no `etc/conf/server.properties`, the server properties are empty.
 
 `ServerProperties` uses the properties for the following:
 
@@ -51,7 +52,7 @@ When there is no `etc/conf/server.properties`, the server properties is empty.
 
 ### GCS { #getGcsConfigurations }
 
-``` java
+```java
 Map<String, String> getGcsConfigurations()
 ```
 
@@ -69,7 +70,7 @@ Map<String, String> getGcsConfigurations()
 
 ### S3 { #getS3Configurations }
 
-``` java
+```java
 Map<String, S3StorageConfig> getS3Configurations()
 ```
 
@@ -109,7 +110,7 @@ void loadProperties()
 !!! note
     `loadProperties` prints out the following ERROR message to the logs when `etc/conf/server.properties` file could not be found:
 
-    ``` text
+    ```text
     Properties file not found: [path]
     ```
 
@@ -124,12 +125,12 @@ Properties loaded successfully
 
 ## Logging
 
-Enable `ALL` logging level for `io.unitycatalog.server.persist.utils.ServerProperties` logger to see what happens inside.
+Enable `ALL` logging level for `io.unitycatalog.server.utils.ServerProperties` logger to see what happens inside.
 
 Add the following line to `etc/conf/server.log4j2.properties`:
 
 ```text
-logger.ServerProperties.name = io.unitycatalog.server.persist.utils.ServerProperties
+logger.ServerProperties.name = io.unitycatalog.server.utils.ServerProperties
 logger.ServerProperties.level = all
 ```
 

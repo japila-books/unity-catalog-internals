@@ -6,7 +6,7 @@
 
 ### Authorize { #authorize }
 
-``` java
+```java
 boolean authorize(
   UUID principal,
   UUID resource,
@@ -24,7 +24,7 @@ Used when:
 
 ### Authorize All Privileges { #authorizeAll }
 
-``` java
+```java
 boolean authorizeAll(
   UUID principal,
   UUID resource,
@@ -41,7 +41,7 @@ Used when:
 
 ### Authorize Any Privileges { #authorizeAny }
 
-``` java
+```java
 boolean authorizeAny(
   UUID principal,
   UUID resource,

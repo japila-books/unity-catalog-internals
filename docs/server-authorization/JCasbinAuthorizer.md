@@ -33,7 +33,7 @@ While being created, `JCasbinAuthorizer` reads the following configuration prope
 
 ??? note "UnityCatalogAuthorizer"
 
-    ``` java
+    ```java
     boolean grantAuthorization(
       UUID principal,
       UUID resource,

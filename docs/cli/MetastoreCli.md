@@ -2,7 +2,7 @@
 
 `MetastoreCli` is used by [UnityCatalogCli](UnityCatalogCli.md) to [handle `metastore` sub-commands](#handle).
 
-``` console
+```console
 ❯ ./bin/uc metastore --help
 Please provide a valid sub-command for metastore.
 Valid sub-commands for metastore are: get
@@ -11,7 +11,7 @@ For detailed help on metastore sub-commands, use bin/uc metastore <sub-command> 
 
 ## Handle Command Line { #handle }
 
-``` java
+```java
 void handle(
   CommandLine cmd,
   ApiClient apiClient)

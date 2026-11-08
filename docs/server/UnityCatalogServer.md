@@ -101,7 +101,7 @@ Server initializeServer(
 
 `initializeServer` builds a newly-created Armeria `Server`.
 
-### <span id="addDeltaApiServices"><span id="addIcebergApiServices"> Register Unity Catalog API Services { #addApiServices }
+### <span id="addServices"><span id="addDeltaApiServices"><span id="addIcebergApiServices"> Register Unity Catalog API Services { #addApiServices }
 
 ```java
 void addApiServices(
@@ -122,7 +122,7 @@ Adding Unity Catalog API services...
 
 `addApiServices` creates a [StorageCredentialVendor](../credential-vending/StorageCredentialVendor.md).
 
-`addServices` registers the Unity Catalog API services.
+`addApiServices` registers the Unity Catalog API services.
 
 URL | Service
 -|-
@@ -148,13 +148,13 @@ URL | Service
  `/api/2.1/unity-catalog/temporary-volume-credentials` | [TemporaryVolumeCredentialsService](TemporaryVolumeCredentialsService.md)
  `/api/2.1/unity-catalog/volumes` | [VolumeService](VolumeService.md)
 
-`addServices` prints the following INFO message to the logs while registering [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md):
+`addApiServices` prints the following INFO message to the logs while registering [IcebergRestCatalogService](../iceberg/IcebergRestCatalogService.md):
 
 ```text
 Adding Iceberg services...
 ```
 
-`addServices` prints the following INFO message to the logs while registering [DeltaApiService](DeltaApiService.md):
+`addApiServices` prints the following INFO message to the logs while registering [DeltaApiService](DeltaApiService.md):
 
 ```text
 Adding UC Delta API services...

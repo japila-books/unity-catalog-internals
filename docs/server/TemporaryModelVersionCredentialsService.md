@@ -33,7 +33,7 @@ While being created, `TemporaryModelVersionCredentialsService` creates an [Unity
 
 ## Generate Temporary Model Version Credentials { #generateTemporaryModelVersionCredentials }
 
-``` java
+```java
 HttpResponse generateTemporaryModelVersionCredentials(
   GenerateTemporaryModelVersionCredential generateTemporaryModelVersionCredentials)
 ```

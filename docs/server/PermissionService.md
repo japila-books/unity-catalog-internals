@@ -17,7 +17,7 @@ Method | URL | Handler | AuthorizeKey
  PATCH | `/metastore/{name}` | [updateMetastoreAuthorization](#updateMetastoreAuthorization) | `metastore`
  ... | | |
 
-``` console
+```console
 $ http http://localhost:8080/api/2.1/unity-catalog/permissions/catalog/unity
 HTTP/1.1 200 OK
 content-length: 28
@@ -33,7 +33,7 @@ server: Armeria/1.28.4
 ??? note "Unity Catalog CLI"
     The above `http` command is equivalent to the following:
 
-    ``` console
+    ```console
     ❯ ./bin/uc permission get --securable_type catalog --name unity
     []
     ```

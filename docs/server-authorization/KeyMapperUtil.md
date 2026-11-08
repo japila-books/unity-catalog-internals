@@ -2,7 +2,7 @@
 
 ## Resolve Resource Names Into IDs { #mapResourceKeys }
 
-``` java
+```java
 Map<SecurableType, Object> mapResourceKeys(
   Map<SecurableType, Object> resourceKeys)
 ```

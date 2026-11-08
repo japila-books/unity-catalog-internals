@@ -4,7 +4,7 @@
 
 ## create_function
 
-``` py
+```py
 create_function(
   self,
   *,

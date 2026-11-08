@@ -18,7 +18,7 @@ That's why the catalog name is the default Spark SQL catalog `spark_catalog` (no
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc catalog create --name spark_catalog
     ```
 
@@ -44,7 +44,7 @@ That's why the catalog name is the default Spark SQL catalog `spark_catalog` (no
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc schema create \
         --catalog spark_catalog \
         --name demo
@@ -76,7 +76,7 @@ That's why the catalog name is the default Spark SQL catalog `spark_catalog` (no
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table create \
         --full_name spark_catalog.demo.delta_table \
         --columns "id INT, name STRING" \
@@ -124,7 +124,7 @@ Table created successfully at: file:///tmp/delta_table
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table read \
         --full_name spark_catalog.demo.delta_table
     ```
@@ -139,7 +139,7 @@ Table created successfully at: file:///tmp/delta_table
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table write \
         --full_name spark_catalog.demo.delta_table
     ```
@@ -155,7 +155,7 @@ Table written to successfully at: file:///tmp/delta_table/
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table read \
         --full_name spark_catalog.demo.delta_table
     ```
@@ -200,7 +200,7 @@ Table written to successfully at: file:///tmp/delta_table/
 
 === "Spark 3.5.1 + Delta Lake {{ delta.version }}"
 
-    ``` bash
+    ```bash
     ./bin/spark-shell \
         --packages \
             io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark:{{ uc.version }} \

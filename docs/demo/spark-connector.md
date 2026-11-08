@@ -76,7 +76,7 @@ Both use the very same configuration for simplicity yet serve similar but slight
 
 === "Spark 4.2.1 + Delta Lake 4.4.1"
 
-    ``` shell
+    ```shell
     ./bin/spark-shell \
       --packages \
         io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.version_short }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
@@ -91,7 +91,7 @@ Both use the very same configuration for simplicity yet serve similar but slight
       --conf spark.sql.catalog.unity.token=some_token
     ```
 
-    ``` text
+    ```text
     Welcome to
           ____              __
          / __/__  ___ _____/ /__
@@ -111,7 +111,7 @@ Both use the very same configuration for simplicity yet serve similar but slight
 
 === "uv + PySpark 4.2.1 + Delta Lake 4.4.1"
 
-    ``` shell
+    ```shell
     uvx --from "pyspark==4.2.1" pyspark \
       --packages \
         io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_{{ spark.version_short }}_2.13:{{ uc.version }},org.slf4j:slf4j-api:2.0.17 \
@@ -152,7 +152,7 @@ There is no `spark_catalog` catalog listed (as it is the default internal Spark 
 
 In the terminal with Spark Shell, execute the following for the list of the catalogs Spark SQL knows about.
 
-``` scala
+```scala
 spark.catalog.listDatabases().show(truncate=false)
 ```
 
@@ -171,7 +171,7 @@ io.unitycatalog.client.ApiException: listSchemas call failed with: 404 - {"error
 
 This query failed as the current catalog is the built-in `spark_catalog` which is not known to Unity Catalog.
 
-``` scala
+```scala
 assert(spark.catalog.currentCatalog() == "spark_catalog")
 ```
 
@@ -185,15 +185,15 @@ There are a couple of options to set it up properly (_fix it_):
 
 Let's create `spark_catalog` in Unity Catalog.
 
-``` shell
+```shell
 ./bin/uc catalog create --name spark_catalog
 ```
 
-``` shell
+```shell
 ./bin/uc schema create --catalog spark_catalog --name default
 ```
 
-``` shell
+```shell
 ./bin/uc table create \
     --full_name spark_catalog.default.uc_demo \
     --columns 'id INT' \
@@ -216,7 +216,7 @@ tree /tmp/uc_demo
 With the `spark_catalog` catalog in Unity Catalog created, we can now list all the available tables in the default Spark catalog.
 There should be `uc_demo` table available.
 
-``` scala
+```scala
 spark.catalog.listTables().show(truncate=false)
 ```
 
@@ -230,7 +230,7 @@ spark.catalog.listTables().show(truncate=false)
 
 Let's change (_write to_) the `uc_demo` delta table that was registered to Unity Catalog.
 
-``` scala
+```scala
 spark.range(1).write.insertInto("uc_demo")
 ```
 
@@ -241,11 +241,11 @@ It works! 🥳
 
 Let's query (_read from_) the `uc_demo` delta table.
 
-``` scala
+```scala
 spark.table("uc_demo").show
 ```
 
-``` text
+```text
 +---+
 | id|
 +---+
@@ -261,11 +261,11 @@ Unity Catalog is accessible using `unity` catalog ID.
 sql("SET CATALOG unity")
 ```
 
-``` scala
+```scala
 spark.catalog.listCatalogs().show()
 ```
 
-``` text
+```text
 +-------------+-----------+
 |         name|description|
 +-------------+-----------+
@@ -274,11 +274,11 @@ spark.catalog.listCatalogs().show()
 +-------------+-----------+
 ```
 
-``` scala
+```scala
 spark.catalog.listDatabases().show()
 ```
 
-``` text
+```text
 +-------+-------+--------------+-----------+
 |   name|catalog|   description|locationUri|
 +-------+-------+--------------+-----------+
@@ -286,15 +286,15 @@ spark.catalog.listDatabases().show()
 +-------+-------+--------------+-----------+
 ```
 
-``` scala
+```scala
 assert(spark.catalog.tableExists("unity.default.numbers"))
 ```
 
-``` scala
+```scala
 sql("DESC EXTENDED unity.default.numbers").show(truncate=false)
 ```
 
-``` text
+```text
 +----------------------------+-----------------------------------------------------------------------------------------+-------+
 |col_name                    |data_type                                                                                |comment|
 +----------------------------+-----------------------------------------------------------------------------------------+-------+
@@ -313,11 +313,11 @@ sql("DESC EXTENDED unity.default.numbers").show(truncate=false)
 +----------------------------+-----------------------------------------------------------------------------------------+-------+
 ```
 
-``` bash
+```bash
 ./bin/uc table get --full_name unity.default.numbers
 ```
 
-``` text
+```text
 ┌──────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │               KEY                │                                                                          VALUE                                                                           │
 ├──────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤

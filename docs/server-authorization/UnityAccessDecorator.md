@@ -33,7 +33,7 @@ This `UnityAccessEvaluator` is used to [evaluate](UnityAccessEvaluator.md#evalua
 
 ??? note "DecoratingHttpServiceFunction"
 
-    ``` java
+    ```java
     HttpResponse serve(
       HttpService delegate,
       ServiceRequestContext ctx,
@@ -44,7 +44,7 @@ This `UnityAccessEvaluator` is used to [evaluate](UnityAccessEvaluator.md#evalua
 
 `serve` prints out the following DEBUG message to the logs:
 
-``` text
+```text
 AccessDecorator checking [path]
 ```
 
@@ -87,7 +87,7 @@ Method findServiceMethod(
 
 If the given `HttpService` is unwrapped to an `AnnotatedService` successfully, `findServiceMethod` prints out the following DEBUG message to the logs:
 
-``` text
+```text
 serviceName = [serviceName], methodName = [methodName]
 ```
 
@@ -159,19 +159,19 @@ String findAuthorizeExpression(
 
 When found, `findAuthorizeExpression` prints out the following DEBUG message to the logs and returns the authorize expression value:
 
-``` text
+```text
 authorize expression = [annotation_value]
 ```
 
 Otherwise, `findAuthorizeExpression` prints out the following DEBUG message to the logs and returns no authorize expression value (`null`):
 
-``` text
+```text
 authorize = (none found)
 ```
 
 ### Authorize By Request { #authorizeByRequest }
 
-``` java
+```java
 HttpResponse authorizeByRequest(
   HttpService delegate,
   ServiceRequestContext ctx,
@@ -185,7 +185,7 @@ HttpResponse authorizeByRequest(
 
 ### Check Authorization { #checkAuthorization }
 
-``` java
+```java
 void checkAuthorization(
   UUID principal,
   String expression,
@@ -198,7 +198,7 @@ In essence, `checkAuthorization` reports a `BaseException` to indicate "Access d
 
 `checkAuthorization` prints out the following DEBUG message to the logs:
 
-``` text
+```text
 resourceKeys = [resourceKeys]
 ```
 
@@ -206,7 +206,7 @@ resourceKeys = [resourceKeys]
 
 `checkAuthorization` prints out the following DEBUG message to the logs:
 
-``` text
+```text
 resourceIds = [resourceIds]
 ```
 
@@ -214,7 +214,7 @@ resourceIds = [resourceIds]
 
 In case when the `UnityAccessEvaluator` does not evaluate the expression for the `principal` and the resource IDs successfully, `checkAuthorization` reports a `BaseException` with the following message:
 
-``` text
+```text
 Access denied.
 ```
 
@@ -224,7 +224,7 @@ Enable `ALL` logging level for `io.unitycatalog.server.auth.decorator.UnityAcces
 
 Add the following line to `etc/conf/server.log4j2.properties`:
 
-``` text
+```text
 logger.UnityAccessDecorator.name = io.unitycatalog.server.auth.decorator.UnityAccessDecorator
 logger.UnityAccessDecorator.level = all
 ```

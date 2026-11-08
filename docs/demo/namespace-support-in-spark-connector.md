@@ -9,7 +9,7 @@ The demo shows support in Unity Catalog's [Spark Connector](../spark-connector/i
 
 === "Spark 3.5.1 + Delta Lake {{ uc.version }}"
 
-    ``` shell
+    ```shell
     SPARK_SUBMIT_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5555 \
     ./bin/spark-shell \
       --packages \
@@ -21,7 +21,7 @@ The demo shows support in Unity Catalog's [Spark Connector](../spark-connector/i
       --conf spark.sql.catalog.unity.uri=http://localhost:8080
     ```
 
-``` text
+```text
 Welcome to
         ____              __
     / __/__  ___ _____/ /__
