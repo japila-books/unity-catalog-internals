@@ -101,6 +101,33 @@ Server initializeServer(
 
 `initializeServer` builds a newly-created Armeria `Server`.
 
+### Initialize Authorizer { #initializeAuthorizer }
+
+```java
+UnityCatalogAuthorizer initializeAuthorizer(
+  ServerProperties serverProperties,
+  HibernateConfigurator hibernateConfigurator,
+  Repositories repositories)
+```
+
+`initializeAuthorizer` selects [server authentication method](../server-authorization/index.md) based on [server.authorization](ServerProperties.md#isAuthorizationEnabled) server property.
+
+With [server.authorization](ServerProperties.md#isAuthorizationEnabled) enabled, `initializeAuthorizer` prints out the following INFO message to the logs:
+
+```text
+Initializing JCasbinAuthorizer...
+```
+
+`initializeAuthorizer` creates a [JCasbinAuthorizer](../server-authorization/JCasbinAuthorizer.md) and [makes sure that admin user is the owner of the metastore](../server-authorization/UnityAccessUtil.md#initializeAdmin).
+
+Otherwise, `initializeAuthorizer` prints out the following INFO message to the logs:
+
+```text
+Authorization disabled. Using AllowingAuthorizer.
+```
+
+`initializeAuthorizer` creates an [AllowingAuthorizer](../server-authorization/AllowingAuthorizer.md).
+
 ### <span id="addServices"><span id="addDeltaApiServices"><span id="addIcebergApiServices"> Register Unity Catalog API Services { #addApiServices }
 
 ```java

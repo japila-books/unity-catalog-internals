@@ -19,4 +19,4 @@ usage: bin/start-uc-server
 
 ## Server Configuration
 
-The Localhost Reference Server uses `etc/conf/server.properties` file for [server configuration](ServerProperties.md#loadProperties).
+The Localhost Reference Server uses [server properties](./server-properties.md) for configuration.

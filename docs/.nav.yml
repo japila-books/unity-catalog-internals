@@ -12,6 +12,7 @@ nav:
     - OAuth2 Authentication: oauth2-authentication
     - Persistent Storage: persistent-storage
     - Server Authorization: server-authorization
+    - server-properties.md
     - Spark Connector: spark-connector
   - OpenAPI: openapi
   - Server: server

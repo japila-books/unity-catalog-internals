@@ -1,0 +1,5 @@
+# https://lukasgeiter.github.io/mkdocs-awesome-nav/
+nav:
+  - index.md
+  - server-properties.md
+  - "*"
