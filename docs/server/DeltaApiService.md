@@ -89,7 +89,7 @@ Set<CredentialContext.Privilege> toPrivileges(
 
 ## Demo
 
-``` bash
+```bash
 $ http http://localhost:8080/api/2.1/unity-catalog/catalogs \
     | jq '.catalogs[].name'
 "unity"

@@ -8,13 +8,26 @@ title: IcebergRestCatalogService
 
 Method | URL | Handler | Params
 -|-|-|-
- GET | `/v1/config` | [config](#config) | &nbsp;
- GET | `/v1/namespaces/[namespace]` | [getNamespace](#getNamespace) | `namespace`
- GET | `/v1/namespaces` | [listNamespaces](#listNamespaces) | `parent`
- GET | `/v1/namespaces/[namespace]/tables` | [listTables](#listTables) | `namespace`
- GET | `/v1/namespaces/[namespace]/tables/[table]` | [loadTable](#loadTable) | `namespace`<br>`table`
- POST | `/v1/namespaces/[namespace]/tables/[table]/metrics` | [reportMetrics](#reportMetrics) | `namespace`<br>`table`
- HEAD | `/v1/namespaces/[namespace]/tables/[table]` | [tableExists](#tableExists) | `namespace`<br>`table`
+ GET | `/v1/config` | [config](#config) | `warehouse`
+ GET | `/v1/catalogs/[catalog]/namespaces` | `listNamespaces` | `catalog`<br>`parent`<br>`pageToken`<br>`pageSize`
+ HEAD | `/v1/catalogs/[catalog]/namespaces/[namespace]` | `namespaceExists` | `catalog`<br>`namespace`
+ GET | `/v1/catalogs/[catalog]/namespaces/[namespace]` | `getNamespace` | `catalog`<br>`namespace`
+ POST | `/v1/catalogs/[catalog]/namespaces` | `createNamespace` | `catalog`
+ DELETE | `/v1/catalogs/[catalog]/namespaces/[namespace]` | `dropNamespace` | `catalog`<br>`namespace`
+ POST | `/v1/catalogs/[catalog]/namespaces/[namespace]/properties` | `updateNamespaceProperties` | `catalog`<br>`namespace`
+ GET | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables` | `listTables` | `catalog`<br>`namespace`<br>`pageToken`<br>`pageSize`
+ POST | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables` | `createTable` | `catalog`<br>`namespace`
+ HEAD | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables/[table]` | `tableExists` | `catalog`<br>`namespace`<br>`table`
+ GET | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables/[table]` | [loadTable](#loadTable) | `catalog`<br>`namespace`<br>`table`
+ POST | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables/[table]` | `updateTable` | `catalog`<br>`namespace`<br>`table`
+ DELETE | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables/[table]` | `dropTable` | `catalog`<br>`namespace`<br>`table`<br>`purgeRequested`
+ GET | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables/[table]/credentials` | `loadCredentials` | `catalog`<br>`namespace`<br>`table`
+ POST | `/v1/catalogs/[catalog]/namespaces/[namespace]/tables/[table]/metrics` | `reportMetrics` | `catalog`<br>`namespace`<br>`table`
+ POST | `/v1/catalogs/[catalog]/tables/rename` | `renameTable` | `catalog`
+ GET | `/v1/catalogs/[catalog]/namespaces/[namespace]/views/[view]` | `loadView` | `catalog`<br>`namespace`<br>`view`
+
+!!! note "server.iceberg-table.enabled"
+    `createNamespace`, `dropNamespace`, `updateNamespaceProperties`, `createTable`, `updateTable`, `dropTable` and `renameTable` fail with an `INVALID_ARGUMENT` error when [server.iceberg-table.enabled](index.md#server.iceberg-table.enabled) is disabled.
 
 `IcebergRestCatalogService` uses [Hibernate](#sessionFactory).
 
@@ -56,6 +69,24 @@ This `SessionFactory` is used for the following:
 * [tableExists](#tableExists)
 * [loadTable](#loadTable)
 * [listTables](#listTables)
+
+## Config { #config }
+
+```java
+ConfigResponse config(
+  Optional<String> catalogOpt)
+```
+
+`config` expects the `warehouse` query parameter (the name of a catalog) and fails with a `BadRequestException` when it is not given.
+
+`config` requests the catalog repository to look up the catalog (so a non-existent catalog is a `404`).
+
+`config` responds with the following:
+
+* `prefix` override set to `catalogs/[catalog]`
+* The REST endpoints this server supports:
+    * Read endpoints only when [server.iceberg-table.enabled](index.md#server.iceberg-table.enabled) is disabled
+    * Read and write endpoints otherwise
 
 ## Load Table { #loadTable }
 

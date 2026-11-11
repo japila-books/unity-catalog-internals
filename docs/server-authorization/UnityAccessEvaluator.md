@@ -2,7 +2,7 @@
 
 ## Evaluate Authorization Expression { #evaluate }
 
-``` java
+```java
 boolean evaluate(
   UUID principal,
   String expression,
@@ -38,7 +38,7 @@ Variable | Value
 
 `evaluate` prints out the following DEBUG message to the logs:
 
-``` text
+```text
 evaluating [expression] = [result]
 ```
 
@@ -58,7 +58,7 @@ Enable `ALL` logging level for `io.unitycatalog.server.auth.decorator.UnityAcces
 
 Add the following line to `etc/conf/server.log4j2.properties`:
 
-``` text
+```text
 logger.UnityAccessEvaluator.name = io.unitycatalog.server.auth.decorator.UnityAccessEvaluator
 logger.UnityAccessEvaluator.level = all
 ```

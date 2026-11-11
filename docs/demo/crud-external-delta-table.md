@@ -18,7 +18,7 @@ That's why the catalog name is the default Spark SQL catalog `spark_catalog` (no
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc catalog create --name spark_catalog
     ```
 
@@ -44,7 +44,7 @@ That's why the catalog name is the default Spark SQL catalog `spark_catalog` (no
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc schema create \
         --catalog spark_catalog \
         --name demo
@@ -76,7 +76,7 @@ That's why the catalog name is the default Spark SQL catalog `spark_catalog` (no
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table create \
         --full_name spark_catalog.demo.delta_table \
         --columns "id INT, name STRING" \
@@ -124,7 +124,7 @@ Table created successfully at: file:///tmp/delta_table
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table read \
         --full_name spark_catalog.demo.delta_table
     ```
@@ -139,7 +139,7 @@ Table created successfully at: file:///tmp/delta_table
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table write \
         --full_name spark_catalog.demo.delta_table
     ```
@@ -155,7 +155,7 @@ Table written to successfully at: file:///tmp/delta_table/
 
 === "SHELL"
 
-    ``` bash
+    ```bash
     ./bin/uc table read \
         --full_name spark_catalog.demo.delta_table
     ```
@@ -198,44 +198,44 @@ Table written to successfully at: file:///tmp/delta_table/
 
 ## Spark Connector
 
-=== "Spark 3.5.1 + Delta Lake {{ delta.version }}"
+Run Spark SQL shell with the [Unity Catalog's Spark Connector](../spark-connector/index.md).
 
-    ``` bash
-    ./bin/spark-shell \
-        --packages \
-            io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark:{{ uc.version }} \
-        --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
-        --conf spark.sql.catalog.spark_catalog=io.unitycatalog.connectors.spark.UCSingleCatalog \
-        --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
-        --conf spark.sql.catalog.unity=io.unitycatalog.connectors.spark.UCSingleCatalog \
-        --conf spark.sql.catalog.unity.uri=http://localhost:8080
-    ```
-&nbsp;
+```shell
+./bin/spark-sql \
+    --packages \
+        io.delta:delta-spark_2.13:4.4.1,io.unitycatalog:unitycatalog-spark_4.2_2.13:0.7.0,org.slf4j:slf4j-api:2.0.17 \
+    --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
+    --conf spark.sql.catalog.spark_catalog=io.unitycatalog.spark.UCSingleCatalog \
+    --conf spark.sql.catalog.spark_catalog.uri=http://localhost:8080 \
+    --conf spark.sql.catalog.spark_catalog.type=static \
+    --conf spark.sql.catalog.spark_catalog.token=some_token \
+    --conf spark.sql.catalog.unity=io.unitycatalog.spark.UCSingleCatalog \
+    --conf spark.sql.catalog.unity.uri=http://localhost:8080 \
+    --conf spark.sql.catalog.unity.type=static \
+    --conf spark.sql.catalog.unity.token=some_token
+```
 
-=== "Spark Shell"
+=== "Spark SQL Shell"
 
-    ```scala
-    spark.table("demo.delta_table").show
+    ```sql
+    SELECT * FROM demo.delta_table;
     ```
 
 ```text
-+---+----------+
-| id|      name|
-+---+----------+
-|  1|eoFmOHAqPM|
-|  2|YGzacYHtUa|
-|  3|IiaJlcUhgu|
-|  4|yTiXPwxFvP|
-|  5|FbHXPqhLyS|
-|  6|FRLqZGMlKj|
-|  7|VVdiVyaFsh|
-|  8|DNSTNQfhXX|
-|  9|BRXCMWjFsG|
-| 10|NYucEJZuTK|
-| 11|USIjlhqNMN|
-| 12|jNXDZkbRnn|
-| 13|EiNApsmzaz|
-| 14|TgfXQtocFo|
-| 15|TksgpbjlIW|
-+---+----------+
+1       WothFZeixI
+2       nIPxuHatxC
+3       VUaWuvbmkg
+4       gCCCnWfETz
+5       fCqtQntfbm
+6       jpJvVXdbRE
+7       YtayMLVQHd
+8       GmkMZEMgss
+9       KIZJSnaNEV
+10      VYRTjHbwZF
+11      hplgaznHLI
+12      nbFdAoiAUU
+13      XSPPneeOTp
+14      POxSLgjjNY
+15      tknawGzJuU
+Time taken: 3.786 seconds, Fetched 15 row(s)
 ```

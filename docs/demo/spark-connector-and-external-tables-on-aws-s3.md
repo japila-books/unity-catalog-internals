@@ -8,7 +8,7 @@ hide:
 !!! warning "Work in Progress"
     This page is a work in progress until this warning disappears.
 
-``` bash
+```bash
 ./bin/spark-sql \
   --name "uc-external-tables-s3" \
   --packages "org.apache.hadoop:hadoop-aws:3.3.4,io.delta:delta-spark_2.13:{{ delta.version }},io.unitycatalog:unitycatalog-spark_2.13:{{ uc.version }}" \
@@ -21,7 +21,7 @@ hide:
   --conf "spark.sql.defaultCatalog=unity"
 ```
 
-``` text
+```text
 ## Demo: Spark Connector and External Tables on AWS S3
 s3.bucketPath.0=s3://japila-unitycatalog
 s3.region.0=FIXME_region

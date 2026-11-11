@@ -70,7 +70,7 @@ Subject (`sub`) | `admin`
 
 In the end, `SecurityContext` prints out the following INFO message to the logs (with the content of [certs.json](#getInternalCertsFile)):
 
-``` text
+```text
 --- Internal Certs Configuration --
 [certs.json]
 ```

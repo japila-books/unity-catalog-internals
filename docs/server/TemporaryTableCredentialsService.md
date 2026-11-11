@@ -29,7 +29,7 @@ While being created, `TemporaryTableCredentialsService` creates an [UnityAccessE
 
 ## Generate Temporary Table Credentials { #generateTemporaryTableCredential }
 
-``` java
+```java
 HttpResponse generateTemporaryTableCredential(
   GenerateTemporaryTableCredential generateTemporaryTableCredential)
 ```

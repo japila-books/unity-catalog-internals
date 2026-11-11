@@ -4,30 +4,31 @@
 
 `ServerProperties` takes no arguments to be created.
 
-While being created, `ServerProperties` [loads server configuration](#loadProperties).
+While being created, `ServerProperties` [loads the default server configuration](#generateDefaults).
 
 `ServerProperties` is created once to be available [system-wide](#instance).
 
 ## ServerProperties Instance { #instance }
 
-``` java
+```java
 ServerProperties instance
 ```
 
 `ServerProperties` is available system-wide as one single instance.
 
-``` scala
-import io.unitycatalog.server.persist.utils.ServerProperties
+```scala
+import io.unitycatalog.server.utils.ServerProperties
 val s3conf = ServerProperties.getInstance.getS3Configurations
 ```
 
 This `ServerProperties` instance is used when:
 
-* `UnityCatalogServer` is requested to [addServices](UnityCatalogServer.md#addServices)
+* `UnityCatalogServer` is requested to [addApiServices](UnityCatalogServer.md#addApiServices)
 * [FileUtils](../persistent-storage/FileUtils.md#properties) is created (and requested to [modifyS3Directory](../persistent-storage/FileUtils.md#modifyS3Directory))
 * [HibernateUtils](../persistent-storage/HibernateUtils.md#properties) is created
 * [UriUtils](../persistent-storage/UriUtils.md#properties) is created
 * `AuthService` is requested to [grantToken](AuthService.md#grantToken)
+* `IcebergRestCatalogService` is requested to handle [config](../iceberg/IcebergRestCatalogService.md#config) and write requests (see [server.iceberg-table.enabled](../iceberg/index.md#server.iceberg-table.enabled))
 * `AwsCredentialVendor` is [created](../credential-vending/AwsCredentialVendor.md#s3Configurations)
 * `AzureCredentialVendor` is [created](../credential-vending/AzureCredentialVendor.md#adlsConfigurations)
 * `GcpCredentialVendor` is [created](../credential-vending/GcpCredentialVendor.md#gcsConfigurations)
@@ -36,9 +37,9 @@ This `ServerProperties` instance is used when:
 
 ## Server Properties { #properties }
 
-`ServerProperties` [loads server configuration](#loadProperties) from `etc/conf/server.properties` when [created](#creating-instance).
+`ServerProperties` [loads server configuration](#generateDefaults) from `etc/conf/server.properties` when [created](#creating-instance).
 
-When there is no `etc/conf/server.properties`, the server properties is empty.
+When there is no `etc/conf/server.properties`, the server properties are empty.
 
 `ServerProperties` uses the properties for the following:
 
@@ -51,7 +52,7 @@ When there is no `etc/conf/server.properties`, the server properties is empty.
 
 ### GCS { #getGcsConfigurations }
 
-``` java
+```java
 Map<String, String> getGcsConfigurations()
 ```
 
@@ -69,7 +70,7 @@ Map<String, String> getGcsConfigurations()
 
 ### S3 { #getS3Configurations }
 
-``` java
+```java
 Map<String, S3StorageConfig> getS3Configurations()
 ```
 
@@ -98,38 +99,44 @@ Map<String, S3StorageConfig> getS3Configurations()
 * `FileIOFactory` is requested to [getS3FileIO](../iceberg/FileIOFactory.md#getS3FileIO)
 * `TableConfigService` is [created](../iceberg/TableConfigService.md#s3Configurations)
 
-## Load Server Configuration { #loadProperties }
+## Load Default Server Configuration { #generateDefaults }
 
 ```java
-void loadProperties()
+Properties generateDefaults()
 ```
 
-`loadProperties` loads `etc/conf/server.properties` file into the [Properties](#properties).
+?? note "Static Method"
+    `generateDefaults` is a Java **class method** to be invoked without a reference to a particular object.
 
-!!! note
-    `loadProperties` prints out the following ERROR message to the logs when `etc/conf/server.properties` file could not be found:
+    Learn more in the [Java Language Specification]({{ java.spec }}/jls-8.html#jls-8.4.3.2).
 
-    ``` text
-    Properties file not found: [path]
-    ```
+`generateDefaults` takes all the server properties that have the default value defined.
 
-    It is not a fatal error when there is no server configuration file.
-    The [server properties](#properties) are simply empty.
+## isAuthorizationEnabled { #isAuthorizationEnabled }
 
-`loadProperties` prints out the following DEBUG message to the logs:
-
-```text
-Properties loaded successfully
+```java
+boolean isAuthorizationEnabled()
 ```
+
+`isAuthorizationEnabled` is enabled (`true`) when [server.authorization](./server-properties.md#AUTHORIZATION_ENABLED) server property is enabled.
+
+---
+
+`isAuthorizationEnabled` is used when:
+
+* `ArmeriaServerBuilder` is [created](ArmeriaServerBuilder.md#authorizationEnabled)
+* `UnityCatalogServer` is requested to [initialize](UnityCatalogServer.md#initializeServer) (and [initializes the authorizer](UnityCatalogServer.md#initializeAuthorizer) and [registers the Unity Catalog API security decorators](UnityCatalogServer.md#addSecurityDecorators))
+* `AuthorizedService` is requested to [applyResponseFilter](AuthorizedService.md#applyResponseFilter)
+* `AuthService` is requested to [create access token](AuthService.md#grantToken)
 
 ## Logging
 
-Enable `ALL` logging level for `io.unitycatalog.server.persist.utils.ServerProperties` logger to see what happens inside.
+Enable `ALL` logging level for `io.unitycatalog.server.utils.ServerProperties` logger to see what happens inside.
 
 Add the following line to `etc/conf/server.log4j2.properties`:
 
 ```text
-logger.ServerProperties.name = io.unitycatalog.server.persist.utils.ServerProperties
+logger.ServerProperties.name = io.unitycatalog.server.utils.ServerProperties
 logger.ServerProperties.level = all
 ```
 

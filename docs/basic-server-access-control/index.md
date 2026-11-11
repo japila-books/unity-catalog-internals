@@ -68,7 +68,7 @@ Privilege | Description
 
 The CLI interface provides a new [permission](../cli/PermissionCli.md) command.
 
-``` bash
+```bash
 ./bin/uc permission create \
   --securable_type catalog \
   --name mycatalog \
@@ -76,13 +76,13 @@ The CLI interface provides a new [permission](../cli/PermissionCli.md) command.
   --privilege "CREATE CATALOG"
 ```
 
-``` bash
+```bash
 ./bin/uc permission get \
   --securable_type catalog \
   --name unity
 ```
 
-``` bash
+```bash
 ./bin/uc permission delete \
   --securable_type table \
   --name mycatalog.myschema.table \

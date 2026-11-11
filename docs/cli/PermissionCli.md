@@ -45,11 +45,11 @@ String getPermission(
 
 === "Help"
 
-    ``` bash
+    ```bash
     ./bin/uc permission get --help
     ```
 
-``` text
+```text
 Usage: bin/uc permission get [options]
 Required Params:
   --securable_type The type of the securable

@@ -51,7 +51,7 @@ server: Armeria/1.28.4
 
 ## Generate Temporary Path Credentials { #generateTemporaryPathCredential }
 
-``` java
+```java
 HttpResponse generateTemporaryPathCredential(
   GenerateTemporaryPathCredential generateTemporaryPathCredential)
 ```
